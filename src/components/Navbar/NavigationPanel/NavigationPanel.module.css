@@ -1,0 +1,40 @@
+.NavigationPanelBackground {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    background: #212121;
+    width: 25px;
+    min-height: 100vh;
+    transition: 0.5s;
+    align-items: center;
+    color: white;
+}
+
+.NavigationPanelBackground div {
+    opacity: 0;
+    transition: 0.5s;
+    margin-left: -35px;
+}
+
+
+.text_test {
+    opacity: 0;
+}
+
+.text_test.active {
+    opacity: 1;
+}
+
+.NavigationPanelBackground.active {
+    background: #212121;
+    width: 250px;
+    min-height: 100vh;
+    align-items: center;
+    transition: 0.5s;
+}
+
+.NavigationPanelBackground.active div {
+    opacity: 1;
+    margin-left: 0;
+}
+

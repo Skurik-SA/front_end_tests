@@ -1,0 +1,98 @@
+.NavbarWrapper {
+    display: flex;
+    flex-direction: column;
+
+}
+
+
+.NavbarBackground {
+    background-color: #212121;
+    min-width: 100%;
+    min-height: 45px;
+    font-size: calc(10px + 2vmin);
+    color: white;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 30px;
+    padding-right: 30px;
+    background: linear-gradient(80deg, #212121 30%, rgba(0, 0, 0, 0) 250%);
+}
+
+.NavbarContent {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.NavbarContentLeft {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+
+.NavbarContentRight {
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+}
+
+.NavbarTextStyle_1 {
+    width: 80px;
+    font-family: 'Inter', serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 0px;
+    /* or 0% */
+
+    text-align: center;
+
+    color: #FFFFFF;
+
+}
+
+.NavbarTextStyle_2 {
+
+
+    font-family: 'Inter', ui-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 0px;
+    /* or 0% */
+
+    text-align: center;
+    text-decoration-line: underline;
+
+    color: #A9A9A9;
+
+}
+
+.NavPanelContent {
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+
+
+    width: 250px;
+    align-items: center;
+}
+
+.NavPanelContent div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 245px;
+    height: 50px;
+}
+
+.NavPanelContent div:hover {
+    background: #CBCBCB;
+    transition: 0.4s;
+    color: black;
+}
