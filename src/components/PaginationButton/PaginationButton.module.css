@@ -1,0 +1,28 @@
+.PaginationButtonMainStyle {
+    box-sizing: border-box;
+    width: 50px;
+    height: 50px;
+    background: #FFFFFF;
+    border: 1px solid #212121;
+    border-radius: 10px;
+    color: black;
+    padding-top: 6px;
+    font-size: 22px;
+    margin-top: 20px;
+    user-select: none;
+    cursor: pointer;
+}
+
+.PaginationButtonMainStyle.saved {
+    background: #767676;
+    color: white;
+}
+
+.PaginationButtonMainStyle.active {
+    background: #212121;
+    color: white;
+}
+
+p {
+    opacity: 0.9;
+}
