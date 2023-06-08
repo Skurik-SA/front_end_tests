@@ -69,7 +69,6 @@ const Navbar = () => {
                     <div><Link to={"/statistic"} ><div>Статистика</div></Link> </div>
                     <div><Link to={"/general_tests"} ><div>Общие тесты</div></Link> </div>
                 </div>
-
             </NavigationPanel>
         </>
     )
