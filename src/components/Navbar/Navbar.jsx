@@ -61,13 +61,13 @@ const Navbar = () => {
             </div>
             <NavigationPanel visible={navPanelVisibility} setVisible={setNavPanelVisibility} menuMode={menuIcon} setMenuMode={setMenuIcon}>
                 <div className="NavPanelContent">
-                    <div><Link to={"/personal"} ><div>Личный кабинет</div></Link> </div>
-                    <div><Link to={"/all_tests"} ><div>Мои тесты</div></Link> </div>
-                    <div><Link to={"/test_edit"} ><div>Редактор тестов</div></Link> </div>
-                    <div><Link to={"/groups"} ><div>Группы</div></Link> </div>
-                    <div><Link to={"/marks"} ><div>Оценки</div></Link> </div>
-                    <div><Link to={"/statistic"} ><div>Статистика</div></Link> </div>
-                    <div><Link to={"/general_tests"} ><div>Общие тесты</div></Link> </div>
+                    <div><Link to={"/personal"} style={{ textDecoration: 'none', color: 'white'}}><div>Личный кабинет</div></Link> </div>
+                    <div><Link to={"/all_tests"} style={{ textDecoration: 'none', color: 'white'}}><div>Мои тесты</div></Link> </div>
+                    <div><Link to={"/test_edit"} style={{ textDecoration: 'none', color: 'white'}}><div>Редактор тестов</div></Link> </div>
+                    <div><Link to={"/groups"} style={{ textDecoration: 'none', color: 'white'}}><div>Группы</div></Link> </div>
+                    <div><Link to={"/marks"} style={{ textDecoration: 'none', color: 'white'}}><div>Оценки</div></Link> </div>
+                    <div><Link to={"/statistic"} style={{ textDecoration: 'none', color: 'white'}}><div>Статистика</div></Link> </div>
+                    <div><Link to={"/general_tests"} style={{ textDecoration: 'none', color: 'white'}}><div>Общие тесты</div></Link> </div>
                 </div>
             </NavigationPanel>
         </>

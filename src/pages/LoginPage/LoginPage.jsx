@@ -28,7 +28,7 @@ const LoginPage = () => {
                             Авторизация
                         </div>
                         <div>
-                            <button onClick={toRegister} className="registrationBtn">Зарегистрироваться</button>
+                            <button onClick={toRegister} className="registrationBtn2">Зарегистрироваться</button>
                         </div>
                     </div>
 
@@ -67,7 +67,7 @@ const LoginPage = () => {
                     </form>
                     <div className="BtnsA">
                         <div>
-                            <button type="submit" className="loginBtn">Войти</button>
+                            <button type="submit" className="loginBtn2">Войти</button>
                         </div>
 
                     </div>

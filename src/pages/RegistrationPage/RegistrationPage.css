@@ -1,4 +1,4 @@
-.LoginPageMain {
+.RegistrationPageMain {
     background: #4E4E4E;
     width: 100%;
     height: 100vh;
@@ -7,7 +7,7 @@
 
 }
 
-.LoginPageContent {
+.RegistrationPageContent {
     display: flex;
     flex-direction: column;
     align-items: start;
@@ -32,7 +32,7 @@ form div {
 }
 
 
-.loginBtn2 {
+.registrationBtn1 {
     background: #57A0D6;
     border: none;
     color: white;
@@ -41,7 +41,7 @@ form div {
     border-radius: 5px;
 }
 
-.loginBtn2:hover {
+.registrationBtn1:hover {
     background: #61dafb;
 }
 
@@ -55,19 +55,21 @@ input {
 
 }
 
-.registrationBtn2 {
+.loginBtn1 {
+    width: 100px;
     background: none;
     border: 2px solid #000000; /* Параметры рамки */
     font-size: 14px; /* Размер текста */
     padding: 5px 20px; /* Поля вокруг текста */
 }
 
-.registrationBtn2:hover {
+.loginBtn1:hover {
     background: #A9A9A9;
 }
 
 .partUp {
     display: flex;
     flex-direction: row;
+    width: 640px;
     justify-content: space-between;
 }

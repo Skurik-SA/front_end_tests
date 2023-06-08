@@ -11,3 +11,69 @@
     align-items: center;
     justify-content: space-between;
 }
+
+.BlockWrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 16px;
+    width: 100%;
+    height: 100vh;
+    gap: 36px;
+}
+
+.TaskContent {
+    background: #F5F5F5;
+    border: 1px solid black;
+
+    width: 95%;
+    min-height: 720px;
+    max-height: 1920px;
+    height: auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+
+    padding: 100px;
+    gap: 20px;
+
+    color: black;
+}
+
+.BtnContent {
+    background: #F5F5F5;
+    border: 1px solid black;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: center;
+    gap: 10px;
+
+
+    width: 95%;
+    min-height: 100px;
+    color: black;
+}
+
+.BtnContent button {
+    height: 60px;
+    background: #5cff7d;
+    border: none;
+    font-size: 24px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-right: 20px;
+}
+
+.BtnContent button:hover {
+    background: #339444;
+    cursor: pointer;
+}
+
+.CustomInputWrapper {
+    margin-bottom: 60px;
+    margin-right: 460px;
+}
+
+

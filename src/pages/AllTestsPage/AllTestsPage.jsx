@@ -1,9 +1,14 @@
+import BoxMultipleInput from "../../components/Inputs/BoxMultipleInput/BoxMultipleInput";
+import {useState} from "react";
+import "./AllTestsPage.css"
+
 const AllTestsPage = () => {
     return (
         <>
-            <div>
-                All Tests Page
-            </div>
+            {/*<div className="wrp">{inputValue}</div>*/}
+            {/*<div className="wrp2">*/}
+            {/*    <BoxMultipleInput inputValue={inputValue} onChange={test}/>*/}
+            {/*</div>*/}
         </>
     )
 }
