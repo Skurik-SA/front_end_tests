@@ -13,17 +13,10 @@
 .NavigationPanelBackground div {
     opacity: 0;
     transition: 0.5s;
-    margin-left: -35px;
+    margin-left: -135px;
 }
 
 
-.text_test {
-    opacity: 0;
-}
-
-.text_test.active {
-    opacity: 1;
-}
 
 .NavigationPanelBackground.active {
     background: #212121;
@@ -36,5 +29,7 @@
 .NavigationPanelBackground.active div {
     opacity: 1;
     margin-left: 0;
+    cursor: pointer;
+    width: 250px;
 }
 

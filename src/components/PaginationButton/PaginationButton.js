@@ -2,9 +2,7 @@ import pagBtn from "./PaginationButton.module.css"
 import {useState} from "react";
 
 const PaginationButton = ({children, activeTask}) => {
-    // , isSaved, setIsSaved, isActive, setIsActive
     let rootClasses = [pagBtn.PaginationButtonMainStyle]
-    // const [isSaved, setIsSaved] = useState(false)
     const [isActive, setIsActive] = useState(false)
 
     if (isActive) {

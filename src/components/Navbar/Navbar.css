@@ -6,7 +6,7 @@
 
 
 .NavbarBackground {
-    background-color: #212121;
+    /*background-color: #212121;*/
     min-width: 100%;
     min-height: 45px;
     font-size: calc(10px + 2vmin);
@@ -46,7 +46,7 @@
     font-style: normal;
     font-weight: 400;
     font-size: 18px;
-    line-height: 0px;
+    line-height: 0;
     /* or 0% */
 
     text-align: center;
@@ -62,7 +62,7 @@
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
-    line-height: 0px;
+    line-height: 0;
     /* or 0% */
 
     text-align: center;
