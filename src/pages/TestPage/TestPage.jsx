@@ -4,24 +4,27 @@ import PaginatedControlPanel from "../../components/PaginatedControlPanel/Pagina
 import BoxMultipleInput from "../../components/Inputs/BoxMultipleInput/BoxMultipleInput";
 
 const TestPage = () => {
-    //Попробовать через callback сделать смену странички
-    const [inputValue, setInputsValue] = useState([])
+    //Сделать несколько варинатов input
+    const [inputValue, setInputsValue] = useState("")
 
     const [Tasks, setTasks] = useState([
-        {id: 1, taskTitle: 'Task Title1', taskText: 'Task Itself1', inputType:'Input', answer: ''},
-        {id: 2, taskTitle: 'Task Title2', taskText: 'Task Itself2', inputType:'Input', answer: ''},
-        {id: 3, taskTitle: 'Task Title3', taskText: 'Task Itself3', inputType:'Input', answer: ''},
-        {id: 4, taskTitle: 'Task Title4', taskText: 'Task Itself4', inputType:'Input', answer: ''},
-        {id: 5, taskTitle: 'Task Title5', taskText: 'Task Itself5', inputType:'Input', answer: ''},
-        {id: 6, taskTitle: 'Task Title6', taskText: 'Task Itself6', inputType:'Input', answer: ''},
-        {id: 7, taskTitle: 'Task Title7', taskText: 'Task Itself7', inputType:'Input', answer: ''},
+        {id: 1, taskTitle: 'Task Title1', taskText: 'Task Itself1', inputType:'Simple input', answer: ''},
+        {id: 2, taskTitle: 'Task Title2', taskText: 'Task Itself2', inputType:'8-bit Input', answer: ''},
+        {id: 3, taskTitle: 'Task Title3', taskText: 'Task Itself3', inputType:'Simple input', answer: ''},
+        {id: 4, taskTitle: 'Task Title4', taskText: 'Task Itself4', inputType:'8-bit Input', answer: ''},
+        {id: 5, taskTitle: 'Task Title5', taskText: 'Task Itself5', inputType:'Simple input', answer: ''},
+        {id: 6, taskTitle: 'Task Title6', taskText: 'Task Itself6', inputType:'8-bit Input', answer: ''},
+        {id: 7, taskTitle: 'Task Title7', taskText: 'Task Itself7', inputType:'Simple input', answer: ''},
     ])
 
     const [isActiveTask, setIsActiveTask] = useState(Tasks[0])
 
-    function inputChange(event) {
+    function numericInputChange(event) {
         setInputsValue(event.target.value.replace(/[^0-9]/g,""))
+    }
 
+    const simpleInputChange = (event)=> {
+        setInputsValue(event.target.value)
     }
 
     const changeTaskList = (task) => {
@@ -54,9 +57,16 @@ const TestPage = () => {
                     <div className>
                         Поле ввода:
                     </div>
-                    <div className="CustomInputWrapper">
-                        <BoxMultipleInput inputValue={inputValue} onChange={inputChange}/>
-                    </div>
+                    {isActiveTask.inputType === '8-bit Input'
+                    ?
+                        <div className="CustomInputWrapper">
+                            <BoxMultipleInput inputValue={inputValue} onChange={numericInputChange}/>
+                        </div>
+                        :
+                        <div>
+                            <input type="text" className="SimpleInput" value={inputValue} onChange={simpleInputChange}/>
+                        </div>
+                    }
                     <button onClick={saveAnswer}>Сохранить ответ</button>
                 </div>
             </div>
