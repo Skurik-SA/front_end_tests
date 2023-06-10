@@ -68,6 +68,7 @@ const Navbar = () => {
                     <div><Link to={"/marks"} style={{ textDecoration: 'none', color: 'white'}}><div>Оценки</div></Link> </div>
                     <div><Link to={"/statistic"} style={{ textDecoration: 'none', color: 'white'}}><div>Статистика</div></Link> </div>
                     <div><Link to={"/general_tests"} style={{ textDecoration: 'none', color: 'white'}}><div>Общие тесты</div></Link> </div>
+                    <div><Link to={"/test"} style={{ textDecoration: 'none', color: 'red'}}><div>TestPage</div></Link> </div>
                 </div>
             </NavigationPanel>
         </>
