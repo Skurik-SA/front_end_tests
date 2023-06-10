@@ -4,7 +4,9 @@ import "./PaginatedControlPanel.css"
 
 const PaginatedControlPanel = (props) => {
 
-    const [tasksNumbber, setTasksNumber] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9])
+    // const [tasksNumbber, setTasksNumber] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9])
+    const [currentList, setCurrentList] = useState(0)
+
 
     return (
         <>
@@ -20,10 +22,15 @@ const PaginatedControlPanel = (props) => {
                         </div>
                     </div>
                     <div>
-                        {tasksNumbber.map((taskNumber, index) =>
-                            <div key={taskNumber}>
-                                <PaginationButton task={props.tasks[index]} change={props.change}>
-                                    {taskNumber}
+                        {props.tasks.map((taskNumber, index) =>
+                            <div key={index} onClick={() => { setCurrentList(index) }}>
+                                <PaginationButton
+                                                  task={props.tasks[index]}
+                                                  change={props.change}
+                                                  currentPage={currentList}
+                                                  index={index}
+                                >
+                                    {index + 1}
                                 </PaginationButton>
                             </div>
                         )}

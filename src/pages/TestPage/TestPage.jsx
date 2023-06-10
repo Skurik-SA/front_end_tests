@@ -1,6 +1,5 @@
 import {useState} from "react";
 import "./TestPage.css"
-import PaginationButton from "../../components/PaginationButton/PaginationButton";
 import PaginatedControlPanel from "../../components/PaginatedControlPanel/PaginatedControlPanel";
 import BoxMultipleInput from "../../components/Inputs/BoxMultipleInput/BoxMultipleInput";
 
@@ -9,9 +8,13 @@ const TestPage = () => {
     const [inputValue, setInputsValue] = useState([])
 
     const [Tasks, setTasks] = useState([
-        {taskTitle: 'Task Title1', taskText: 'Task Itself1', inputType:'Input'},
-        {taskTitle: 'Task Title2', taskText: 'Task Itself2', inputType:'Input'},
-        {taskTitle: 'Task Title3', taskText: 'Task Itself3', inputType:'Input'}
+        {id: 1, taskTitle: 'Task Title1', taskText: 'Task Itself1', inputType:'Input', answer: ''},
+        {id: 2, taskTitle: 'Task Title2', taskText: 'Task Itself2', inputType:'Input', answer: ''},
+        {id: 3, taskTitle: 'Task Title3', taskText: 'Task Itself3', inputType:'Input', answer: ''},
+        {id: 4, taskTitle: 'Task Title4', taskText: 'Task Itself4', inputType:'Input', answer: ''},
+        {id: 5, taskTitle: 'Task Title5', taskText: 'Task Itself5', inputType:'Input', answer: ''},
+        {id: 6, taskTitle: 'Task Title6', taskText: 'Task Itself6', inputType:'Input', answer: ''},
+        {id: 7, taskTitle: 'Task Title7', taskText: 'Task Itself7', inputType:'Input', answer: ''},
     ])
 
     const [isActiveTask, setIsActiveTask] = useState(Tasks[0])
@@ -23,6 +26,16 @@ const TestPage = () => {
 
     const changeTaskList = (task) => {
         setIsActiveTask(task)
+        setInputsValue(task.answer)
+        console.log(Tasks)
+    }
+
+    const saveAnswer = () => {
+        setTasks(prevState => prevState.map(item =>
+            item.id === isActiveTask.id
+            ? {...item, answer: inputValue}
+                : item
+        ))
     }
 
     return (
@@ -44,7 +57,7 @@ const TestPage = () => {
                     <div className="CustomInputWrapper">
                         <BoxMultipleInput inputValue={inputValue} onChange={inputChange}/>
                     </div>
-                    <button>Сохранить ответ</button>
+                    <button onClick={saveAnswer}>Сохранить ответ</button>
                 </div>
             </div>
         </>
