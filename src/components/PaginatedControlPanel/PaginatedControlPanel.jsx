@@ -2,7 +2,7 @@ import {useState} from "react";
 import PaginationButton from "../PaginationButton/PaginationButton";
 import "./PaginatedControlPanel.css"
 
-const PaginatedControlPanel = () => {
+const PaginatedControlPanel = (props) => {
 
     const [tasksNumbber, setTasksNumber] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9])
 
@@ -20,9 +20,9 @@ const PaginatedControlPanel = () => {
                         </div>
                     </div>
                     <div>
-                        {tasksNumbber.map((taskNumber) =>
+                        {tasksNumbber.map((taskNumber, index) =>
                             <div key={taskNumber}>
-                                <PaginationButton>
+                                <PaginationButton task={props.tasks[index]} change={props.change}>
                                     {taskNumber}
                                 </PaginationButton>
                             </div>

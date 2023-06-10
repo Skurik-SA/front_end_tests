@@ -5,10 +5,7 @@ import "./AllTestsPage.css"
 const AllTestsPage = () => {
     return (
         <>
-            {/*<div className="wrp">{inputValue}</div>*/}
-            {/*<div className="wrp2">*/}
-            {/*    <BoxMultipleInput inputValue={inputValue} onChange={test}/>*/}
-            {/*</div>*/}
+            TODO:"Нужно создать страничку, которая выводит список всех доступных тестов"
         </>
     )
 }

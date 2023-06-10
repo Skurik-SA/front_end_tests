@@ -5,25 +5,36 @@ import PaginatedControlPanel from "../../components/PaginatedControlPanel/Pagina
 import BoxMultipleInput from "../../components/Inputs/BoxMultipleInput/BoxMultipleInput";
 
 const TestPage = () => {
-
+    //Попробовать через callback сделать смену странички
     const [inputValue, setInputsValue] = useState([])
+
+    const [Tasks, setTasks] = useState([
+        {taskTitle: 'Task Title1', taskText: 'Task Itself1', inputType:'Input'},
+        {taskTitle: 'Task Title2', taskText: 'Task Itself2', inputType:'Input'},
+        {taskTitle: 'Task Title3', taskText: 'Task Itself3', inputType:'Input'}
+    ])
+
+    const [isActiveTask, setIsActiveTask] = useState(Tasks[0])
+
     function inputChange(event) {
         setInputsValue(event.target.value.replace(/[^0-9]/g,""))
+
+    }
+
+    const changeTaskList = (task) => {
+        setIsActiveTask(task)
     }
 
     return (
         <>
-            <PaginatedControlPanel/>
+            <PaginatedControlPanel tasks={Tasks} change={changeTaskList}/>
             <div className="BlockWrapper">
                 <div className="TaskContent">
                     <div>
-                        Task Title
+                        {isActiveTask.taskTitle}
                     </div>
                     <div>
-                        Task Itself
-                    </div>
-                    <div>
-                        Input
+                        {isActiveTask.taskText}
                     </div>
                 </div>
                 <div className="BtnContent">
