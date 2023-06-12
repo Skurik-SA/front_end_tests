@@ -1,22 +1,47 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import AuthApi from "../../api/AuthApi";
 import {Link, useNavigate} from "react-router-dom";
 import "./LoginPage.css"
+import axios from "axios";
 
 const LoginPage = () => {
 
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
-
     const navigate = useNavigate()
-
-    const makeLogin = async (event) => {
-        event.preventDefault()
-        // await AuthApi.login(username, password)
-    }
 
     const toRegister = () => {
         navigate("/registration")
+    }
+
+    const login = async (e) => {
+        e.preventDefault()
+
+        const user = {
+            username: username,
+            password: password
+        }
+
+        try {
+            const {data} = await axios.post("http://127.0.0.1:8000/api/token/",
+                user, {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    withCredentials: true}
+            )
+
+            localStorage.clear()
+            localStorage.setItem('access_token', data.access)
+            localStorage.setItem('refresh_token', data.refresh)
+
+            axios.defaults.headers.common['Authorization'] = `Bearer ${data['access']}`
+
+            navigate("/test")
+        }
+        catch (e) {
+            console.log(e)
+        }
     }
 
     return (
@@ -28,7 +53,7 @@ const LoginPage = () => {
                             Авторизация
                         </div>
                         <div>
-                            <button onClick={toRegister} className="registrationBtn2">Зарегистрироваться</button>
+                            <button type="button" onClick={toRegister} className="registrationBtn2">Зарегистрироваться</button>
                         </div>
                     </div>
 
@@ -64,13 +89,14 @@ const LoginPage = () => {
                                    onChange={e => setPassword(e.target.value)}
                             />
                         </div>
-                    </form>
-                    <div className="BtnsA">
-                        <div>
-                            <button type="submit" className="loginBtn2">Войти</button>
-                        </div>
+                        <div className="BtnsA">
+                            <div>
+                                <button type="submit" className="loginBtn2" onClick={login}>Войти</button>
+                            </div>
 
-                    </div>
+                        </div>
+                    </form>
+
                 </div>
             </div>
 

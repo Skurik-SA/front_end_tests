@@ -45,6 +45,10 @@ form div {
     background: #61dafb;
 }
 
+.loginBtn2:active {
+    background: #4190a6;
+}
+
 input {
     border: none;
     border-radius: 5px;
@@ -66,8 +70,16 @@ input {
     background: #A9A9A9;
 }
 
+.registrationBtn2:active {
+    background: #777777;
+}
+
 .partUp {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+.BtnsA {
+    margin-top: 10px;
 }

@@ -1,7 +1,8 @@
 import "./Navbar.css";
 import NavigationPanel from "./NavigationPanel/NavigationPanel";
-import {useState} from "react";
-import {Link, Navigate} from "react-router-dom";
+import {useEffect, useState} from "react";
+import {Link, Navigate, useNavigate} from "react-router-dom";
+import {Logout} from "../../api/Logout";
 
 const Navbar = () => {
 
@@ -20,6 +21,20 @@ const Navbar = () => {
             console.log(navPanelVisibility)
         }
     }
+    const navigate = useNavigate()
+
+    const toNavigateAccessed = () => {
+        navigate("/test")
+    }
+
+    const [isAuth, setIsAuth] = useState(false)
+
+    useEffect(() => {
+        if (localStorage.getItem('access_token') !== null) {
+            setIsAuth(true)
+        }
+    }, [isAuth]);
+
 
     return (
         <>
@@ -53,7 +68,7 @@ const Navbar = () => {
                                 username
                             </div>
                             <div className="NavbarTextStyle_2">
-                                logout
+                                <Logout/>
                             </div>
                         </div>
                     </div>

@@ -1,7 +1,10 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import "./TestPage.css"
 import PaginatedControlPanel from "../../components/PaginatedControlPanel/PaginatedControlPanel";
 import BoxMultipleInput from "../../components/Inputs/BoxMultipleInput/BoxMultipleInput";
+import {useNavigate} from "react-router-dom";
+import axios from "axios";
+import {verifyToken} from "../../api/VerifyToken";
 
 const TestPage = () => {
     //Сделать несколько варинатов input
@@ -9,15 +12,16 @@ const TestPage = () => {
 
     const [Tasks, setTasks] = useState([
         {id: 1, taskTitle: 'Task Title1', taskText: 'Task Itself1', inputType:'Simple input', answer: ''},
-        {id: 2, taskTitle: 'Task Title2', taskText: 'Task Itself2', inputType:'8-bit Input', answer: ''},
-        {id: 3, taskTitle: 'Task Title3', taskText: 'Task Itself3', inputType:'Simple input', answer: ''},
-        {id: 4, taskTitle: 'Task Title4', taskText: 'Task Itself4', inputType:'8-bit Input', answer: ''},
-        {id: 5, taskTitle: 'Task Title5', taskText: 'Task Itself5', inputType:'Simple input', answer: ''},
-        {id: 6, taskTitle: 'Task Title6', taskText: 'Task Itself6', inputType:'8-bit Input', answer: ''},
-        {id: 7, taskTitle: 'Task Title7', taskText: 'Task Itself7', inputType:'Simple input', answer: ''},
+        // {id: 2, taskTitle: 'Task Title2', taskText: 'Task Itself2', inputType:'8-bit Input', answer: ''},
+        // {id: 3, taskTitle: 'Task Title3', taskText: 'Task Itself3', inputType:'Simple input', answer: ''},
+        // {id: 4, taskTitle: 'Task Title4', taskText: 'Task Itself4', inputType:'8-bit Input', answer: ''},
+        // {id: 5, taskTitle: 'Task Title5', taskText: 'Task Itself5', inputType:'Simple input', answer: ''},
+        // {id: 6, taskTitle: 'Task Title6', taskText: 'Task Itself6', inputType:'8-bit Input', answer: ''},
+        // {id: 7, taskTitle: 'Task Title7', taskText: 'Task Itself7', inputType:'Simple input', answer: ''},
     ])
 
     const [isActiveTask, setIsActiveTask] = useState(Tasks[0])
+    const [isDataLoading, setIsDataLoading] = useState(true)
 
     function numericInputChange(event) {
         setInputsValue(event.target.value.replace(/[^0-9]/g,""))
@@ -41,6 +45,49 @@ const TestPage = () => {
         ))
     }
 
+    const navigate = useNavigate()
+
+    const fetchData = async () => {
+        const {data} = await axios.get("http://127.0.0.1:8000/api/personal_test/3", {
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                withCredentials: true}
+        )
+        let responseData = []
+        for (let i = 0; i < data.tasks.length; i++) {
+            responseData.push({
+                id: i + 1,
+                taskTitle: `Задание ${i + 1}`,
+                taskText: data.tasks[i],
+                inputType: data.input_type[i],
+                answer: ''
+            })
+        }
+        setTasks(responseData)
+        return responseData
+    }
+
+    useEffect(() => {
+        if (localStorage.getItem('access_token') === null) {
+            navigate('/login')
+        }
+        else {
+            try {
+                verifyToken(localStorage.getItem('access_token')).then(r => console.log(''))
+            }
+            catch (e) {
+                navigate('/login')
+            }
+        }
+    }, [])
+
+    useEffect(() => {
+        fetchData()
+
+        setIsDataLoading(false)
+    }, [isDataLoading])
+
     return (
         <>
             <PaginatedControlPanel tasks={Tasks} change={changeTaskList}/>
@@ -54,7 +101,7 @@ const TestPage = () => {
                     </div>
                 </div>
                 <div className="BtnContent">
-                    <div className>
+                    <div>
                         Поле ввода:
                     </div>
                     {isActiveTask.inputType === '8-bit Input'

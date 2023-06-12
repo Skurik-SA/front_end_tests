@@ -56,8 +56,6 @@
 }
 
 .NavbarTextStyle_2 {
-
-
     font-family: 'Inter', ui-serif;
     font-style: normal;
     font-weight: 400;
@@ -69,7 +67,11 @@
     text-decoration-line: underline;
 
     color: #A9A9A9;
+    cursor: pointer;
+}
 
+.NavbarTextStyle_2:hover {
+    color: #d7d7d7;
 }
 
 .NavPanelContent {
