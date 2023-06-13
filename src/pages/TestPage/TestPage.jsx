@@ -2,16 +2,19 @@ import {useEffect, useState} from "react";
 import "./TestPage.css"
 import PaginatedControlPanel from "../../components/PaginatedControlPanel/PaginatedControlPanel";
 import BoxMultipleInput from "../../components/Inputs/BoxMultipleInput/BoxMultipleInput";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
 import {verifyToken} from "../../api/VerifyToken";
+import {useFetching} from "../../components/hooks/useFetching";
 
 const TestPage = () => {
     //Сделать несколько варинатов input
     const [inputValue, setInputsValue] = useState("")
 
-    const [Tasks, setTasks] = useState([
-        {id: 1, taskTitle: 'Task Title1', taskText: 'Task Itself1', inputType:'Simple input', answer: ''},
+    const params = useParams()
+
+    const [Tasks, setTasks] = useState([{}
+        // {id: 1, taskTitle: 'Task Title1', taskText: 'Task Itself1', inputType:'Simple input', answer: ''},
         // {id: 2, taskTitle: 'Task Title2', taskText: 'Task Itself2', inputType:'8-bit Input', answer: ''},
         // {id: 3, taskTitle: 'Task Title3', taskText: 'Task Itself3', inputType:'Simple input', answer: ''},
         // {id: 4, taskTitle: 'Task Title4', taskText: 'Task Itself4', inputType:'8-bit Input', answer: ''},
@@ -20,7 +23,7 @@ const TestPage = () => {
         // {id: 7, taskTitle: 'Task Title7', taskText: 'Task Itself7', inputType:'Simple input', answer: ''},
     ])
 
-    const [isActiveTask, setIsActiveTask] = useState(Tasks[0])
+    const [isActiveTask, setIsActiveTask] = useState({})
     const [isDataLoading, setIsDataLoading] = useState(true)
 
     function numericInputChange(event) {
@@ -47,12 +50,12 @@ const TestPage = () => {
 
     const navigate = useNavigate()
 
-    const fetchData = async () => {
-        const {data} = await axios.get("http://127.0.0.1:8000/api/personal_test/3", {
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                withCredentials: true}
+    const [fetchData, isLoading, fetchError] = useFetching(async () => {
+        const {data} = await axios.get(`http://127.0.0.1:8000/api/personal_test/${params.task_id}`, {
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            withCredentials: true}
         )
         let responseData = []
         for (let i = 0; i < data.tasks.length; i++) {
@@ -65,8 +68,29 @@ const TestPage = () => {
             })
         }
         setTasks(responseData)
-        return responseData
-    }
+        setIsActiveTask(responseData[0])
+    })
+    
+    // const fetchData = async () => {
+    //     const {data} = await axios.get(`http://127.0.0.1:8000/api/personal_test/${params.task_id}`, {
+    //             headers: {
+    //                 'Content-Type': 'application/json'
+    //             },
+    //             withCredentials: true}
+    //     )
+    //     let responseData = []
+    //     for (let i = 0; i < data.tasks.length; i++) {
+    //         responseData.push({
+    //             id: i + 1,
+    //             taskTitle: `Задание ${i + 1}`,
+    //             taskText: data.tasks[i],
+    //             inputType: data.input_type[i],
+    //             answer: ''
+    //         })
+    //     }
+    //     setTasks(responseData)
+    //     return responseData
+    // }
 
     useEffect(() => {
         if (localStorage.getItem('access_token') === null) {
@@ -84,39 +108,46 @@ const TestPage = () => {
 
     useEffect(() => {
         fetchData()
-
-        setIsDataLoading(false)
-    }, [isDataLoading])
+        console.log(Tasks)
+        // setIsDataLoading(false)
+    }, [])
 
     return (
         <>
-            <PaginatedControlPanel tasks={Tasks} change={changeTaskList}/>
-            <div className="BlockWrapper">
-                <div className="TaskContent">
-                    <div>
-                        {isActiveTask.taskTitle}
-                    </div>
-                    <div>
-                        {isActiveTask.taskText}
-                    </div>
-                </div>
-                <div className="BtnContent">
-                    <div>
-                        Поле ввода:
-                    </div>
-                    {isActiveTask.inputType === '8-bit Input'
-                    ?
-                        <div className="CustomInputWrapper">
-                            <BoxMultipleInput inputValue={inputValue} onChange={numericInputChange}/>
+            {isLoading
+                ?
+                <div>Загрузка</div>
+                :
+                <>
+                    <PaginatedControlPanel tasks={Tasks} change={changeTaskList}/>
+                    <div className="BlockWrapper">
+                        <div className="TaskContent">
+                            <div>
+                                {isActiveTask.taskTitle}
+                            </div>
+                            <div>
+                                {isActiveTask.taskText}
+                            </div>
                         </div>
-                        :
-                        <div>
-                            <input type="text" className="SimpleInput" value={inputValue} onChange={simpleInputChange}/>
+                        <div className="BtnContent">
+                            <div>
+                                Поле ввода:
+                            </div>
+                            {isActiveTask.inputType === '8bit_input'
+                                ?
+                                <div className="CustomInputWrapper">
+                                    <BoxMultipleInput inputValue={inputValue} onChange={numericInputChange}/>
+                                </div>
+                                :
+                                <div>
+                                    <input type="text" className="SimpleInput" value={inputValue} onChange={simpleInputChange}/>
+                                </div>
+                            }
+                            <button onClick={saveAnswer}>Сохранить ответ</button>
                         </div>
-                    }
-                    <button onClick={saveAnswer}>Сохранить ответ</button>
-                </div>
-            </div>
+                    </div>
+                </>
+            }
         </>
     )
 }

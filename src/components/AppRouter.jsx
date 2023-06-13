@@ -23,6 +23,7 @@ const AppRouter = () => {
                     <Route path='registration' element={<RegistrationPage/>}/>
                     <Route path='simple_page' element={<SimplePage/>}/>
                     <Route path='test' element={<TestPage/>}/>
+                    <Route path='test/:task_id' element={<TestPage/>}/>
                     <Route path='personal' element={<PersonalPage/>}/>
                     <Route path='all_tests' element={<AllTestsPage/>}/>
                     <Route path='test_edit' element={<TestEditorPage/>}/>
