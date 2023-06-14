@@ -1,7 +1,7 @@
 .App {
   background-color: #CBCBCB;
   text-align: center;
-  min-height: 100vh;
+  min-height: calc(100vh - 50px);
   display: flex;
   font-size: calc(10px + 2vmin);
   color: white;

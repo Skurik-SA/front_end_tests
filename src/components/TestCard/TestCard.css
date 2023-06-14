@@ -5,7 +5,7 @@
     width: 1000px;
     min-height: 200px;
     justify-content: space-between;
-    align-items: start;
+    align-items: flex-start;
     padding: 10px;
     border: 2px solid #484848;
     margin-bottom: 5px;

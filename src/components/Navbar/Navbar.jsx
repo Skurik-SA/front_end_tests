@@ -1,13 +1,15 @@
 import "./Navbar.css";
 import NavigationPanel from "./NavigationPanel/NavigationPanel";
 import {useEffect, useState} from "react";
-import {Link, Navigate, useNavigate} from "react-router-dom";
+import {Link} from "react-router-dom";
 import {Logout} from "../../api/Logout";
+import axios from "axios";
 
 const Navbar = () => {
 
     const [navPanelVisibility, setNavPanelVisibility] = useState(false)
     const [menuIcon, setMenuIcon] = useState(false)
+    const [userName, setUserName] = useState("")
 
     const navPanelAction = () => {
         if (navPanelVisibility) {
@@ -21,17 +23,25 @@ const Navbar = () => {
             console.log(navPanelVisibility)
         }
     }
-    const navigate = useNavigate()
 
-    const toNavigateAccessed = () => {
-        navigate("/test")
+
+    const getUsername = async () => {
+        const {data} = await axios.get(`http://127.0.0.1:8000/api/user/${localStorage.getItem('user_id')}`)
+        setUserName(data.username)
     }
+
+    // const navigate = useNavigate()
+
+    // const toNavigateAccessed = () => {
+    //     navigate("/test")
+    // }
 
     const [isAuth, setIsAuth] = useState(false)
 
     useEffect(() => {
         if (localStorage.getItem('access_token') !== null) {
             setIsAuth(true)
+            getUsername()
         }
     }, [isAuth]);
 
@@ -64,12 +74,19 @@ const Navbar = () => {
                             </div>
                         </div>
                         <div className="NavbarContentRight">
-                            <div className="NavbarTextStyle_1">
-                                username
-                            </div>
-                            <div className="NavbarTextStyle_2">
-                                <Logout/>
-                            </div>
+                            {isAuth
+                                ?
+                                <>
+                                    <div className="NavbarTextStyle_1">
+                                        {userName}
+                                    </div>
+                                    <div className="NavbarTextStyle_2">
+                                        <Logout/>
+                                    </div>
+                                </>
+                                :
+                                <></>
+                            }
                         </div>
                     </div>
                 </div>
@@ -78,12 +95,13 @@ const Navbar = () => {
                 <div className="NavPanelContent">
                     <div><Link to={"/personal"} style={{ textDecoration: 'none', color: 'white'}}><div>Личный кабинет</div></Link> </div>
                     <div><Link to={"/all_tests"} style={{ textDecoration: 'none', color: 'white'}}><div>Мои тесты</div></Link> </div>
-                    <div><Link to={"/test_edit"} style={{ textDecoration: 'none', color: 'white'}}><div>Редактор тестов</div></Link> </div>
                     <div><Link to={"/groups"} style={{ textDecoration: 'none', color: 'white'}}><div>Группы</div></Link> </div>
                     <div><Link to={"/marks"} style={{ textDecoration: 'none', color: 'white'}}><div>Оценки</div></Link> </div>
                     <div><Link to={"/statistic"} style={{ textDecoration: 'none', color: 'white'}}><div>Статистика</div></Link> </div>
                     <div><Link to={"/general_tests"} style={{ textDecoration: 'none', color: 'white'}}><div>Общие тесты</div></Link> </div>
-                    <div><Link to={"/test"} style={{ textDecoration: 'none', color: 'red'}}><div>TestPage</div></Link> </div>
+                    <div><Link to={"/templates"} style={{ textDecoration: 'none', color: 'white'}}><div>Шаблоны</div></Link> </div>
+                    <div><Link to={"/test/12"} style={{ textDecoration: 'none', color: 'red'}}><div>TestPage</div></Link> </div>
+                    <div><Link to={"/test_edit"} style={{ textDecoration: 'none', color: 'red'}}><div>Редактор тестов</div></Link> </div>
                 </div>
             </NavigationPanel>
         </>

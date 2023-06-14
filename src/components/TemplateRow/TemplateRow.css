@@ -1,0 +1,105 @@
+.TemplateRowContentGray, .TemplateRowContentWhite {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    width: calc(100% - 100px);
+    min-height: 60px;
+
+    color: black;
+    border-radius: 15px;
+
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.TemplateRowContentGray {
+    background: #B4B4B4;
+}
+
+.TemplateRowContentWhite {
+    background: #FAFAFA;
+}
+
+.TemplateRowContentGray:hover, .TemplateRowContentWhite:hover {
+    border: 2px solid black;
+    width:  calc(100% - 96px);;
+    cursor: pointer;
+}
+
+.TemplateHeaderDynamic {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.BtnTemplateContent {
+    display: flex;
+    flex-direction: row;
+    background: none;
+    gap: 7px;
+}
+
+.btnTemplateCopy, .btnTemplateEdit, .btnTemplateDelete {
+    height: 28px;
+    border-radius: 9px;
+    color: white;
+    background: #61dafb;
+    font-size: 18px;
+
+    padding-left: 10px;
+    padding-right: 10px;
+
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .35);
+    cursor: pointer;
+    user-select: none;
+}
+
+.btnCreateTemplate {
+    background: #9B99FF;
+    border-radius: 18px;
+    font-size: 26px;
+
+    padding-left: 20px;
+    padding-right: 20px;
+
+    height: 40px;
+    min-width: 140px;
+    color: white;
+
+    box-shadow: 0 4px 6px 0 rgba(0, 0, 0, .35);
+    cursor: pointer;
+}
+
+.btnTemplateCopy {
+    background: #F4F4F4;
+    color: black;
+}
+
+.btnTemplateEdit {
+    background: #2972cb;
+}
+
+.btnTemplateDelete {
+    background: #fc1d1d;
+}
+
+.btnTemplateCopy:hover, .btnTemplateEdit:hover, .btnTemplateDelete:hover, .btnCreateTemplate:hover{
+    box-shadow: 0 0 0 0 rgba(0, 40, 120, 0);
+    background-position: 0 0;
+}
+
+.infoTemplate {
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+}
+
+.infoTitle {
+    max-width: 300px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

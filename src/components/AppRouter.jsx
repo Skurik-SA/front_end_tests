@@ -11,6 +11,9 @@ import GroupsPage from "../pages/GroupsPage/GroupsPage";
 import MarksPage from "../pages/MarksPage/MarksPage";
 import StatisticsPage from "../pages/StatisticPage/StatisticsPage";
 import GeneralTestsPage from "../pages/GeneralTestsPage/GeneralTestsPage";
+import ChooseTemplate from "../pages/TemplatesPage/ChooseTemplate/ChooseTemplate";
+import CustomTemplates from "../pages/TemplatesPage/CustomTemplates/CustomTemplates";
+import GeneralTemplates from "../pages/TemplatesPage/GeneralTemplates/GeneralTemplates";
 
 
 
@@ -22,8 +25,14 @@ const AppRouter = () => {
                     <Route path='login' element={<LoginPage/>}/>
                     <Route path='registration' element={<RegistrationPage/>}/>
                     <Route path='simple_page' element={<SimplePage/>}/>
+
                     <Route path='test' element={<TestPage/>}/>
                     <Route path='test/:task_id' element={<TestPage/>}/>
+
+                    <Route path="templates" element={<ChooseTemplate/>}/>
+                    <Route path="templates/custom_templates" element={<CustomTemplates/>}/>
+                    <Route path="templates/general_templates" element={<GeneralTemplates/>}/>
+
                     <Route path='personal' element={<PersonalPage/>}/>
                     <Route path='all_tests' element={<AllTestsPage/>}/>
                     <Route path='test_edit' element={<TestEditorPage/>}/>

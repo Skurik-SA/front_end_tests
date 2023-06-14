@@ -5,7 +5,7 @@
     background: #212121;
     /*background: linear-gradient(180deg, #212121 66.69%, #CBCBCB 100%);*/
     width: 25px;
-    height: 100vh;
+    height: calc(100% - 50px);
     transition: 0.5s;
     align-items: center;
     color: white;
@@ -23,7 +23,7 @@
 .NavigationPanelBackground.active {
     background: #212121;
     width: 250px;
-    min-height: 100vh;
+    min-height: calc(100% - 50px);
     align-items: center;
     transition: 0.5s;
 }
