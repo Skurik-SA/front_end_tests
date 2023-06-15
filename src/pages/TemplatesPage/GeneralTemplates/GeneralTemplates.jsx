@@ -18,21 +18,21 @@ const GeneralTemplates = () => {
                     </div>
                 </div>
                 <div className="TemplateRows">
-                    <TemplateRow test_title={"Виды интегральных уравнений и их решение"} tasks_amount={10} custom={false}/>
-                    <TemplateRow test_title={"Шаблон 1"} tasks_amount={10} custom={false}/>
-                    <TemplateRow test_title={"Шаблон 1"} tasks_amount={10} custom={false}/>
-                    <TemplateRow test_title={"Шаблон 1"} tasks_amount={10} custom={false}/>
-                    <TemplateRow test_title={"Шаблон 1"} tasks_amount={10} custom={false}/>
-                    <TemplateRow test_title={"Шаблон 1"} tasks_amount={10} custom={false}/>
-                    <TemplateRow test_title={"Шаблон 1"} tasks_amount={10} custom={false}/>
-                    <TemplateRow test_title={"Шаблон 1"} tasks_amount={10} custom={false}/>
-                    <TemplateRow test_title={"Шаблон 1"} tasks_amount={10} custom={false}/>
-                    <TemplateRow test_title={"Шаблон 1"} tasks_amount={10} custom={false} />
-                    <TemplateRow test_title={"Шаблон 1"} tasks_amount={10} custom={false}/>
-                    <TemplateRow test_title={"Шаблон 1"} tasks_amount={10} custom={false}/>
-                    <TemplateRow test_title={"Шаблон 1"} tasks_amount={10} custom={false}/>
-                    <TemplateRow test_title={"Шаблон 1"} tasks_amount={10} custom={false}/>
-                    <TemplateRow test_title={"Шаблон 1"} tasks_amount={10} custom={false}/>
+                    <TemplateRow test_title={"Виды интегральных уравнений и их решение"} tasks_amount={10} add_test={true}/>
+                    <TemplateRow test_title={"Шаблон 1"} tasks_amount={10} add_test={true}/>
+                    <TemplateRow test_title={"Шаблон 1"} tasks_amount={10} add_test={true}/>
+                    <TemplateRow test_title={"Шаблон 1"} tasks_amount={10} add_test={true}/>
+                    <TemplateRow test_title={"Шаблон 1"} tasks_amount={10} add_test={true}/>
+                    <TemplateRow test_title={"Шаблон 1"} tasks_amount={10} add_test={true}/>
+                    <TemplateRow test_title={"Шаблон 1"} tasks_amount={10} add_test={true}/>
+                    <TemplateRow test_title={"Шаблон 1"} tasks_amount={10} add_test={true}/>
+                    <TemplateRow test_title={"Шаблон 1"} tasks_amount={10} add_test={true}/>
+                    <TemplateRow test_title={"Шаблон 1"} tasks_amount={10} add_test={true}/>
+                    <TemplateRow test_title={"Шаблон 1"} tasks_amount={10} add_test={true}/>
+                    <TemplateRow test_title={"Шаблон 1"} tasks_amount={10} add_test={true}/>
+                    <TemplateRow test_title={"Шаблон 1"} tasks_amount={10} add_test={true}/>
+                    <TemplateRow test_title={"Шаблон 1"} tasks_amount={10} add_test={true}/>
+
                 </div>
             </div>
         </>

@@ -12,7 +12,7 @@ const AllTestsPage = () => {
     const [tests, setTests] = useState([])
 
     const [fetchData, isLoading, fetchError] = useFetching(async () => {
-        const {data} = await axios.get(`http://127.0.0.1:8000/api/test_template`
+        const {data} = await axios.get(`http://127.0.0.1:8000/api/personal_test`
         )
         let responseData = []
         for (let i = 0; i < data.length; i++) {
@@ -58,7 +58,8 @@ const AllTestsPage = () => {
                                          tasks_amount={10}
                                          test={test}
                                          custom={false}
-                                         generate={true}/>
+                                         pass_test={true}
+                                         />
                         )}
                         </>
 

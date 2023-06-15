@@ -168,6 +168,8 @@
 .taskPanelRow:hover {
     background: #CBCBCB;
     color: #212121;
+    box-shadow: 0 10px 10px 0 rgba(201, 201, 201, 0.2);
+    border-radius: 4px;
 }
 
 /* Works on Chrome, Edge, and Safari */

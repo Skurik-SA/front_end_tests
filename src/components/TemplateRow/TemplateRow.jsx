@@ -3,7 +3,7 @@ import {useState} from "react";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 
-const TemplateRow = ({test_title, group, tasks_amount, test, custom= true, generate=false}) => {
+const TemplateRow = ({test_title, group, tasks_amount, test, custom= false, generate=false, pass_test=false, add_test=false}) => {
 
     const [isCustom, setIsCustom] = useState(custom)
 
@@ -29,6 +29,11 @@ const TemplateRow = ({test_title, group, tasks_amount, test, custom= true, gener
         const {data} = await axios.get(`http://127.0.0.1:8000/api/generate/${test.id}`)
         console.log(data)
         alert(`${data.title} сгенерирован [${data.id}]`)
+        navigate(`/test/${data.id}`)
+    }
+
+    const pass_btn = async () => {
+        const {data} = await axios.get(`http://127.0.0.1:8000/api/personal_test/${test.id}`)
         navigate(`/test/${data.id}`)
     }
 
@@ -85,15 +90,31 @@ const TemplateRow = ({test_title, group, tasks_amount, test, custom= true, gener
                             </div>
                         </>
                         :
-                        generate
-                            ?
-                            <div className="btnTemplateCopy" onClick={generate_btn}>
-                                Сгенерировать
-                            </div>
-                                :
-                                <div className="btnTemplateCopy" onClick={add_btn}>
-                                    Добавить себе
-                                </div>
+                        <></>
+                }
+                {generate
+                    ?
+                        <div className="btnTemplateCopy" onClick={generate_btn}>
+                            Сгенерировать
+                        </div>
+                    :
+                    <></>
+                }
+                {pass_test
+                    ?
+                        <div className="btnTemplateCopy" onClick={pass_btn}>
+                            Пройти тест
+                        </div>
+                    :
+                    <></>
+                }
+                {add_test
+                    ?
+                    <div className="btnTemplateCopy" onClick={add_btn}>
+                        Добавить себе
+                    </div>
+                    :
+                    <></>
                 }
 
             </div>

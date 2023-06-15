@@ -35,6 +35,7 @@ const EditTemplatePage = () => {
     const addTask = (e) => {
         e.preventDefault()
         let newVal = taskTypes[e.target.children[0].textContent]
+        console.log(newVal)
         if (newVal !== undefined)
             setTestValue([...testValue, newVal])
         else
@@ -114,7 +115,7 @@ const EditTemplatePage = () => {
                 <div className="TemplateRows">
                     {/*<TemplateRow test_title={"Виды интегральных уравнений и их решение"} />*/}
                     {testValue.map((test, index) =>
-                        <TemplateRow key={index} test_title={testValue[index].name} />
+                        <TemplateRow key={index} test_title={testValue[index].name} custom={true}/>
                     )}
                 </div>
 
