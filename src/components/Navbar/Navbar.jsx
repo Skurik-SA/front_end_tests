@@ -25,10 +25,10 @@ const Navbar = () => {
     }
 
 
-    const getUsername = async () => {
-        const {data} = await axios.get(`http://127.0.0.1:8000/api/user/${localStorage.getItem('user_id')}`)
-        setUserName(data.username)
-    }
+    // const getUsername = async () => {
+    //     const {data} = await axios.get(`http://127.0.0.1:8000/api/user/${localStorage.getItem('user_id')}`)
+    //     setUserName(data.username)
+    // }
 
     // const navigate = useNavigate()
 
@@ -41,7 +41,7 @@ const Navbar = () => {
     useEffect(() => {
         if (localStorage.getItem('access_token') !== null) {
             setIsAuth(true)
-            getUsername()
+            // getUsername()
         }
     }, [isAuth]);
 

@@ -1,10 +1,13 @@
 import "./CustomTemplate.css"
 import TemplateRow from "../../../components/TemplateRow/TemplateRow";
+import {useNavigate} from "react-router-dom";
 
 
 const CustomTemplates = () => {
 
+    const navigate = useNavigate()
     const createNewTemplate = () => {
+        navigate("/templates/edit_template/1")
         console.log("Button clicked")
     }
 

@@ -70,27 +70,6 @@ const TestPage = () => {
         setTasks(responseData)
         setIsActiveTask(responseData[0])
     })
-    
-    // const fetchData = async () => {
-    //     const {data} = await axios.get(`http://127.0.0.1:8000/api/personal_test/${params.task_id}`, {
-    //             headers: {
-    //                 'Content-Type': 'application/json'
-    //             },
-    //             withCredentials: true}
-    //     )
-    //     let responseData = []
-    //     for (let i = 0; i < data.tasks.length; i++) {
-    //         responseData.push({
-    //             id: i + 1,
-    //             taskTitle: `Задание ${i + 1}`,
-    //             taskText: data.tasks[i],
-    //             inputType: data.input_type[i],
-    //             answer: ''
-    //         })
-    //     }
-    //     setTasks(responseData)
-    //     return responseData
-    // }
 
     useEffect(() => {
         if (localStorage.getItem('access_token') === null) {
@@ -98,7 +77,7 @@ const TestPage = () => {
         }
         else {
             try {
-                verifyToken(localStorage.getItem('access_token')).then(r => console.log(''))
+                verifyToken(localStorage.getItem('access_token'))
             }
             catch (e) {
                 navigate('/login')
@@ -140,7 +119,7 @@ const TestPage = () => {
                                 </div>
                                 :
                                 <div>
-                                    <input type="text" className="SimpleInput" value={inputValue} onChange={simpleInputChange}/>
+                                    <input type="text" className="simple_input" value={inputValue} onChange={simpleInputChange}/>
                                 </div>
                             }
                             <button onClick={saveAnswer}>Сохранить ответ</button>

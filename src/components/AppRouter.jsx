@@ -14,6 +14,7 @@ import GeneralTestsPage from "../pages/GeneralTestsPage/GeneralTestsPage";
 import ChooseTemplate from "../pages/TemplatesPage/ChooseTemplate/ChooseTemplate";
 import CustomTemplates from "../pages/TemplatesPage/CustomTemplates/CustomTemplates";
 import GeneralTemplates from "../pages/TemplatesPage/GeneralTemplates/GeneralTemplates";
+import EditTemplatePage from "../pages/TemplatesPage/EditTemplatePage/EditTemplatePage";
 
 
 
@@ -32,6 +33,7 @@ const AppRouter = () => {
                     <Route path="templates" element={<ChooseTemplate/>}/>
                     <Route path="templates/custom_templates" element={<CustomTemplates/>}/>
                     <Route path="templates/general_templates" element={<GeneralTemplates/>}/>
+                    <Route path="templates/edit_template/:id_template" element={<EditTemplatePage/>}/>
 
                     <Route path='personal' element={<PersonalPage/>}/>
                     <Route path='all_tests' element={<AllTestsPage/>}/>
