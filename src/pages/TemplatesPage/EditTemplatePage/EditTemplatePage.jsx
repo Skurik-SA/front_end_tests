@@ -84,7 +84,6 @@ const EditTemplatePage = () => {
     useEffect(() => {
         fetchData()
         console.log(taskTypes)
-
     }, [])
 
 

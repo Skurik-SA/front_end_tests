@@ -4,7 +4,7 @@ import PaginatedControlPanel from "../../components/PaginatedControlPanel/Pagina
 import BoxMultipleInput from "../../components/Inputs/BoxMultipleInput/BoxMultipleInput";
 import {useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
-import {verifyToken} from "../../api/VerifyToken";
+import {verifyToken} from "../../api/auth/VerifyToken";
 import {useFetching} from "../../components/hooks/useFetching";
 
 const TestPage = () => {

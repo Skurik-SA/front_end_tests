@@ -2,7 +2,7 @@ import "./Navbar.css";
 import NavigationPanel from "./NavigationPanel/NavigationPanel";
 import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
-import {Logout} from "../../api/Logout";
+import {Logout} from "../../api/auth/Logout";
 import axios from "axios";
 
 const Navbar = () => {
