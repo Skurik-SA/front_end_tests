@@ -1,7 +1,7 @@
 import {Route, Routes} from "react-router-dom";
 import Layout from "./Layout";
-import LoginPage from "../pages/LoginPage/LoginPage";
-import RegistrationPage from "../pages/RegistrationPage/RegistrationPage";
+import LoginPage from "../pages/AuthPages/LoginPage/LoginPage";
+import RegistrationPage from "../pages/AuthPages/RegistrationPage/RegistrationPage";
 import SimplePage from "../pages/SimplePage";
 import TestPage from "../pages/TestPage/TestPage";
 import PersonalPage from "../pages/PersonalPage/PersonalPage";
@@ -15,6 +15,7 @@ import ChooseTemplate from "../pages/TemplatesPage/ChooseTemplate/ChooseTemplate
 import CustomTemplates from "../pages/TemplatesPage/CustomTemplates/CustomTemplates";
 import GeneralTemplates from "../pages/TemplatesPage/GeneralTemplates/GeneralTemplates";
 import EditTemplatePage from "../pages/TemplatesPage/EditTemplatePage/EditTemplatePage";
+import {NotFoundPage} from "../pages/NotFoundPage/NotFoundPage";
 
 
 
@@ -43,6 +44,7 @@ const AppRouter = () => {
                     <Route path='statistic' element={<StatisticsPage/>}/>
                     <Route path='general_tests' element={<GeneralTestsPage/>}/>
                 </Route>
+                <Route path={'*'} element={<NotFoundPage/>}></Route>
             </Routes>
     )
 }

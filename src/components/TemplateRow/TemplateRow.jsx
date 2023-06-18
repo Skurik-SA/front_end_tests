@@ -2,22 +2,43 @@ import "./TemplateRow.css"
 import {useState} from "react";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {deleteTaskCreator, toEditCreator} from "../../redux/store/reducers/store_TemplateCreatePageReducer";
+import {DELETE_TEMPLATE} from "../../redux/saga/tests/saga_DeleteTemplate";
+import {deleteCustomTemplatesCreator} from "../../redux/store/reducers/store_CustomTemplatesReducer";
 
-const TemplateRow = ({test_title, group, tasks_amount, test, custom= false, generate=false, pass_test=false, add_test=false}) => {
+const TemplateRow = ({test_title,
+                      group,
+                      testID,
+                      test,
+                      page_name,
+                      custom= false,
+                      generate=false,
+                      pass_test=false,
+                      add_test=false
+}) => {
 
     const [isCustom, setIsCustom] = useState(custom)
 
     const navigate = useNavigate()
-
+    const dispatch = useDispatch()
     const copy_btn = () => {
         console.log("Copy button clicked")
     }
 
     const edit_btn = () => {
+        dispatch(toEditCreator(test))
         console.log("Edit button clicked")
     }
 
     const delete_btn = () => {
+        console.log(testID)
+        if (page_name === "EDIT")
+            dispatch(deleteTaskCreator(testID))
+        if (page_name === "CUSTOM") {
+            dispatch({type: DELETE_TEMPLATE, payload: test.id})
+            dispatch(deleteCustomTemplatesCreator(test.id))
+        }
         console.log("Delete button clicked")
     }
 
@@ -66,10 +87,10 @@ const TemplateRow = ({test_title, group, tasks_amount, test, custom= false, gene
                     :
                     <></>
                 }
-                {tasks_amount
+                {test
                     ?
                     <div>
-                        {tasks_amount} заданий
+                        {test.tasks_amount} заданий
                     </div>
                     :
                     <></>

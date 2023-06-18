@@ -6,8 +6,9 @@ export const verifyToken = async (token) => {
             {
                 token: token
             }).catch(function (error) {
-            console.log(error)
-        })
+                localStorage.clear()
+                console.log(error)
+            })
     }
     catch (error) {
         console.log(error)

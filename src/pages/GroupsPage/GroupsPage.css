@@ -1,0 +1,19 @@
+.ContentWrap {
+    display: flex;
+    flex-direction: column;
+    padding-right: 40px;
+    margin-right: 40px;
+    padding-left: 40px;
+    margin-left: 40px;
+    background: black;
+    width: 500px;
+    height: auto;
+}
+
+.UsersWrap {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-left: 40px;
+    color: black;
+}

@@ -1,32 +1,17 @@
 import "./CustomTemplate.css"
 import TemplateRow from "../../../components/TemplateRow/TemplateRow";
 import {useNavigate} from "react-router-dom";
-import {useEffect, useState} from "react";
-import {useFetching} from "../../../components/hooks/useFetching";
-import axios from "axios";
+import {useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {LOAD_CUSTOM_TEMPLATES, LOAD_PERSONAL_PAGE_DATA} from "../../../redux/saga/actions_Saga/actions_saga";
 
 
 const CustomTemplates = () => {
 
     const navigate = useNavigate()
-    const [tests, setTests] = useState([])
+    const dispatch = useDispatch()
 
-    const [fetchData, isLoading, fetchError] = useFetching(async () => {
-        const {data} = await axios.get(`http://127.0.0.1:8000/api/test_template`
-        )
-        let responseData = []
-        for (let i = 0; i < data.length; i++) {
-            responseData.push({
-                id: data[i].id,
-                title: data[i].title,
-                group_id: data[i].group_id,
-                owner_id: data[i].owner_id,
-                tasks: data[i].tasks,
-                tasks_amount: data[i].tasks_amount
-            })
-        }
-        setTests(responseData)
-    })
+    const tests = useSelector(state => state.custom_templates.custom_templates)
 
     const createNewTemplate = () => {
         navigate("/templates/edit_template/1")
@@ -34,9 +19,7 @@ const CustomTemplates = () => {
     }
 
     useEffect(() => {
-        fetchData()
-        console.log(tests)
-
+        dispatch({type: LOAD_CUSTOM_TEMPLATES})
     }, [])
 
     return (
@@ -56,7 +39,7 @@ const CustomTemplates = () => {
                     </div>
                 </div>
                 <div className="TemplateRows">
-                    {isLoading
+                    {tests.length <= 0
                         ?
                         <div>Загрузка</div>
                         :
@@ -65,8 +48,8 @@ const CustomTemplates = () => {
                                 <TemplateRow key={test.id}
                                              test_title={test.title}
                                              group={"Группа " + test.group_id}
-                                             tasks_amount={10}
                                              test={test}
+                                             page_name={"CUSTOM"}
                                              custom={true}
                                              generate={true}
                                              />

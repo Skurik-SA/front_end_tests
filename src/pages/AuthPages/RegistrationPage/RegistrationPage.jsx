@@ -1,9 +1,13 @@
+import "../styles/AuthStyles.css"
+import "../styles/AuthButtonsStyles.css"
+
+import AuthApi from "../../../api/auth/AuthApi";
+
 import {useEffect, useState} from "react";
-import AuthApi from "../../api/auth/AuthApi";
-import {Link, useNavigate} from "react-router-dom";
-import "./RegistrationPage.css"
-import {useFetching} from "../../components/hooks/useFetching";
-import {Password1Icon, Password2Icon, UsernameIcon} from "../../components/Icons/Authorization";
+import {useNavigate} from "react-router-dom";
+import {useFetching} from "../../../components/hooks/useFetching";
+import {Password1Icon, Password2Icon, UsernameIcon} from "../../../components/Icons/Authorization";
+
 
 const RegistrationPage = () => {
 
@@ -17,7 +21,7 @@ const RegistrationPage = () => {
         navigate("/login")
     }
 
-    const makeRegistration = (event) => {
+    const makeRegistration = async (event) => {
         event.preventDefault()
         if (password1 !== '' || password2 !== '' || username !== '') {
             if (password1 === password2) {
@@ -52,15 +56,15 @@ const RegistrationPage = () => {
 
     return (
         <>
-            <div className="RegistrationPageMain">
-                <div className="RegistrationPageContent">
-                    <div className="RegistrationPageContentBlock">
+            <div className="AuthMain">
+                <div className="AuthPageContent">
+                    <div className="AuthPageContentBlock">
                         <div className="partUp">
                             <div>
                                 Регистрация
                             </div>
                             <div>
-                                <button onClick={toLogin} className="loginBtn1">Войти</button>
+                                <button onClick={toLogin} className="switchPageAuthBtn">Войти</button>
                             </div>
                         </div>
 
@@ -69,7 +73,7 @@ const RegistrationPage = () => {
                                 <UsernameIcon/>
                                 <input type="text"
                                        placeholder="логин"
-                                       className="inputReg"
+                                       className="inputStyle"
                                        value={username}
                                        onChange={e => setUsername(e.target.value)}
                                 />
@@ -78,7 +82,7 @@ const RegistrationPage = () => {
                                 <Password1Icon/>
                                 <input type="password"
                                        placeholder="пароль"
-                                       className="inputReg"
+                                       className="inputStyle"
                                        value={password1}
                                        onChange={e => setPassword1(e.target.value)}
                                 />
@@ -87,15 +91,15 @@ const RegistrationPage = () => {
                                 <Password2Icon/>
                                 <input type="password"
                                        placeholder="повторите пароль"
-                                       className="inputReg"
+                                       className="inputStyle"
                                        value={password2}
                                        onChange={e => setPassword2(e.target.value)}
                                 />
                             </div>
                         </form>
-                        <div className="BtnsA">
+                        <div>
                             <div>
-                                <button type="submit" className="registrationBtn1" onClick={makeRegistration}>Зарегистрироваться</button>
+                                <button type="submit" className="submitButton" onClick={makeRegistration}>Зарегистрироваться</button>
                             </div>
 
                         </div>

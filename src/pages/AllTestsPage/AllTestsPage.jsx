@@ -1,37 +1,16 @@
-import BoxMultipleInput from "../../components/Inputs/BoxMultipleInput/BoxMultipleInput";
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import "./AllTestsPage.css"
 import TemplateRow from "../../components/TemplateRow/TemplateRow";
-import {useFetching} from "../../components/hooks/useFetching";
-import axios from "axios";
-
+import {useDispatch, useSelector} from "react-redux";
+import {LOAD_PERSONAL_PAGE_DATA} from "../../redux/saga/actions_Saga/actions_saga";
 
 
 const AllTestsPage = () => {
-
-    const [tests, setTests] = useState([])
-
-    const [fetchData, isLoading, fetchError] = useFetching(async () => {
-        const {data} = await axios.get(`http://127.0.0.1:8000/api/personal_test`
-        )
-        let responseData = []
-        for (let i = 0; i < data.length; i++) {
-            responseData.push({
-                id: data[i].id,
-                title: data[i].title,
-                group_id: data[i].group_id,
-                owner_id: data[i].owner_id,
-                tasks: data[i].tasks,
-                tasks_amount: data[i].tasks_amount
-            })
-        }
-        setTests(responseData)
-    })
+    const personalTests = useSelector(state => state.personal_tests.personal_tests)
+    const dispatch = useDispatch()
 
     useEffect(() => {
-        fetchData()
-        console.log(tests)
-
+        dispatch({type: LOAD_PERSONAL_PAGE_DATA})
     }, [])
 
     return (
@@ -46,22 +25,22 @@ const AllTestsPage = () => {
                     </div>
                 </div>
                 <div className="TemplateRows">
-                    {isLoading
+                    {personalTests.length > 0
                         ?
-                        <div>Загрузка</div>
-                        :
                         <>
-                        {tests.map(test =>
-                            <TemplateRow key={test.id}
-                                         test_title={test.title}
-                                         group={"Группа " + test.group_id}
-                                         tasks_amount={10}
-                                         test={test}
-                                         custom={false}
-                                         pass_test={true}
-                                         />
-                        )}
+                            {personalTests.map(test =>
+                                <TemplateRow key={test.id}
+                                             test_title={test.title}
+                                             group={"Группа " + test.group_id}
+                                             tasks_amount={10}
+                                             test={test}
+                                             custom={false}
+                                             pass_test={true}
+                                />
+                            )}
                         </>
+                        :
+                        <></>
 
                     }
                 </div>

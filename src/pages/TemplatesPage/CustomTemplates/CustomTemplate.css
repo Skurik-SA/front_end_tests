@@ -54,6 +54,8 @@
 
     padding-left: 20px;
     padding-right: 20px;
+    transition: 0.1s;
+
 }
 
 .TemplateRowContentGray {
@@ -68,6 +70,8 @@
     border: 1px solid black;
     width:  calc(100% - 98px);;
     cursor: pointer;
+    scale: 1.005;
+    transition: 0.1s;
 }
 
 .TemplateHeaderDynamic {

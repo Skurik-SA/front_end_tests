@@ -1,11 +1,12 @@
+import "../styles/AuthStyles.css"
+import "../styles/AuthButtonsStyles.css"
+
+import AuthApi from "../../../api/auth/AuthApi";
+
 import {useEffect, useState} from "react";
-import AuthApi from "../../api/auth/AuthApi";
-import {Link, useNavigate} from "react-router-dom";
-import "./LoginPage.css"
-import axios from "axios";
-import jwtDecode from "jwt-decode";
-import {useFetching} from "../../components/hooks/useFetching";
-import {Password1Icon, UsernameIcon} from "../../components/Icons/Authorization";
+import {useNavigate} from "react-router-dom";
+import {useFetching} from "../../../components/hooks/useFetching";
+import {Password1Icon, UsernameIcon} from "../../../components/Icons/Authorization";
 
 const LoginPage = () => {
 
@@ -36,15 +37,15 @@ const LoginPage = () => {
 
     return (
         <>
-            <div className="LoginPageMain">
-                <div className="LoginPageContent">
-                    <div className="LoginPageContentBlock">
+            <div className="AuthMain">
+                <div className="AuthPageContent">
+                    <div className="AuthPageContentBlock">
                         <div className="partUp">
                             <div>
                                 Авторизация
                             </div>
                             <div>
-                                <button type="button" onClick={toRegister} className="registrationBtn2">Зарегистрироваться</button>
+                                <button type="button" onClick={toRegister} className="switchPageAuthBtn">Зарегистрироваться</button>
                             </div>
                         </div>
 
@@ -53,7 +54,7 @@ const LoginPage = () => {
                                 <UsernameIcon/>
                                 <input type="text"
                                        placeholder="логин"
-                                       className="inputLogin"
+                                       className="inputStyle"
                                        value={username}
                                        onChange={e => setUsername(e.target.value)}
                                 />
@@ -62,14 +63,14 @@ const LoginPage = () => {
                                 <Password1Icon/>
                                 <input type="password"
                                        placeholder="пароль"
-                                       className="inputLogin"
+                                       className="inputStyle"
                                        value={password}
                                        onChange={e => setPassword(e.target.value)}
                                 />
                             </div>
-                            <div className="BtnsA">
+                            <div>
                                 <div>
-                                    <button type="submit" className="loginBtn2" onClick={login}>Войти</button>
+                                    <button type="submit" className="submitButton" onClick={login}>Войти</button>
                                 </div>
 
                             </div>
