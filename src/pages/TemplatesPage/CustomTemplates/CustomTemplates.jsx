@@ -4,6 +4,7 @@ import {useNavigate} from "react-router-dom";
 import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {LOAD_CUSTOM_TEMPLATES, LOAD_PERSONAL_PAGE_DATA} from "../../../redux/saga/actions_Saga/actions_saga";
+import {clearCreator} from "../../../redux/store/reducers/store_TemplateCreatePageReducer";
 
 
 const CustomTemplates = () => {
@@ -14,7 +15,8 @@ const CustomTemplates = () => {
     const tests = useSelector(state => state.custom_templates.custom_templates)
 
     const createNewTemplate = () => {
-        navigate("/templates/edit_template/1")
+        dispatch(clearCreator())
+        navigate("/templates/create_template/")
         console.log("Button clicked")
     }
 

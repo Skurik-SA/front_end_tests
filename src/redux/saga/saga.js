@@ -5,6 +5,8 @@ import {load_custom_templates_data} from "./tests/saga_LoadCustomTemplatesData";
 import {loadTaskTypes} from "./tests/saga_LoadTaskTypes";
 import {sendNewTestTemplate} from "./tests/saga_SendNewTestTemplate";
 import deleteTemplate from "./tests/saga_DeleteTemplate";
+import {loadTestTemplate} from "./tests/saga_LoadTestTemplate_byID";
+import {updateTemplate} from "./tests/saga_UpdateTemplate";
 
 // export function* rootSaga() {
 //     yield all([countWatcher(), userWatcher()])
@@ -17,7 +19,9 @@ export function* rootSaga() {
         load_custom_templates_data,
         loadTaskTypes,
         sendNewTestTemplate,
-        deleteTemplate
+        deleteTemplate,
+        loadTestTemplate,
+        updateTemplate
     ]
 
     const retrySagas = yield sagas.map(saga =>

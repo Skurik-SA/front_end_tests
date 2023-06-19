@@ -34,6 +34,20 @@ export async function sendNewTemplate(data) {
     return request.data
 }
 
+export async function updateTemplate_api(id, data) {
+    const request = await axios.put(`http://127.0.0.1:8000/api/test_template/${id}/`, data)
+
+    console.log(request)
+    return request.data
+}
+
+export async function getTestTemplate_byID_data(id) {
+    const request = await axios.get(`http://127.0.0.1:8000/api/test_template/${id}`)
+
+    console.log(request)
+    return request.data
+}
+
 export async function deleteTemplate_req(id) {
     const request = await axios.delete(`http://127.0.0.1:8000/api/test_template/${id}/`)
 }

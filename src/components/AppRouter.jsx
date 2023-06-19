@@ -16,6 +16,7 @@ import CustomTemplates from "../pages/TemplatesPage/CustomTemplates/CustomTempla
 import GeneralTemplates from "../pages/TemplatesPage/GeneralTemplates/GeneralTemplates";
 import EditTemplatePage from "../pages/TemplatesPage/EditTemplatePage/EditTemplatePage";
 import {NotFoundPage} from "../pages/NotFoundPage/NotFoundPage";
+import CreateTemplatePage from "../pages/TemplatesPage/EditTemplatePage/CreateTemplatePage";
 
 
 
@@ -34,6 +35,7 @@ const AppRouter = () => {
                     <Route path="templates" element={<ChooseTemplate/>}/>
                     <Route path="templates/custom_templates" element={<CustomTemplates/>}/>
                     <Route path="templates/general_templates" element={<GeneralTemplates/>}/>
+                    <Route path="templates/create_template/" element={<CreateTemplatePage/>}/>
                     <Route path="templates/edit_template/:id_template" element={<EditTemplatePage/>}/>
 
                     <Route path='personal' element={<PersonalPage/>}/>

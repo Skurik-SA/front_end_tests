@@ -6,6 +6,7 @@ import {useDispatch} from "react-redux";
 import {deleteTaskCreator, toEditCreator} from "../../redux/store/reducers/store_TemplateCreatePageReducer";
 import {DELETE_TEMPLATE} from "../../redux/saga/tests/saga_DeleteTemplate";
 import {deleteCustomTemplatesCreator} from "../../redux/store/reducers/store_CustomTemplatesReducer";
+import {GET_TEST_TEMPLATE_BY_ID} from "../../redux/saga/tests/saga_LoadTestTemplate_byID";
 
 const TemplateRow = ({test_title,
                       group,
@@ -27,7 +28,9 @@ const TemplateRow = ({test_title,
     }
 
     const edit_btn = () => {
-        dispatch(toEditCreator(test))
+        // dispatch(toEditCreator(test))
+        // dispatch({type: GET_TEST_TEMPLATE_BY_ID})
+        navigate(`/templates/edit_template/${test.id}/`)
         console.log("Edit button clicked")
     }
 

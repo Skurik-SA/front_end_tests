@@ -1,7 +1,5 @@
 import "./EditTemplatePage.css"
 import TemplateRow from "../../../components/TemplateRow/TemplateRow";
-import {useFetching} from "../../../components/hooks/useFetching";
-import axios from "axios";
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {
@@ -10,24 +8,20 @@ import {
 } from "../../../redux/store/reducers/store_TemplateCreatePageReducer";
 import {GET_TASK_TYPES, LOAD_TASK_TYPES} from "../../../redux/saga/tests/saga_LoadTaskTypes";
 import {SEND_TEST_TEMPLATE} from "../../../redux/saga/tests/saga_SendNewTestTemplate";
-import {useNavigate, useParams} from "react-router-dom";
-import {GET_TEST_TEMPLATE_BY_ID} from "../../../redux/saga/tests/saga_LoadTestTemplate_byID";
-import {UPDATE_TEST_TEMPLATE} from "../../../redux/saga/tests/saga_UpdateTemplate";
+import {useNavigate} from "react-router-dom";
 
 
-const EditTemplatePage = () => {
+const CreateTemplatePage = () => {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const params = useParams()
-    console.log(params)
 
     const templateData = useSelector(state => state.templateData.test_data)
-    const formData = useSelector(state => state.templateData.formData)
     const task_types = useSelector(state => state.templateData.task_types)
 
     const [titleInput, setTitleInput] = useState("")
     const [groupInput, setGroupInput] = useState("")
+
 
     const titleOnChange = (event) => {
         event.preventDefault()
@@ -46,8 +40,8 @@ const EditTemplatePage = () => {
     }
 
     const saveBtn = async () => {
-        // dispatch(createTemplateCreator(titleInput, groupInput))
-        dispatch({type: UPDATE_TEST_TEMPLATE, id: params.id_template})
+        dispatch(createTemplateCreator(titleInput, groupInput))
+        dispatch({type: SEND_TEST_TEMPLATE})
         navigate("/templates/custom_templates")
     }
 
@@ -55,7 +49,6 @@ const EditTemplatePage = () => {
 
     useEffect(() => {
         dispatch({type: GET_TASK_TYPES})
-        dispatch({type: GET_TEST_TEMPLATE_BY_ID, id: params.id_template})
         console.log(templateData)
     }, [])
 
@@ -66,13 +59,13 @@ const EditTemplatePage = () => {
                 <div className="TemplateHeaderContent">
                     <div className="blockHeader">
                         <div>Название</div>
-                        <input className="searchInput" placeholder={formData.title} value={titleInput} onChange={titleOnChange}/>
+                        <input className="searchInput" placeholder="Название" value={titleInput} onChange={titleOnChange}/>
                     </div>
                     <div className="blockHeader">
                         <div>
-                            Группа2
+                            Группа
                         </div>
-                        <input className="searchInput" placeholder={formData.group_id} value={groupInput} onChange={groupOnChange}/>
+                        <input className="searchInput" placeholder="Селектор по идее, пока id" value={groupInput} onChange={groupOnChange}/>
                     </div>
                     <div>
                         <div className="btnCreateTemplate" onClick={saveBtn}>
@@ -107,4 +100,4 @@ const EditTemplatePage = () => {
     )
 }
 
-export default EditTemplatePage;
+export default CreateTemplatePage;
