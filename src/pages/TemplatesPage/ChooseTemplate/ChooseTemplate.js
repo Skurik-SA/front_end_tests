@@ -1,5 +1,6 @@
 import {Link} from "react-router-dom";
 import "./ChooseTemplate.css"
+import DotedLoader from "../../../components/Loaders/DotedLoader/DotedLoader";
 
 const ChooseTemplate = () => {
     return (

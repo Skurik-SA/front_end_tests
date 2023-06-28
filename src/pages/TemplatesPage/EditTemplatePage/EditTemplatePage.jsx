@@ -13,6 +13,7 @@ import {SEND_TEST_TEMPLATE} from "../../../redux/saga/tests/saga_SendNewTestTemp
 import {useNavigate, useParams} from "react-router-dom";
 import {GET_TEST_TEMPLATE_BY_ID} from "../../../redux/saga/tests/saga_LoadTestTemplate_byID";
 import {UPDATE_TEST_TEMPLATE} from "../../../redux/saga/tests/saga_UpdateTemplate";
+import DotedLoader from "../../../components/Loaders/DotedLoader/DotedLoader";
 
 
 const EditTemplatePage = () => {
@@ -81,13 +82,22 @@ const EditTemplatePage = () => {
                     </div>
                 </div>
                 <div className="TemplateRows">
-                    {templateData.map((test, index) =>
-                        <TemplateRow key={index}
-                                     test_title={templateData[index].name}
-                                     testID={index}
-                                     page_name={"EDIT"}
-                                     custom={true}/>
-                    )}
+                    {templateData.length <= 0
+                        ?
+                        <div className="loader_style">
+                            <DotedLoader/>
+                        </div>
+                        :
+                        <>
+                            {templateData.map((test, index) =>
+                                <TemplateRow key={index}
+                                             test_title={templateData[index].name}
+                                             testID={index}
+                                             page_name={"EDIT"}
+                                             custom={true}/>
+                            )}
+                        </>
+                    }
                 </div>
 
             </div>

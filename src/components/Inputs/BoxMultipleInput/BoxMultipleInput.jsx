@@ -1,14 +1,6 @@
-import {useState} from "react";
 import InputMask from 'react-input-mask';
 import bmi from "./BoxMultipleInput.module.css"
 const BoxMultipleInput = ({inputValue, onChange, stl}) => {
-
-    // const [inputValue, setInputsValue] = useState([])
-    // function test(event) {
-    //     setInputsValue(event.target.value.replace(/[^0-9]/g,""))
-    // }
-
-
 
     return (
             <div className={bmi.BoxInputBorder}>
@@ -24,3 +16,8 @@ const BoxMultipleInput = ({inputValue, onChange, stl}) => {
 }
 
 export default BoxMultipleInput;
+
+
+
+
+

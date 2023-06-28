@@ -2,10 +2,6 @@ import "./TestCard.css"
 import {useEffect, useState} from "react";
 
 const TestCard = ({index, TaskText, AnswerType, create, remove, task}) => {
-    // А на этом компоненте делается запрос с сервера конкретного задания, которое можно уже редактировать
-    // Кнопка удалить пока работает хреново
-    // Есть идея удаления через бэк-энд, то есть отправлять запрос на удаление id теста и возвращать новый список с удалённым тестом и рефреш.
-    // Редактирование сделать по тому же принципу.
     const [taskText, setTaskText] = useState(TaskText)
 
     const taskTextOnChange = (event) => {

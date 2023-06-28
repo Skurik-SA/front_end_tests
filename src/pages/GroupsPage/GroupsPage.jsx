@@ -3,6 +3,8 @@ import "./GroupsPage.css"
 import {fetchCustomers} from "../../redux/store/asyncAction/customers";
 import {decrementCreator, incrementCreator} from "../../redux/store/actionCreators/countActionCreator";
 import {addCustomerAction, deleteCustomerAction} from "../../redux/store/actionCreators/customerActionCreators";
+// import Loaders from "../../components/Loaders/AllLoaders/Loaders";
+import DotedLoader from "../../components/Loaders/DotedLoader/DotedLoader";
 
 
 const GroupsPage = () => {
@@ -59,6 +61,10 @@ const GroupsPage = () => {
             }
             <div>
                 {counter}
+            </div>
+            <div className="loader_style">
+                {/*<Loaders/>*/}
+                <DotedLoader/>
             </div>
         </>
     )

@@ -5,6 +5,7 @@ import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {LOAD_CUSTOM_TEMPLATES, LOAD_PERSONAL_PAGE_DATA} from "../../../redux/saga/actions_Saga/actions_saga";
 import {clearCreator} from "../../../redux/store/reducers/store_TemplateCreatePageReducer";
+import DotedLoader from "../../../components/Loaders/DotedLoader/DotedLoader";
 
 
 const CustomTemplates = () => {
@@ -43,7 +44,9 @@ const CustomTemplates = () => {
                 <div className="TemplateRows">
                     {tests.length <= 0
                         ?
-                        <div>Загрузка</div>
+                        <div className="loader_style">
+                            <DotedLoader/>
+                        </div>
                         :
                         <>
                             {tests.map(test =>
