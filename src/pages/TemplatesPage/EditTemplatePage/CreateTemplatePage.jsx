@@ -3,12 +3,14 @@ import TemplateRow from "../../../components/TemplateRow/TemplateRow";
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {
-    createTemplateCreator,
+    createTemplateCreator, setGroupValue, setInputValue,
     templatePageCreateCreator
 } from "../../../redux/store/reducers/store_TemplateCreatePageReducer";
 import {GET_TASK_TYPES, LOAD_TASK_TYPES} from "../../../redux/saga/tests/saga_LoadTaskTypes";
 import {SEND_TEST_TEMPLATE} from "../../../redux/saga/tests/saga_SendNewTestTemplate";
 import {useNavigate} from "react-router-dom";
+import NinjaInput from "../../../components/Inputs/NinjaInput/NinjaInput";
+import NinjaSearchInput from "../../../components/Inputs/NinjaSearchInput/NinjaSearchInput";
 
 
 const CreateTemplatePage = () => {
@@ -19,28 +21,34 @@ const CreateTemplatePage = () => {
     const templateData = useSelector(state => state.templateData.test_data)
     const task_types = useSelector(state => state.templateData.task_types)
 
-    const [titleInput, setTitleInput] = useState("")
-    const [groupInput, setGroupInput] = useState("")
+    const title = useSelector(state => state.templateData.title_value)
+    const group = useSelector(state => state.templateData.group_value)
 
+    const [filterInput, setFilterInput] = useState("")
+    const filtered_types = task_types.filter(type => {
+        return type.name.toLowerCase().includes(filterInput.toLowerCase())
+    })
 
     const titleOnChange = (event) => {
         event.preventDefault()
-        setTitleInput(event.target.value)
+        dispatch(setInputValue(event.target.value))
+        dispatch(createTemplateCreator())
     }
 
     const groupOnChange = (event) => {
         event.preventDefault()
-        setGroupInput(event.target.value)
+        dispatch(setGroupValue(event.target.value))
+        dispatch(createTemplateCreator())
     }
 
     const addTask = (e) => {
         e.preventDefault()
         dispatch(templatePageCreateCreator(e.target.children[0].textContent))
-        dispatch(createTemplateCreator(titleInput, groupInput))
+        dispatch(createTemplateCreator())
     }
 
     const saveBtn = async () => {
-        dispatch(createTemplateCreator(titleInput, groupInput))
+        dispatch(createTemplateCreator())
         dispatch({type: SEND_TEST_TEMPLATE})
         navigate("/templates/custom_templates")
     }
@@ -59,13 +67,19 @@ const CreateTemplatePage = () => {
                 <div className="TemplateHeaderContent">
                     <div className="blockHeader">
                         <div>Название</div>
-                        <input className="searchInput" placeholder="Название" value={titleInput} onChange={titleOnChange}/>
+                        <NinjaInput
+                            value={title}
+                            onChange={titleOnChange}
+                        />
                     </div>
                     <div className="blockHeader">
                         <div>
                             Группа
                         </div>
-                        <input className="searchInput" placeholder="Селектор по идее, пока id" value={groupInput} onChange={groupOnChange}/>
+                        <NinjaInput
+                            value={group}
+                            onChange={groupOnChange}
+                        />
                     </div>
                     <div>
                         <div className="btnCreateTemplate" onClick={saveBtn}>
@@ -85,9 +99,22 @@ const CreateTemplatePage = () => {
 
             </div>
             <div className="taskContentPanel">
-                <input className="searchInput" placeholder="Поиск"/>
-                <input className="searchInput" placeholder="Область"/>
-                {task_types.map(task =>
+                <div className="side_panel_inputs">
+                    <NinjaSearchInput
+                        placeholder={"Поиск"}
+                        value={filterInput}
+                        onChange={(e) => {
+                            e.preventDefault()
+                            setFilterInput(e.target.value)
+                        }}
+                        className={"searchInput"}
+                    />
+                    <NinjaSearchInput
+                        placeholder={"Область"}
+                        className={"searchInput"}
+                    />
+                </div>
+                {filtered_types.map(task =>
                     <div key={task.task_id} className="taskPanelRow" onClick={addTask} >
                         {task.name}
                         <div hidden={true}>

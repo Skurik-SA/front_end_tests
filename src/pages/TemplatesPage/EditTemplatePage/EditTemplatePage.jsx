@@ -5,7 +5,7 @@ import axios from "axios";
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {
-    createTemplateCreator,
+    createTemplateCreator, setGroupValue, setInputValue,
     templatePageCreateCreator
 } from "../../../redux/store/reducers/store_TemplateCreatePageReducer";
 import {GET_TASK_TYPES, LOAD_TASK_TYPES} from "../../../redux/saga/tests/saga_LoadTaskTypes";
@@ -14,6 +14,7 @@ import {useNavigate, useParams} from "react-router-dom";
 import {GET_TEST_TEMPLATE_BY_ID} from "../../../redux/saga/tests/saga_LoadTestTemplate_byID";
 import {UPDATE_TEST_TEMPLATE} from "../../../redux/saga/tests/saga_UpdateTemplate";
 import DotedLoader from "../../../components/Loaders/DotedLoader/DotedLoader";
+import NinjaInput from "../../../components/Inputs/NinjaInput/NinjaInput";
 
 
 const EditTemplatePage = () => {
@@ -24,26 +25,27 @@ const EditTemplatePage = () => {
     console.log(params)
 
     const templateData = useSelector(state => state.templateData.test_data)
-    const formData = useSelector(state => state.templateData.formData)
     const task_types = useSelector(state => state.templateData.task_types)
 
-    const [titleInput, setTitleInput] = useState("")
-    const [groupInput, setGroupInput] = useState("")
+    const title = useSelector(state => state.templateData.title_value)
+    const group = useSelector(state => state.templateData.group_value)
 
     const titleOnChange = (event) => {
         event.preventDefault()
-        setTitleInput(event.target.value)
+        dispatch(setInputValue(event.target.value))
+        dispatch(createTemplateCreator())
     }
 
     const groupOnChange = (event) => {
         event.preventDefault()
-        setGroupInput(event.target.value)
+        dispatch(setGroupValue(event.target.value))
+        dispatch(createTemplateCreator())
     }
 
     const addTask = (e) => {
         e.preventDefault()
         dispatch(templatePageCreateCreator(e.target.children[0].textContent))
-        dispatch(createTemplateCreator(titleInput, groupInput))
+        dispatch(createTemplateCreator())
     }
 
     const saveBtn = async () => {
@@ -51,7 +53,6 @@ const EditTemplatePage = () => {
         dispatch({type: UPDATE_TEST_TEMPLATE, id: params.id_template})
         navigate("/templates/custom_templates")
     }
-
 
 
     useEffect(() => {
@@ -67,13 +68,21 @@ const EditTemplatePage = () => {
                 <div className="TemplateHeaderContent">
                     <div className="blockHeader">
                         <div>Название</div>
-                        <input className="searchInput" placeholder={formData.title} value={titleInput} onChange={titleOnChange}/>
+                        <NinjaInput
+                            value={title}
+                            onChange={titleOnChange}
+                        />
+                        {/*<input className="searchInput" placeholder={formData.title} value={titleInput} onChange={titleOnChange}/>*/}
                     </div>
                     <div className="blockHeader">
                         <div>
                             Группа2
                         </div>
-                        <input className="searchInput" placeholder={formData.group_id} value={groupInput} onChange={groupOnChange}/>
+                        <NinjaInput
+                            value={group}
+                            onChange={groupOnChange}
+                        />
+                        {/*<input className="searchInput" placeholder={formData.group_id} value={group} onChange={groupOnChange}/>*/}
                     </div>
                     <div>
                         <div className="btnCreateTemplate" onClick={saveBtn}>

@@ -3,10 +3,15 @@ import {useState} from "react";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import {useDispatch} from "react-redux";
-import {deleteTaskCreator, toEditCreator} from "../../redux/store/reducers/store_TemplateCreatePageReducer";
+import {
+    createTemplateCreator,
+    deleteTaskCreator,
+    toEditCreator
+} from "../../redux/store/reducers/store_TemplateCreatePageReducer";
 import {DELETE_TEMPLATE} from "../../redux/saga/tests/saga_DeleteTemplate";
 import {deleteCustomTemplatesCreator} from "../../redux/store/reducers/store_CustomTemplatesReducer";
 import {GET_TEST_TEMPLATE_BY_ID} from "../../redux/saga/tests/saga_LoadTestTemplate_byID";
+import {COPY_TEMPLATE} from "../../redux/saga/tests/saga_CopyTemplate";
 
 const TemplateRow = ({test_title,
                       group,
@@ -24,6 +29,7 @@ const TemplateRow = ({test_title,
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const copy_btn = () => {
+        dispatch({type: COPY_TEMPLATE, payload: test.id})
         console.log("Copy button clicked")
     }
 
@@ -36,12 +42,17 @@ const TemplateRow = ({test_title,
 
     const delete_btn = () => {
         console.log(testID)
+
         if (page_name === "EDIT")
             dispatch(deleteTaskCreator(testID))
+            dispatch(createTemplateCreator())
+            console.log("edited")
+
         if (page_name === "CUSTOM") {
             dispatch({type: DELETE_TEMPLATE, payload: test.id})
             dispatch(deleteCustomTemplatesCreator(test.id))
         }
+
         console.log("Delete button clicked")
     }
 
