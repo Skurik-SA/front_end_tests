@@ -29,7 +29,9 @@
             margin: 20px;
         }
             .PersonalImage {
-
+                width: 140px;
+                height: 180px;
+                background: white;
             }
             .PersonalData {
 
