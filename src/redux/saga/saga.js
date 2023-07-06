@@ -8,6 +8,7 @@ import deleteTemplate from "./tests/saga_DeleteTemplate";
 import {loadTestTemplate} from "./tests/saga_LoadTestTemplate_byID";
 import {updateTemplate} from "./tests/saga_UpdateTemplate";
 import copyTemplate from "./tests/saga_CopyTemplate";
+import {loadUser} from "./auth/saga_UserData";
 
 // export function* rootSaga() {
 //     yield all([countWatcher(), userWatcher()])
@@ -23,7 +24,8 @@ export function* rootSaga() {
         deleteTemplate,
         loadTestTemplate,
         updateTemplate,
-        copyTemplate
+        copyTemplate,
+        loadUser
     ]
 
     const retrySagas = yield sagas.map(saga =>

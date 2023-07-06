@@ -1,0 +1,31 @@
+.PP-glow-button, .PP-glow-button-activeForm {
+    min-height: 80px;
+    min-width: 260px;
+    text-decoration: none;
+    display: inline-block;
+    padding: 15px;
+    margin: 10px 20px;
+    border-radius: 20px;
+    border-color: transparent;
+    /*box-shadow: 0 0 40px 40px #8d8d8d inset, 0 0 0 0 #8d8d8d;*/
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.4vw;
+    letter-spacing: 2px;
+    color: #181818;
+    /*transition: .15s ease-in-out;*/
+}
+.PP-glow-button:hover {
+    box-shadow: 0 0 2px 0 #d5c8ff inset, 0 0 2px 4px #e6daff;
+    background: #797979;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.PP-glow-button:active {
+    background: #c0c0c0;
+}
+
+.PP-glow-button-activeForm {
+    background: #4b4b4b;
+    color: #ffffff;
+}

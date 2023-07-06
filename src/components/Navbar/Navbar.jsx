@@ -4,12 +4,17 @@ import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import {Logout} from "../../api/auth/Logout";
 import {MenuIconActive, MenuIconDefault} from "../Icons/MenuIcons";
+import {useDispatch, useSelector} from "react-redux";
+import {LOAD_USER_DATA} from "../../redux/saga/auth/saga_UserData";
 
 const Navbar = () => {
+
+    const dispatch = useDispatch()
 
     const [navPanelVisibility, setNavPanelVisibility] = useState(false)
     const [menuIcon, setMenuIcon] = useState(false)
     const [userName, setUserName] = useState("")
+    const userData = useSelector(state => state.userData.user_data)
 
     const navPanelAction = () => {
         if (navPanelVisibility) {
@@ -30,6 +35,7 @@ const Navbar = () => {
         if (localStorage.getItem('access_token') !== null) {
             setIsAuth(true)
             // getUsername()
+            dispatch({type: LOAD_USER_DATA})
         }
     }, [isAuth]);
 
@@ -52,11 +58,11 @@ const Navbar = () => {
                             </div>
                         </div>
                         <div className="NavbarContentRight">
-                            {isAuth
+                            {userData.first_name
                                 ?
                                 <>
                                     <div className="NavbarTextStyle_1">
-                                        {userName}
+                                        {userData.first_name}
                                     </div>
                                     <div className="NavbarTextStyle_2">
                                         <Logout/>

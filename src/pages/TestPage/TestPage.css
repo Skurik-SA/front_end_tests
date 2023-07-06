@@ -13,7 +13,9 @@
 
 }
 
-body {overflow: hidden;}
+body {
+    overflow: hidden;
+}
 
 .BlockWrapper {
     display: flex;

@@ -10,6 +10,7 @@ import store_ParamsReducer from "./reducers/store_ParamsReducer";
 import store_TestPageReducer, {store_IsActiveTask} from "./reducers/store_TestPageReducer";
 import customTemplatesReducer from "./reducers/store_CustomTemplatesReducer";
 import templatePageCreateReducer from "./reducers/store_TemplateCreatePageReducer";
+import userReducer from "./reducers/store_UserReducer";
 
 
 const sagaMiddleware = createSagaMiddleware()
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
     active_task: store_IsActiveTask,
     custom_templates: customTemplatesReducer,
     templateData: templatePageCreateReducer,
+    userData: userReducer,
 })
 
 export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk, sagaMiddleware)))

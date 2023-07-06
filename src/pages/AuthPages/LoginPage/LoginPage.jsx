@@ -7,8 +7,12 @@ import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {useFetching} from "../../../components/hooks/useFetching";
 import {Password1Icon, UsernameIcon} from "../../../components/Icons/Authorization";
+import {useDispatch} from "react-redux";
+import {LOAD_USER_DATA} from "../../../redux/saga/auth/saga_UserData";
 
 const LoginPage = () => {
+
+    const dispatch = useDispatch()
 
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
@@ -31,7 +35,8 @@ const LoginPage = () => {
 
     useEffect(() => {
         if (localStorage.getItem('access_token') !== null) {
-            navigate("/test/12")
+            dispatch({type: LOAD_USER_DATA})
+            navigate("/personal")
         }
     }, [isLoading]);
 

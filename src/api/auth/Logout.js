@@ -1,8 +1,12 @@
 import {useEffect} from "react";
 import axios from "axios";
+import {useDispatch} from "react-redux";
+import {delete_userData} from "../../redux/store/reducers/store_UserReducer";
 
 
 export const Logout = () => {
+
+    const dispatch = useDispatch()
 
     const logoutBtn = () => {
         (async () => {
@@ -16,6 +20,7 @@ export const Logout = () => {
                             withCredentials: true}
                     );
                 localStorage.clear();
+                dispatch(delete_userData())
                 axios.defaults.headers.common['Authorization'] = null;
                 window.location.href = '/login'
             } catch (e) {

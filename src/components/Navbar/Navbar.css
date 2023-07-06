@@ -37,18 +37,17 @@
 .NavbarContentRight {
     display: flex;
     flex-direction: row;
-    align-items: flex-end;
+    justify-content: space-between;
 }
 
 .NavbarTextStyle_1 {
-    width: 80px;
     font-family: 'Inter', serif;
     font-style: normal;
     font-weight: 400;
     font-size: 18px;
     line-height: 0;
     /* or 0% */
-
+    margin-right: 20px;
     text-align: center;
 
     color: #FFFFFF;

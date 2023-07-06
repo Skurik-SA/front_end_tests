@@ -1,21 +1,32 @@
 /*Неоновая кнопка при наведении*/
 
 .glow-button {
+
+    min-height: 80px;
+    min-width: 260px;
     text-decoration: none;
     display: inline-block;
-    padding: 15px 30px;
+    padding: 15px;
     margin: 10px 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 40px 40px #8d8d8d inset, 0 0 0 0 #8d8d8d;
+    border-radius: 20px;
+    border-color: transparent;
+    /*box-shadow: 0 0 40px 40px #8d8d8d inset, 0 0 0 0 #8d8d8d;*/
     font-family: 'Montserrat', sans-serif;
-    font-weight: bold;
+    font-size: 1.4vw;
     letter-spacing: 2px;
-    color: white;
+    color: #181818;
     transition: .15s ease-in-out;
+
 }
 .glow-button:hover {
-    box-shadow: 0 0 10px 0 #58ffd8 inset, 0 0 10px 4px #58ffd8;
-    color: black;
+    box-shadow: 0 0 2px 0 #d5c8ff inset, 0 0 2px 4px #e6daff;
+    background: #797979;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.glow-button:active {
+    background: #c0c0c0;
 }
 
 /*Неоновая кнопка при наведении*/
