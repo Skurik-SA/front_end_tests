@@ -4,7 +4,7 @@ import {useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {LOAD_CUSTOM_TEMPLATES, LOAD_PERSONAL_PAGE_DATA} from "../../../redux/saga/actions_Saga/actions_saga";
-import {clearCreator} from "../../../redux/store/reducers/store_TemplateCreatePageReducer";
+import {clearCreator} from "../../../redux/store/reducers/Template_Reducers/store_TemplateCreatePageReducer";
 import DotedLoader from "../../../components/Loaders/DotedLoader/DotedLoader";
 import NinjaSearchInput from "../../../components/Inputs/NinjaSearchInput/NinjaSearchInput";
 

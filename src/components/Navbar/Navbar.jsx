@@ -1,7 +1,7 @@
 import "./Navbar.css";
 import NavigationPanel from "./NavigationPanel/NavigationPanel";
 import {useEffect, useState} from "react";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {Logout} from "../../api/auth/Logout";
 import {MenuIconActive, MenuIconDefault} from "../Icons/MenuIcons";
 import {useDispatch, useSelector} from "react-redux";
@@ -10,6 +10,7 @@ import {LOAD_USER_DATA} from "../../redux/saga/auth/saga_UserData";
 const Navbar = () => {
 
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const [navPanelVisibility, setNavPanelVisibility] = useState(false)
     const [menuIcon, setMenuIcon] = useState(false)
@@ -37,6 +38,9 @@ const Navbar = () => {
             // getUsername()
             dispatch({type: LOAD_USER_DATA})
         }
+        else {
+            navigate('/login')
+        }
     }, [isAuth]);
 
 
@@ -58,11 +62,16 @@ const Navbar = () => {
                             </div>
                         </div>
                         <div className="NavbarContentRight">
-                            {userData.first_name
+                            {userData
                                 ?
                                 <>
                                     <div className="NavbarTextStyle_1">
-                                        {userData.first_name}
+                                        {userData.first_name
+                                            ?
+                                            <>{userData.first_name}</>
+                                            :
+                                            <>{userData.username}</>
+                                        }
                                     </div>
                                     <div className="NavbarTextStyle_2">
                                         <Logout/>

@@ -9,6 +9,7 @@ import {loadTestTemplate} from "./tests/saga_LoadTestTemplate_byID";
 import {updateTemplate} from "./tests/saga_UpdateTemplate";
 import copyTemplate from "./tests/saga_CopyTemplate";
 import {loadUser} from "./auth/saga_UserData";
+import {update_UserData} from "./auth/saga_UpdateUserData";
 
 // export function* rootSaga() {
 //     yield all([countWatcher(), userWatcher()])
@@ -25,7 +26,8 @@ export function* rootSaga() {
         loadTestTemplate,
         updateTemplate,
         copyTemplate,
-        loadUser
+        loadUser,
+        update_UserData
     ]
 
     const retrySagas = yield sagas.map(saga =>

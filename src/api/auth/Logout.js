@@ -1,7 +1,7 @@
 import {useEffect} from "react";
 import axios from "axios";
 import {useDispatch} from "react-redux";
-import {delete_userData} from "../../redux/store/reducers/store_UserReducer";
+import {delete_userData} from "../../redux/store/reducers/User_Reducers/store_UserReducer";
 
 
 export const Logout = () => {

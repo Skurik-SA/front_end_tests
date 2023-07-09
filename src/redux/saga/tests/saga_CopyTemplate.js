@@ -1,6 +1,6 @@
 import {put, call, all, fork, takeEvery} from "redux-saga/effects"
-import {getTestTemplate_byID_data, loadCutomTemplates, sendNewTemplate} from "../api_saga/api_tests";
-import {customTemplatesCreator} from "../../store/reducers/store_CustomTemplatesReducer";
+import {getTestTemplate_byID_data, loadCutomTemplates, sendNewTemplate} from "../saga_Requests/api_saga/api_tests";
+import {customTemplatesCreator} from "../../store/reducers/Template_Reducers/store_CustomTemplatesReducer";
 
 export const COPY_TEMPLATE = "COPY_TEMPLATE"
 

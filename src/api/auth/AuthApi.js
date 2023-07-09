@@ -61,6 +61,7 @@ export default class AuthApi {
             axios.defaults.headers.common['Authorization'] = `Bearer ${data['access']}`
         }
         catch (e) {
+            localStorage.clear()
             console.log(e)
         }
 

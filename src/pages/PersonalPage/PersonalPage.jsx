@@ -3,11 +3,24 @@ import "./PersonalPage.css"
 import {ModalActiveIcon, ModalInactiveIcon} from "../../components/Icons/PersonalPageIcons";
 import PersonalPageButton from "../../components/Buttons/PersonalPageButton/PersonalPageButton";
 import {useState} from "react";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {
+    change_Email,
+    change_Lastname,
+    change_Name,
+    change_Phone_number,
+    change_Surname, save_changes
+} from "../../redux/store/reducers/User_Reducers/store_UserReducer";
+import {UPDATE_USER_DATA} from "../../redux/saga/auth/saga_UpdateUserData";
+import PersonalData from "../../components/PesonalSubPages/PersonalData/PersonalData";
+import GroupsData from "../../components/PesonalSubPages/GroupsData/GroupsData";
+import StatisticData from "../../components/PesonalSubPages/StatisticData/StatisticData";
+import TestData from "../../components/PesonalSubPages/Testdata/TestData";
 
 const PersonalPage = () => {
 
-    const userData = useSelector(state => state.userData.user_data)
+    const dispatch = useDispatch()
+    const userData = useSelector(state => state.userData)
 
     const [btnsActive, setBtnsActive] = useState(
         [
@@ -29,16 +42,16 @@ const PersonalPage = () => {
                         <div className="PersonalImage"> </div>
                         <div className="PersonalData">
                             <div>
-                                {userData.last_name}
+                                {userData.user_data.last_name}
                             </div>
                             <div>
-                                {userData.first_name}
+                                {userData.user_data.first_name}
                             </div>
                             <div>
-                                {userData.sur_name}
+                                {userData.user_data.sur_name}
                             </div>
                             <div className="email">
-                                {userData.email}
+                                {userData.user_data.email}
                             </div>
                         </div>
                         <div className="modalMenuButtons">
@@ -68,105 +81,24 @@ const PersonalPage = () => {
                 <div className="BottomFiled_Layout">
                     {btnsActive[0]
                         ?
-                            <>
-                                <div className="input_wrapper">
-                                    <div className="blank_input">
-                                        <label>Фамилия</label>
-                                        <input className="info_input" value={userData.last_name}></input>
-                                    </div>
-                                    <div className="blank_input">
-                                        <label>Имя</label>
-                                        <input className="info_input"  value={userData.first_name}></input>
-
-                                    </div>
-                                    <div className="blank_input">
-                                        <label>Отчество</label>
-                                        <input className="info_input" value={userData.sur_name}></input>
-
-                                    </div>
-                                    <div className="blank_input">
-                                        <label>Телефон</label>
-                                        <input className="info_input" value={userData.phone_number}></input>
-
-                                    </div>
-                                    <div className="blank_input">
-                                        <label>Почта</label>
-                                        <input className="info_input" value={userData.email}></input>
-
-                                    </div>
-                                </div>
-                                <div className="save_personal">
-                                    <button>
-                                        Сохранить
-                                    </button>
-                                </div>
-                            </>
+                            <PersonalData data={userData}/>
                         :
                             <>
                                 {btnsActive[1]
                                     ?
-                                        <>
-                                            <div className="statistic_wrapper">
-                                                <div className="statistic_group">
-                                                    <hr/>
-                                                    Группы
-                                                    <hr/>
-                                                </div>
-                                                <div className="statistic_table">
-                                                    {group.map(person => <div>Человек {person}</div>)}
-                                                </div>
-                                            </div>
-                                        </>
+                                        <StatisticData data={group}/>
                                     :
                                         <>
                                             {btnsActive[2]
                                                 ?
-                                                <>
-                                                    <div>qwerty</div>
-                                                    <div>qwerty</div>
-                                                    <div>qwerty</div>
-                                                    <div>qwerty</div>
-                                                    <div>qwerty</div>
-                                                    <div>qwerty</div>
-                                                    <div>qwerty</div>
-                                                    <div>qwerty</div>
-                                                    <div>qwerty</div>
-                                                    <div>qwerty</div>
-                                                    <div>qwerty</div>
-                                                    <div>qwerty</div>
-                                                    <div>qwerty</div>
-                                                    <div>qwerty</div>
-                                                    <div>qwerty</div>
-                                                    <div>qwerty</div>
-
-                                                </>
+                                                    <TestData/>
                                                 :
                                                 <>
                                                     {btnsActive[3]
                                                         ?
-                                                        <>
-                                                            <div>Муха</div>
-                                                            <div>Муха</div>
-                                                            <div>Муха</div>
-                                                            <div>Муха</div>
-                                                            <div>Муха</div>
-                                                            <div>Муха</div>
-                                                            <div>Муха</div>
-                                                            <div>Муха</div>
-                                                            <div>Муха</div>
-                                                            <div>Муха</div>
-                                                            <div>Муха</div>
-                                                            <div>Муха</div>
-                                                            <div>Муха</div>
-                                                            <div>Муха</div>
-                                                            <div>Муха</div>
-                                                            <div>Муха</div>
-
-                                                        </>
+                                                            <GroupsData/>
                                                         :
-                                                        <>
-
-                                                        </>
+                                                        <></>
                                                     }
                                                 </>
                                             }

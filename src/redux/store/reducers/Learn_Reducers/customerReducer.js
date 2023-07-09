@@ -1,4 +1,4 @@
-import {ADD_MANY_CUSTOMERS, ADD_CUSTOMER, DELETE_CUSTOMER} from "../actions/customerActions";
+import {ADD_MANY_CUSTOMERS, ADD_CUSTOMER, DELETE_CUSTOMER} from "../../actions/customerActions";
 
 
 const defaultState = {

@@ -1,16 +1,16 @@
 import {applyMiddleware, combineReducers, createStore} from "redux";
-import {customerReducer} from "./reducers/customerReducer";
+import {customerReducer} from "./reducers/Learn_Reducers/customerReducer";
 import {composeWithDevTools} from "redux-devtools-extension";
 import thunk from "redux-thunk";
 import createSagaMiddleware from "redux-saga"
 import {rootSaga} from "../saga/saga";
-import countReducer from "./reducers/countReducer";
-import store_personalTestsReducer from "./reducers/store_personalTestsReducer";
-import store_ParamsReducer from "./reducers/store_ParamsReducer";
-import store_TestPageReducer, {store_IsActiveTask} from "./reducers/store_TestPageReducer";
-import customTemplatesReducer from "./reducers/store_CustomTemplatesReducer";
-import templatePageCreateReducer from "./reducers/store_TemplateCreatePageReducer";
-import userReducer from "./reducers/store_UserReducer";
+import countReducer from "./reducers/Learn_Reducers/countReducer";
+import store_personalTestsReducer from "./reducers/Test_Reducers/store_personalTestsReducer";
+import store_ParamsReducer from "./reducers/Test_Reducers/store_ParamsReducer";
+import store_TestPageReducer, {store_IsActiveTask} from "./reducers/Test_Reducers/store_TestPageReducer";
+import customTemplatesReducer from "./reducers/Template_Reducers/store_CustomTemplatesReducer";
+import templatePageCreateReducer from "./reducers/Template_Reducers/store_TemplateCreatePageReducer";
+import userReducer from "./reducers/User_Reducers/store_UserReducer";
 
 
 const sagaMiddleware = createSagaMiddleware()

@@ -1,6 +1,6 @@
 import axios from "axios";
 import {all, fork, call, put, takeEvery, select} from "redux-saga/effects"
-import {sendNewTemplate} from "../api_saga/api_tests";
+import {sendNewTemplate} from "../saga_Requests/api_saga/api_tests";
 
 
 export const SEND_TEST_TEMPLATE = "SEND_TEST_TEMPLATE"

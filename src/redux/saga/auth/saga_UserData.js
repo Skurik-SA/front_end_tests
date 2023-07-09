@@ -1,7 +1,7 @@
 
 import {all, fork, call, put, takeEvery, select} from "redux-saga/effects"
-import {get_user_data_bd} from "../api_auth/api_auth";
-import {set_userData} from "../../store/reducers/store_UserReducer";
+import {get_user_data_bd} from "../saga_Requests/api_auth/api_auth";
+import {set_userData} from "../../store/reducers/User_Reducers/store_UserReducer";
 
 export const LOAD_USER_DATA = "LOAD_USER_DATA"
 

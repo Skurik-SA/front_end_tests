@@ -7,9 +7,9 @@ import {
     createTemplateCreator,
     deleteTaskCreator,
     toEditCreator
-} from "../../redux/store/reducers/store_TemplateCreatePageReducer";
+} from "../../redux/store/reducers/Template_Reducers/store_TemplateCreatePageReducer";
 import {DELETE_TEMPLATE} from "../../redux/saga/tests/saga_DeleteTemplate";
-import {deleteCustomTemplatesCreator} from "../../redux/store/reducers/store_CustomTemplatesReducer";
+import {deleteCustomTemplatesCreator} from "../../redux/store/reducers/Template_Reducers/store_CustomTemplatesReducer";
 import {GET_TEST_TEMPLATE_BY_ID} from "../../redux/saga/tests/saga_LoadTestTemplate_byID";
 import {COPY_TEMPLATE} from "../../redux/saga/tests/saga_CopyTemplate";
 

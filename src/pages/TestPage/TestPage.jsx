@@ -6,8 +6,8 @@ import {useNavigate, useParams} from "react-router-dom";
 import {verifyToken} from "../../api/auth/VerifyToken";
 import {useDispatch, useSelector} from "react-redux";
 import {LOAD_TEST_PAGE} from "../../redux/saga/tests/saga_LoadTestPageData";
-import {getParameterID} from "../../redux/store/reducers/store_ParamsReducer";
-import {setIsActiveTask, testSaveCreator} from "../../redux/store/reducers/store_TestPageReducer";
+import {getParameterID} from "../../redux/store/reducers/Test_Reducers/store_ParamsReducer";
+import {setIsActiveTask, testSaveCreator} from "../../redux/store/reducers/Test_Reducers/store_TestPageReducer";
 import {LOAD_USER_DATA} from "../../redux/saga/auth/saga_UserData";
 
 const TestPage = () => {

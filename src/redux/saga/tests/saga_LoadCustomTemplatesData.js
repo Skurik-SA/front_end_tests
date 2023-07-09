@@ -1,8 +1,8 @@
 import axios from "axios";
 import {call, put, takeEvery, all, fork} from "redux-saga/effects"
-import {customTemplatesCreator} from "../../store/reducers/store_CustomTemplatesReducer";
+import {customTemplatesCreator} from "../../store/reducers/Template_Reducers/store_CustomTemplatesReducer";
 import {LOAD_CUSTOM_TEMPLATES} from "../actions_Saga/actions_saga";
-import {loadCutomTemplates} from "../api_saga/api_tests";
+import {loadCutomTemplates} from "../saga_Requests/api_saga/api_tests";
 
 
 function* workerCustomTemplates() {

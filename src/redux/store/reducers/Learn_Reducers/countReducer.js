@@ -1,4 +1,4 @@
-import {DECREMENT, INCREMENT} from "../actions/countActions";
+import {DECREMENT, INCREMENT} from "../../actions/countActions";
 
 
 const defaultState = {

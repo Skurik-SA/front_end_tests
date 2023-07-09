@@ -1,5 +1,5 @@
 import {all, fork, call, put, takeEvery, select} from "redux-saga/effects"
-import {updateTemplate_api} from "../api_saga/api_tests";
+import {updateTemplate_api} from "../saga_Requests/api_saga/api_tests";
 
 export const UPDATE_TEST_TEMPLATE = "UPDATE_TEST_TEMPLATE"
 

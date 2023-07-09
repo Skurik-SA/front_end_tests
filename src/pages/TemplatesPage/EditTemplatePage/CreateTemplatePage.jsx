@@ -5,7 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {
     createTemplateCreator, setGroupValue, setInputValue,
     templatePageCreateCreator
-} from "../../../redux/store/reducers/store_TemplateCreatePageReducer";
+} from "../../../redux/store/reducers/Template_Reducers/store_TemplateCreatePageReducer";
 import {GET_TASK_TYPES, LOAD_TASK_TYPES} from "../../../redux/saga/tests/saga_LoadTaskTypes";
 import {SEND_TEST_TEMPLATE} from "../../../redux/saga/tests/saga_SendNewTestTemplate";
 import {useNavigate} from "react-router-dom";
