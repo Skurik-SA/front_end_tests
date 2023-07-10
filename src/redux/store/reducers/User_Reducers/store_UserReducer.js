@@ -15,7 +15,8 @@ const defaultState = {
     input_sur_name: "",
     input_last_name: "",
     input_phone_number: "",
-    input_email: ""
+    input_email: "",
+    groups: []
 }
 
 const SET_USER_DATA = "GET_USER_DATA"
@@ -26,6 +27,7 @@ const CHANGE_LASTNAME = "CHANGE_LASTNAME"
 const CHANGE_PHONE_NUMBER = "CHANGE_PHONE_NUMBER"
 const CHANGE_EMAIL = "CHANGE_EMAIL"
 const SAVE_CHANGES = "SAVE_CHANGES"
+const SET_USER_GROUPS = "SET_USER_GROUPS"
 
 export default function userReducer(state = defaultState, action) {
     switch (action.type) {
@@ -61,6 +63,8 @@ export default function userReducer(state = defaultState, action) {
                     last_name: state.input_last_name,
                     phone_number: state.input_phone_number,
                 }}
+        case SET_USER_GROUPS:
+            return {...state, groups: action.payload}
         default:
             return state
     }
@@ -73,4 +77,5 @@ export const change_Surname = (payload) => ({type: CHANGE_SURNAME, payload})
 export const change_Lastname = (payload) => ({type: CHANGE_LASTNAME, payload})
 export const change_Phone_number = (payload) => ({type: CHANGE_PHONE_NUMBER, payload})
 export const change_Email = (payload) => ({type: CHANGE_EMAIL, payload})
+export const set_groups = (payload) => ({type: SET_USER_GROUPS, payload})
 export const save_changes = () => ({type: SAVE_CHANGES})

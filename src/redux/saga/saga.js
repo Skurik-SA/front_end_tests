@@ -27,7 +27,7 @@ export function* rootSaga() {
         updateTemplate,
         copyTemplate,
         loadUser,
-        update_UserData
+        update_UserData,
     ]
 
     const retrySagas = yield sagas.map(saga =>

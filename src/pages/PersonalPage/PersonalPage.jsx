@@ -2,7 +2,7 @@
 import "./PersonalPage.css"
 import {ModalActiveIcon, ModalInactiveIcon} from "../../components/Icons/PersonalPageIcons";
 import PersonalPageButton from "../../components/Buttons/PersonalPageButton/PersonalPageButton";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {
     change_Email,
