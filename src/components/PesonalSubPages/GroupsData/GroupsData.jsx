@@ -1,5 +1,4 @@
 import "./GroupsData.css"
-import TemplateRow from "../../TemplateRow/TemplateRow";
 
 const GroupsData = ({data}) => {
 

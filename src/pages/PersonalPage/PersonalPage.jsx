@@ -2,16 +2,8 @@
 import "./PersonalPage.css"
 import {ModalActiveIcon, ModalInactiveIcon} from "../../components/Icons/PersonalPageIcons";
 import PersonalPageButton from "../../components/Buttons/PersonalPageButton/PersonalPageButton";
-import {useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {
-    change_Email,
-    change_Lastname,
-    change_Name,
-    change_Phone_number,
-    change_Surname, save_changes
-} from "../../redux/store/reducers/User_Reducers/store_UserReducer";
-import {UPDATE_USER_DATA} from "../../redux/saga/auth/saga_UpdateUserData";
+import {useState} from "react";
+import {useSelector} from "react-redux";
 import PersonalData from "../../components/PesonalSubPages/PersonalData/PersonalData";
 import GroupsData from "../../components/PesonalSubPages/GroupsData/GroupsData";
 import StatisticData from "../../components/PesonalSubPages/StatisticData/StatisticData";
@@ -19,7 +11,6 @@ import TestData from "../../components/PesonalSubPages/Testdata/TestData";
 
 const PersonalPage = () => {
 
-    const dispatch = useDispatch()
     const userData = useSelector(state => state.userData)
 
     const [btnsActive, setBtnsActive] = useState(
@@ -30,9 +21,6 @@ const PersonalPage = () => {
             false // Мои группы
         ]
     )
-
-    // const [group, setGroup] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14])
-    const [group, setGroup] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9])
 
     return (
         <>
@@ -86,7 +74,7 @@ const PersonalPage = () => {
                             <>
                                 {btnsActive[1]
                                     ?
-                                        <StatisticData data={group}/>
+                                        <StatisticData/>
                                     :
                                         <>
                                             {btnsActive[2]
