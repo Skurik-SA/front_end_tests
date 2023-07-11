@@ -66,6 +66,15 @@ const Navbar = () => {
                                 ?
                                 <>
                                     <div className="NavbarTextStyle_1">
+                                        {userData.is_teacher
+                                            ? <>
+                                                Учитель:
+                                            </>
+                                            :
+                                            <>
+                                                Ученик:
+                                            </>
+                                        }
                                         {userData.first_name
                                             ?
                                             <>{userData.first_name}</>

@@ -12,11 +12,12 @@ const GroupsData = ({data}) => {
                 </div>
                 <div className="groups_right_wrapper">
                     <div className="meta_fields">
-                        <input/>
+                        <input className="input_style" placeholder={"Поиск"}/>
                         <div className="new_button">
                             Новая группа
                         </div>
                     </div>
+                    <hr className="hr_style"/>
                     <div className={"row_wrapper"}>
                         {arr.map((a, index) =>
                             <div key={index}
