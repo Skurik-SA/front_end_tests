@@ -11,6 +11,7 @@ import store_TestPageReducer, {store_IsActiveTask} from "./reducers/Test_Reducer
 import customTemplatesReducer from "./reducers/Template_Reducers/store_CustomTemplatesReducer";
 import templatePageCreateReducer from "./reducers/Template_Reducers/store_TemplateCreatePageReducer";
 import userReducer from "./reducers/User_Reducers/store_UserReducer";
+import personalGroupReducer from "./reducers/PersonalPage_Reducers/store_PersonalGroupDataReducer";
 
 
 const sagaMiddleware = createSagaMiddleware()
@@ -25,6 +26,7 @@ const rootReducer = combineReducers({
     custom_templates: customTemplatesReducer,
     templateData: templatePageCreateReducer,
     userData: userReducer,
+    groupById: personalGroupReducer,
 })
 
 export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk, sagaMiddleware)))

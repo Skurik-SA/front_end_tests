@@ -1,14 +1,53 @@
 import "./GroupsData.css"
+import {useDispatch, useSelector} from "react-redux";
+import {set_group_data_by_id} from "../../../redux/store/reducers/PersonalPage_Reducers/store_PersonalGroupDataReducer";
+import {LOAD_GROUP_DATA} from "../../../redux/saga/auth/saga_GroupDataByID";
+import DotedLoader from "../../Loaders/DotedLoader/DotedLoader";
 
 const GroupsData = ({data}) => {
 
-    const arr = [1, 2, 3, 4, 5, ]
+    const userGroups = useSelector(state => state.userData.groups)
+    const groupById = useSelector(state => state.groupById.data)
+
+    const dispatch = useDispatch()
+    const get_data_by_group = (id) => {
+        dispatch({type: LOAD_GROUP_DATA, id})
+    }
 
     return (
         <>
+
             <div className="groups_data_wrapper">
                 <div className="groups_left_wrapper">
-                    <div>data</div>
+
+                    {groupById.participants.length > 0
+                        ?
+                        <>
+                            <div>
+                                Редактировать
+                            </div>
+                            {groupById.participants.map((p, index) =>
+                            <div className="person_row">
+                                <div>
+                                    {p.last_name}
+                                </div>
+                                <div>
+                                     {p.first_name}
+                                </div>
+                                <div>
+                                    {p.sur_name}
+                                </div>
+                                <div>
+                                    {p.role}
+                                </div>
+                            </div>
+                                )}
+                        </>
+                        :
+                        <div>
+                            Выберите группу
+                        </div>
+                    }
                 </div>
                 <div className="groups_right_wrapper">
                     <div className="meta_fields">
@@ -19,13 +58,18 @@ const GroupsData = ({data}) => {
                     </div>
                     <hr className="hr_style"/>
                     <div className={"row_wrapper"}>
-                        {arr.map((a, index) =>
+                        {userGroups.group.map((g, index) =>
                             <div key={index}
                                  className="group_row"
+                                 onClick={() => {
+                                     get_data_by_group(g.id)
+                                 }}
                             >
-                                Группа {a}
+                                {g.title}
                             </div>
-                        )}
+                        )
+
+                        }
                     </div>
                 </div>
             </div>

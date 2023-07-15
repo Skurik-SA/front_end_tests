@@ -11,26 +11,17 @@ function* getUserData() {
 }
 
 function* getGroupData(data) {
-    let group_data = []
-    if (data && data.classroom_groups.length !== 0) {
-        for (let i = 0; i < data.classroom_groups.length; i++) {
-            const temp = yield call(get_user_groups, data.classroom_groups[i])
-            group_data.push(temp)
-            console.log(temp)
-        }
-
-        return group_data
+    const user_id = {
+        "user_id": localStorage.getItem("user_id")
     }
-    else {
-        return []
-    }
+    return yield call(get_user_groups, user_id)
 }
 
 function* workerUser(){
     const userdata = yield getUserData()
     yield put(set_userData(userdata))
 
-    const groups_data = yield getGroupData(userdata)
+    const groups_data = yield getGroupData()
     yield put(set_groups(groups_data))
 }
 

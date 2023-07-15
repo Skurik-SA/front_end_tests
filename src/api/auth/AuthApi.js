@@ -2,12 +2,11 @@ import axios from "axios";
 import "../../utils/constants"
 import {BACK_END_URL} from "../../utils/constants";
 import jwtDecode from "jwt-decode";
-import {useDispatch} from "react-redux";
 
 export default class AuthApi {
     static async axios_register(username, password) {
 
-        await axios.post(`${BACK_END_URL}/api/register/`, {
+        await axios.post(`${BACK_END_URL}/user/api/register/`, {
             username: username,
             password: password
         })
@@ -26,7 +25,7 @@ export default class AuthApi {
             password: password
         }
 
-        let response = await fetch(`${BACK_END_URL}/api/register/`, {
+        let response = await fetch(`${BACK_END_URL}/user/api/register/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -44,7 +43,7 @@ export default class AuthApi {
         }
 
         try {
-            const {data} = await axios.post("http://127.0.0.1:8000/api/token/",
+            const {data} = await axios.post("http://127.0.0.1:8000/user/api/token/",
                 user, {
                     headers: {
                         'Content-Type': 'application/json'
@@ -64,18 +63,5 @@ export default class AuthApi {
             localStorage.clear()
             console.log(e)
         }
-
-        // await axios.post(`${BACK_END_URL}/api/login/`, {
-        //     username: username,
-        //     password: password
-        // })
-        //     .then(function (response) {
-        //         console.log(response.data)
-        //         return response.data
-        //     })
-        //     .catch(function (error) {
-        //         return error
-        //     });
-
     }
 }

@@ -1,5 +1,5 @@
 import {put, call, all, fork, takeEvery} from "redux-saga/effects"
-import {getTestTemplate_byID_data, loadCutomTemplates, sendNewTemplate} from "../saga_Requests/api_saga/api_tests";
+import {getTestTemplate_byID_data, loadCustomTemplates, sendNewTemplate} from "../saga_Requests/api_saga/api_tests";
 import {customTemplatesCreator} from "../../store/reducers/Template_Reducers/store_CustomTemplatesReducer";
 
 export const COPY_TEMPLATE = "COPY_TEMPLATE"
@@ -17,7 +17,7 @@ function* workerCopyTemplate(params) {
     }
     yield call(sendNewTemplate, data)
 
-    data = yield call(loadCutomTemplates)
+    data = yield call(loadCustomTemplates)
     yield put(customTemplatesCreator(data))
 
     console.log(data)

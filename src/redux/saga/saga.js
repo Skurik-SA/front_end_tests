@@ -10,6 +10,7 @@ import {updateTemplate} from "./tests/saga_UpdateTemplate";
 import copyTemplate from "./tests/saga_CopyTemplate";
 import {loadUser} from "./auth/saga_UserData";
 import {update_UserData} from "./auth/saga_UpdateUserData";
+import {loadGroupData} from "./auth/saga_GroupDataByID";
 
 // export function* rootSaga() {
 //     yield all([countWatcher(), userWatcher()])
@@ -28,6 +29,7 @@ export function* rootSaga() {
         copyTemplate,
         loadUser,
         update_UserData,
+        loadGroupData,
     ]
 
     const retrySagas = yield sagas.map(saga =>

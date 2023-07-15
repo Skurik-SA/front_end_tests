@@ -61,14 +61,14 @@ const TemplateRow = ({test_title,
     }
 
     const generate_btn = async () => {
-        const {data} = await axios.get(`http://127.0.0.1:8000/api/generate/${test.id}`)
+        const {data} = await axios.get(`http://127.0.0.1:8000/tests/api/generate/${test.id}`)
         console.log(data)
         alert(`${data.title} сгенерирован [${data.id}]`)
         navigate(`/test/${data.id}`)
     }
 
     const pass_btn = async () => {
-        const {data} = await axios.get(`http://127.0.0.1:8000/api/personal_test/${test.id}`)
+        const {data} = await axios.get(`http://127.0.0.1:8000/tests/api/personal_test/${test.id}`)
         navigate(`/test/${data.id}`)
     }
 
