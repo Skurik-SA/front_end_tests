@@ -1,5 +1,3 @@
-import axios from "axios";
-
 const defaultState = {
     test_data: [], //Front Data
     task_types: [],
@@ -92,6 +90,5 @@ export const createTemplateCreator = () => ({type: SAVE_TEST_TEMPLATE})
 export const deleteTaskCreator = (payload) => ({type: DELETE_TASK_TO_TEST, payload})
 export const toEditCreator = (payload) => ({type: TO_EDIT, payload})
 export const clearCreator = () => ({type: CLEAR_DATA})
-
 export const setInputValue = (payload) => ({type: SET_INPUT_VALUE, payload})
 export const setGroupValue = (payload) => ({type: SET_GROUP_VALUE, payload})

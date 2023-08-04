@@ -1,4 +1,3 @@
-import axios from "axios";
 import {all, fork, call, put, takeEvery, select} from "redux-saga/effects"
 import {sendNewTemplate} from "../saga_Requests/api_saga/api_tests";
 

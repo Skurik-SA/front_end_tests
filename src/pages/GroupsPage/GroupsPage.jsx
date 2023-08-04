@@ -1,9 +1,7 @@
 import {useDispatch, useSelector} from "react-redux";
 import "./GroupsPage.css"
 import {fetchCustomers} from "../../redux/store/asyncAction/customers";
-import {decrementCreator, incrementCreator} from "../../redux/store/actionCreators/countActionCreator";
 import {addCustomerAction, deleteCustomerAction} from "../../redux/store/actionCreators/customerActionCreators";
-// import Loaders from "../../components/Loaders/AllLoaders/Loaders";
 import DotedLoader from "../../components/Loaders/DotedLoader/DotedLoader";
 
 
@@ -11,16 +9,6 @@ const GroupsPage = () => {
 
     const dispatch = useDispatch()
     const customers = useSelector(state => state.customers.customers)
-    const counter = useSelector(state => state.count.count)
-
-    const addCash = (cash) => {
-        dispatch({type:"ADD_CASH", payload: cash})
-    }
-
-    const getCash = (cash) => {
-        dispatch({type:"GET_CASH", payload: cash})
-    }
-
     const addCustomer = (name) => {
         const customer = {
             name,
@@ -38,12 +26,8 @@ const GroupsPage = () => {
         <>
             <div className="ContentWrap">
                 Groups Page
-                <button onClick={() => addCash(Number(prompt()))}>Пополнить счёт</button>
-                <button onClick={() => getCash(Number(prompt()))}>Снять деньги</button>
                 <button onClick={() => addCustomer(prompt())}>Добавить клиента</button>
                 <button onClick={() => dispatch(fetchCustomers())}>Получить клиентов из базы</button>
-                <button onClick={() => dispatch(incrementCreator())}>увеличить</button>
-                <button onClick={() => dispatch(decrementCreator())}>уменьшить</button>
             </div>
             {customers.length > 0
                 ?
@@ -59,9 +43,6 @@ const GroupsPage = () => {
                     Клиенты отсутствуют
                 </div>
             }
-            <div>
-                {counter}
-            </div>
             <div className="loader_style">
                 {/*<Loaders/>*/}
                 <DotedLoader/>

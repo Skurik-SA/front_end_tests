@@ -1,0 +1,14 @@
+.monoContentWrapper {
+    width: 100%;
+    min-height: 100vh;
+
+    margin-top: 16px;
+
+    padding-top: 32px;
+    padding-left: 32px;
+    padding-right: 32px;
+
+    background: #2F2F2F;
+
+    overflow: hidden;
+}

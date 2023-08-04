@@ -1,4 +1,4 @@
-import {all, fork, call, put, takeEvery, select} from "redux-saga/effects"
+import {all, fork, call, put, takeEvery} from "redux-saga/effects"
 import {get_group_data} from "../saga_Requests/api_auth/api_auth";
 import {set_group_data_by_id} from "../../store/reducers/PersonalPage_Reducers/store_PersonalGroupDataReducer";
 

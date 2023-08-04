@@ -1,6 +1,6 @@
 import "./TestEditorPage.css"
 import TestCard from "../../components/TestCard/TestCard";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 
 const TestEditorPage = () => {
     // Эта страница просто отображает список заданий.
@@ -40,7 +40,6 @@ const TestEditorPage = () => {
                                   remove={removeTask}
                                   task={task_i}
                         />)}
-
                 </div>
                 <div className="TypeTestsMenu">
                     <div onClick={addNewTask}>Одиночный выбор</div>

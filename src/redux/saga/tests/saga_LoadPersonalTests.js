@@ -1,5 +1,4 @@
-import axios from "axios";
-import {call, take, all, fork, takeEvery, put, delay} from "redux-saga/effects"
+import {call, all, fork, takeEvery, put} from "redux-saga/effects"
 import {personalTestsCreator} from "../../store/reducers/Test_Reducers/store_personalTestsReducer";
 import {LOAD_PERSONAL_PAGE_DATA} from "../actions_Saga/actions_saga";
 import {getPersonalTests} from "../saga_Requests/api_saga/api_tests";

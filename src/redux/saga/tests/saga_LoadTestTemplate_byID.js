@@ -1,8 +1,7 @@
-import {all, fork, call, put, takeEvery, select} from "redux-saga/effects"
+import {all, fork, call, put, takeEvery} from "redux-saga/effects"
 import {getTestTemplate_byID_data} from "../saga_Requests/api_saga/api_tests";
 import {
     addTaskToTestFromDBCreator,
-    templatePageCreateCreator
 } from "../../store/reducers/Template_Reducers/store_TemplateCreatePageReducer";
 
 export const GET_TEST_TEMPLATE_BY_ID = "GET_TEST_TEMPLATE_BY_ID"

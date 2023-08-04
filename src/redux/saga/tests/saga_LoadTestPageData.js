@@ -1,14 +1,12 @@
-import axios from "axios";
-import {all, fork, call, put, takeEvery, select} from "redux-saga/effects"
+import {all, fork, call, put, takeEvery} from "redux-saga/effects"
 import {setIsActiveTask, testPageCreator} from "../../store/reducers/Test_Reducers/store_TestPageReducer";
 import {loadTestPage_data} from "../saga_Requests/api_saga/api_tests";
 
 export const LOAD_TEST_PAGE = "LOAD_TEST_PAGE"
 
-function* workerTestPage(id) {
-    const params = yield select(s => s.params.page_params.task_id)
-    const data = yield call(loadTestPage_data, params)
-    console.log(data)
+function* workerTestPage(payload) {
+    const data = yield call(loadTestPage_data, payload.id)
+
     let responseData = []
     for (let i = 0; i < data.tasks.length; i++) {
         responseData.push({

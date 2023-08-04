@@ -7,7 +7,7 @@ export const UPDATE_USER_DATA = "UPDATE_USER_DATA"
 function* workerUpdaterUserData() {
     const user_id = localStorage.getItem("user_id")
     const storage_data = yield select(s => s.userData.user_data)
-    console.log(storage_data)
+
     const data = yield call(send_user_data_bd, user_id, storage_data)
     yield put(set_userData(data))
 }

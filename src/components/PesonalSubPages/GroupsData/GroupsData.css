@@ -42,6 +42,7 @@
 .hr_style {
     color: black;
     border-width: 2px;
+
 }
 
 .row_wrapper {
@@ -59,7 +60,6 @@
     cursor: pointer;
     width: 95%;
     overflow: hidden;
-    opacity: 90%;
     color: black;
     padding-left: 20px;
     font-size: 20px;
@@ -71,7 +71,6 @@
     background: #e1e1e1;
 
     color: black;
-    opacity: 100%;
     transform: scale(1.05);
     transition: 0.1s ease-in-out;
 }
@@ -85,7 +84,6 @@
     font-size: 20px;
     overflow: hidden;
 
-    opacity: 90%;
     color: black;
     transition: 0.5s ease-in-out;
 }
@@ -94,7 +92,6 @@
     background: #e1e1e1;
 
     color: black;
-    opacity: 100%;
     transform: scale(1.1);
 
     transition: 0.1s ease-in-out;

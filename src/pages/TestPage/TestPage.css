@@ -13,10 +13,6 @@
 
 }
 
-body {
-    overflow: hidden;
-}
-
 .BlockWrapper {
     display: flex;
     flex-direction: column;

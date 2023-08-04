@@ -1,0 +1,71 @@
+.createBlueButton {
+    width: 365px;
+    height: 48px;
+    flex-shrink: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    border-radius: 0 0 5px 0;
+    background: #005CB1;
+
+    color: #FFF;
+    user-select: none;
+    text-align: center;
+    font-family: Roboto Serif, serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 0; /* 0% */
+}
+
+.createBlueButton:hover {
+    background: #168fff;
+    cursor: pointer;
+}
+
+.createBlueButton:active {
+    background: #005cb0;
+}
+
+.createBlueButtonSmall {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+
+    border-radius: 49px;
+    background: #005CB1;
+}
+
+.createBlueButtonSmall:hover {
+    background: #168fff;
+    cursor: pointer;
+}
+
+.createBlueButtonSmall:active {
+    background: #005cb0;
+}
+
+@media (min-width: 200px) {
+    .createBlueButton {
+        display: none;
+    }
+    .createBlueButtonSmall {
+        display: flex;
+    }
+}
+
+@media (min-width: 900px) {
+    .createBlueButton {
+        display: flex;
+
+    }
+    .createBlueButtonSmall {
+        display: none;
+    }
+}

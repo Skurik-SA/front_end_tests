@@ -1,0 +1,14 @@
+.myTemplatesWrapper_upperBlock {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.myTemplates_TemplateWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    margin-left: 16px;
+    margin-bottom: 16px;
+}

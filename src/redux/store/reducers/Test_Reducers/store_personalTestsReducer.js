@@ -1,4 +1,3 @@
-
 const defaultState = {
     personal_tests: [],
 }

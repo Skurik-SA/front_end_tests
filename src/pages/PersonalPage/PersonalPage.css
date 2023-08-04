@@ -36,7 +36,6 @@
                 width: 30%;
                 height: 90%;
                 background: #717171;
-                position: sticky;
                 top: 10px;
                 left: 10px;
 
@@ -45,10 +44,9 @@
                 display: flex;
                 flex-direction: column;
 
-                position: sticky;
                 justify-content: center;
 
-                font-size: x-large;
+                font-size: 1.5rem;
                 color: black;
 
             }

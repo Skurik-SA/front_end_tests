@@ -1,4 +1,4 @@
-import {put, call, all, fork, takeEvery} from "redux-saga/effects"
+import {call, all, fork, takeEvery} from "redux-saga/effects"
 import {deleteTemplate_req} from "../saga_Requests/api_saga/api_tests";
 
 export const DELETE_TEMPLATE = "DELETE_TEMPLATE"
