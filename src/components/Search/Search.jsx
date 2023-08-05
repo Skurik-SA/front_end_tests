@@ -1,6 +1,6 @@
 import "./Search.css"
 
-const Search = ({style_params}) => {
+const Search = ({value, onChange, style_params}) => {
     return (
         <div style={style_params}>
             <div className="searchWrapper">
@@ -10,7 +10,12 @@ const Search = ({style_params}) => {
                         <line x1="1.5845" y1="21.5871" x2="8.57181" y2="14.5871" stroke="black" strokeWidth="4"/>
                     </svg>
                 </div>
-                <input className="searchInputNew" placeholder={"Поиск..."}/>
+                <input
+                    value={value}
+                    onChange={onChange}
+                    className="searchInputNew"
+                    placeholder={"Поиск..."}
+                />
             </div>
         </div>
     )

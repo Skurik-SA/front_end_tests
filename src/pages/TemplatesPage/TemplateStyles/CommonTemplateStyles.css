@@ -57,21 +57,3 @@
     user-select: none;
 }
 
-/* Works on Chrome, Edge, and Safari */
-::-webkit-scrollbar-track {
-    border-radius: 10px;
-    background-color: #fff; /*Цвет скролла*/
-}
-::-webkit-scrollbar-thumb {
-    border-radius: 5px; /*Закругление ползунка*/
-    background-color: #808080; /*Цвет ползунка*/
-}
-::-webkit-scrollbar {
-    width: 6px;  /*Толщина скролла*/
-}
-
-/* Works on Firefox */
-* {
-    scrollbar-color: #808080 #fff; /*Цвет скролла, цвет ползунка*/
-    scrollbar-width: thin; /*Толщина скролла thin, auto*/
-}
