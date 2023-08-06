@@ -19,10 +19,6 @@
     overflow: hidden;
 }
 
-.tempMMM {
-    width: 70%;
-}
-
 .rowModuleWrapper:hover {
     scale: 1.01;
 }

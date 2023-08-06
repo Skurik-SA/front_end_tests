@@ -9,6 +9,7 @@ import RowModule from "../../../../../components/RowModule/RowModule";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
 import {LOAD_CUSTOM_TEMPLATES} from "../../../../../redux/saga/actions_Saga/actions_saga";
+import FilterInput from "../../../../../components/FilterInput/FilterInput";
 
 const MyTemplates = () => {
 
@@ -45,19 +46,25 @@ const MyTemplates = () => {
                         </CreateBlueButton>
                     </div>
                     <DivideLineMono/>
-                    <div className="myTemplates_TemplateWrapper">
-                        {filteredData.map((test, index) =>
-                            <RowModule
-                                key={index}
-                                index_row={index + 1}
-                                width_style={{width: "70%"}}
-                                template_name={test.title}
-                                template_group={"Группа: " + test.group_id}
-                                template_tasks_count={test.tasks_amount + " заданий"}
-                                template_tasks={test.tasks_description}
-                            />
-                        )}
+                    <div className="myTemplates_ContentWrapper">
+                        <div className="myTemplates_TemplateWrapper">
+                            {filteredData.map((test, index) =>
+                                <RowModule
+                                    key={index}
+                                    index_row={index + 1}
+                                    width_style={{width: "95%"}}
+                                    template_name={test.title}
+                                    template_group={"Группа: " + test.group_id}
+                                    template_tasks_count={test.tasks_amount + " заданий"}
+                                    template_tasks={test.tasks_description}
+                                />
+                            )}
+                        </div>
+                        <div className="myTemplates_FiltersWrapper">
+                            <FilterInput/>
+                        </div>
                     </div>
+
                 </MonoContent>
             </WrapperPersonalCabinet>
         </>
