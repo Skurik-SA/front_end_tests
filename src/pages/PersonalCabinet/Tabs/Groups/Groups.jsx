@@ -7,7 +7,7 @@ const Groups = () => {
     return (
         <>
             <WrapperPersonalCabinet>
-                <NavigationLine></NavigationLine>
+                <NavigationLine tab_id={2}></NavigationLine>
                 <MonoContent>
                     Groups
                 </MonoContent>

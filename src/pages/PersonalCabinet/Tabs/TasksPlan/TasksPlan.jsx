@@ -7,7 +7,7 @@ const TasksPlan = () => {
     return (
         <>
             <WrapperPersonalCabinet>
-                <NavigationLine></NavigationLine>
+                <NavigationLine tab_id={3}></NavigationLine>
                 <MonoContent>
                     TasksPlan
                 </MonoContent>

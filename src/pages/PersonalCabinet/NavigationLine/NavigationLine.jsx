@@ -4,7 +4,7 @@ import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {setActiveTab} from "../../../redux/store/reducers/Navigation_Reducer/store_NavigationReducer";
 
-const NavigationLine = ({children}) => {
+const NavigationLine = ({children, tab_id}) => {
     const links_data = [
         {
             button_name: "Журнал",
@@ -49,7 +49,7 @@ const NavigationLine = ({children}) => {
                 <div key={i.button_name}>
                     <NavigationLineButton
                         link_to={i.link}
-                        activeTab={activeTab}
+                        activeTab={tab_id}
                         changeFunction={changeTab}
                         index={index}
                     >

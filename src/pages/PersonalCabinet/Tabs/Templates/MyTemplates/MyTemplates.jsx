@@ -16,6 +16,11 @@ const MyTemplates = () => {
     const dispatch = useDispatch()
     const tests = useSelector(state => state.custom_templates.custom_templates)
 
+    const [filter_1, setFilter_1] = useState('')
+    const changeFilter_1 = (value) => {
+        setFilter_1(value)
+    }
+
     const [filterInput, setFilterInput] = useState("")
     const filteredData = tests.filter(test => {
         return (test.title + " " + test.group_id).toLowerCase().includes(filterInput.toLowerCase())
@@ -28,7 +33,7 @@ const MyTemplates = () => {
     return (
         <>
             <WrapperPersonalCabinet>
-                <NavigationLine></NavigationLine>
+                <NavigationLine tab_id={4}></NavigationLine>
                 <MonoContent>
                     <div className="myTemplatesWrapper_upperBlock">
                         <Search
@@ -41,6 +46,7 @@ const MyTemplates = () => {
                         />
                         <CreateBlueButton
                             button_params={{marginRight: '16px'}}
+                            link_to={'/cabinet/my_templates/create'}
                         >
                             Создать новый шаблон
                         </CreateBlueButton>
@@ -52,7 +58,7 @@ const MyTemplates = () => {
                                 <RowModule
                                     key={index}
                                     index_row={index + 1}
-                                    width_style={{width: "95%"}}
+                                    width_style={{width: "97%"}}
                                     template_name={test.title}
                                     template_group={"Группа: " + test.group_id}
                                     template_tasks_count={test.tasks_amount + " заданий"}
@@ -60,8 +66,11 @@ const MyTemplates = () => {
                                 />
                             )}
                         </div>
+
                         <div className="myTemplates_FiltersWrapper">
-                            <FilterInput/>
+                            <FilterInput placeholder={"Фильтр по группам1"} callbackFunc={changeFilter_1}/>
+                            <FilterInput placeholder={"Фильтр по группам 2"} callbackFunc={changeFilter_1}/>
+                            <div style={{background: 'white', width: '100%', color: 'black', cursor: 'pointer'}} onClick={() => {console.log(filter_1)}}>найти</div>
                         </div>
                     </div>
 

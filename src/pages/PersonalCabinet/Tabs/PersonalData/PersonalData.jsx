@@ -7,7 +7,7 @@ const PersonalData = () => {
     return (
         <>
             <WrapperPersonalCabinet>
-                <NavigationLine></NavigationLine>
+                <NavigationLine tab_id={5}></NavigationLine>
                 <MonoContent>
                     PersonalData
                 </MonoContent>

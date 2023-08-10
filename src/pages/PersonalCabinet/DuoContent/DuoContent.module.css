@@ -1,0 +1,13 @@
+.DuoContent_Wrapper {
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    margin-top: 16px;
+
+    overflow: hidden;
+
+}

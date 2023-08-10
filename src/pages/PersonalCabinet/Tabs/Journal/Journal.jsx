@@ -7,7 +7,7 @@ const Journal = () => {
     return (
         <>
             <WrapperPersonalCabinet>
-                <NavigationLine></NavigationLine>
+                <NavigationLine tab_id={0}></NavigationLine>
                 <MonoContent>
                     Journal
                 </MonoContent>

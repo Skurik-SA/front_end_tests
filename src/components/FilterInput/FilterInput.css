@@ -1,0 +1,142 @@
+.filterInputWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: 3px;
+
+    color: #000;
+    font-family: Roboto Serif, serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    user-select: none;
+    cursor: pointer;
+
+}
+
+.filterInputSelectWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+    width: 100%;
+
+    height: 48px;
+    flex-shrink: 0;
+
+    border-radius: 10px 10px 0px 0px;
+    background: #EAEEFF;
+
+}
+
+
+
+.filterInputSelect {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 20.5%;
+
+    position: absolute;
+    z-index: 0;
+}
+
+.filterInputSelect:hover {
+    border: 2px solid black;
+}
+
+.filterInputSelectText {
+    display: flex;
+    padding-left: 20px;
+}
+
+.filterInputSelectText:hover {
+    border: 2px solid black;
+}
+
+.filterInputSelectIcon {
+    display: flex;
+
+    position: relative;
+    justify-content: flex-end;
+}
+
+.filterInputSelectIcon:hover {
+    border: 2px solid black;
+
+}
+
+
+
+
+
+.filterInputOptionWrapper {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 4px 16px 18px rgba(0, 0, 0, 0.25);
+    width: 100%;
+
+    margin-top: 244px;
+    position: relative;
+    z-index: 10;
+
+}
+
+.filterInputOptionWrapper_inactive {
+    display: none;
+}
+
+.filterInputOptionMid, .filterInputOptionUp, .filterInputOptionDown {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+    height: 48px;
+    flex-shrink: 0;
+    padding-left: 20px;
+
+    border-bottom: 1px solid black;
+    border-radius: 0px 0px 0px 0px;
+    background: #EAEEFF;
+
+    text-overflow: clip;
+}
+
+.filterInputOptionMid:hover, .filterInputOptionUp:hover, .filterInputOptionDown:hover {
+    background: #7c90ff;
+    cursor: pointer;
+}
+
+
+.filterInputOptionUp {
+    border-radius: 8px 8px 0px 0px;
+}
+
+.filterInputOptionDown {
+    border-radius: 0px 0px 8px 8px;
+}
+
+
+
+@media (min-width: 0px) {
+    .filterInputWrapper {
+        display: none;
+    }
+}
+
+@media (min-width: 600px) {
+    .filterInputWrapper {
+        display: none;
+    }
+}
+
+@media (min-width: 1200px) {
+    .filterInputWrapper {
+        display: flex;
+    }
+}

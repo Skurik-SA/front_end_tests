@@ -26,17 +26,19 @@
 
 @media (min-width: 0) {
     .searchInputNew {
-        width: 300px;
+        width: 160px;
     }
 }
 
-@media (min-width: 1400px) {
+
+
+@media (min-width: 600px) {
     .searchInputNew {
-        width: 500px;
+        width: 400px;
     }
 }
 
-@media (min-width: 2400px) {
+@media (min-width: 1200px) {
     .searchInputNew {
         font-size: 1rem;
     }

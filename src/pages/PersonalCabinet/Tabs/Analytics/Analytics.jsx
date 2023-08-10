@@ -7,7 +7,7 @@ const Analytics = () => {
     return (
         <>
             <WrapperPersonalCabinet>
-                <NavigationLine></NavigationLine>
+                <NavigationLine tab_id={1}></NavigationLine>
                 <MonoContent>
                     Analytics
                 </MonoContent>

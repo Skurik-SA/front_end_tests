@@ -21,6 +21,7 @@ import Analytics from "../pages/PersonalCabinet/Tabs/Analytics/Analytics";
 import TasksPlan from "../pages/PersonalCabinet/Tabs/TasksPlan/TasksPlan";
 import Groups from "../pages/PersonalCabinet/Tabs/Groups/Groups";
 import PersonalData from "../pages/PersonalCabinet/Tabs/PersonalData/PersonalData";
+import CreateTemplate from "../pages/PersonalCabinet/Tabs/Templates/CreateTemplate/CreateTemplate";
 
 
 
@@ -50,6 +51,7 @@ const AppRouter = () => {
 
                     <Route path={'cabinet'}>
                         <Route path='my_templates' element={<MyTemplates/>}/>
+                        <Route path='my_templates/create' element={<CreateTemplate/>}/>
                         <Route path='personal_data' element={<PersonalData/>}/>
                         <Route path='journal' element={<Journal/>}/>
                         <Route path='analytics' element={<Analytics/>}/>

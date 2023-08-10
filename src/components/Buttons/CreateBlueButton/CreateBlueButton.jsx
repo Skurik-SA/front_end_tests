@@ -1,8 +1,11 @@
 import "./CreateBlueButton.css"
+import {useNavigate} from "react-router-dom";
 
-const CreateBlueButton = ({children, button_params}) => {
+const CreateBlueButton = ({children, button_params, link_to}) => {
+    const navigate = useNavigate()
+
     return (
-        <div style={button_params}>
+        <div style={button_params} onClick={() => navigate(link_to)}>
             <div className="createBlueButton">
                 {children}
             </div>

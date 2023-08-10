@@ -1,0 +1,9 @@
+.DuoContentRightPart_Wrapper {
+    display: flex;
+    flex-direction: column;
+
+    width: 29.5%;
+    min-height: 100vh;
+
+    background: #2F2F2F;
+}

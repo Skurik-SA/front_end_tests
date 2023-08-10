@@ -32,8 +32,6 @@
     height: 59px;
     justify-content: flex-start;
     align-items: center;
-    flex-shrink: 0;
-
 
     color: #000;
     font-family: Roboto Serif, serif;
@@ -54,6 +52,38 @@
 .rowButtonsWrapper {
     display: flex;
     flex-direction: row;
+}
+
+
+.rowModalBlockWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 95.5%;
+
+    border-radius: 0px 0px 30px 30px;
+    border: 5px solid #EAEEFF;
+    background: #C9C9C9;
+
+    padding-right: 10px;
+    padding-left: 10px;
+
+    color: #000;
+    font-family: Roboto Serif, serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+}
+
+.rowModalBlockWrapper_inactive {
+    display: none;
+}
+
+.rowModalContentWrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
 }
 
 @media (min-width: 0px) {

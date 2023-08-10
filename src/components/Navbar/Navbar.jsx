@@ -64,20 +64,25 @@ const Navbar = () => {
                                 <>
                                     <div className="NavbarTextStyle_1">
                                         {userData.is_teacher
-                                            ? <>
-                                                Учитель:
-                                            </>
+                                            ? <span>
+                                                Учитель: {userData.first_name
+                                                            ?
+                                                            <>{userData.first_name}</>
+                                                            :
+                                                            <>{userData.username}</>
+                                                                 }
+                                            </span>
                                             :
-                                            <>
-                                                Ученик:
-                                            </>
+                                            <span>
+                                                Ученик: {userData.first_name
+                                                            ?
+                                                            <>{userData.first_name}</>
+                                                            :
+                                                            <>{userData.username}</>
+                                                        }
+                                            </span>
                                         }
-                                        {userData.first_name
-                                            ?
-                                            <>{userData.first_name}</>
-                                            :
-                                            <>{userData.username}</>
-                                        }
+
                                     </div>
                                     <div className="NavbarTextStyle_2">
                                         <Logout/>
@@ -102,6 +107,7 @@ const Navbar = () => {
                     <NavigationButton link_to={"/statistic"}>Статистика</NavigationButton>
                     <NavigationButton link_to={"/general_tests"}>Общие тесты</NavigationButton>
                     <NavigationButton link_to={"/templates"}>Шаблоны</NavigationButton>
+                    <NavigationButton link_to={"/cabinet/my_templates"}>Новые шаблоны</NavigationButton>
 
                     <div>
                         <Link
