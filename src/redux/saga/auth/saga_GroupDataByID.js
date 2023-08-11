@@ -1,6 +1,6 @@
 import {all, fork, call, put, takeEvery} from "redux-saga/effects"
 import {get_group_data} from "../saga_Requests/api_auth/api_auth";
-import {set_group_data_by_id} from "../../store/reducers/PersonalPage_Reducers/store_PersonalGroupDataReducer";
+import {set_group_data_by_id} from "../../store/slices/slice_PersonalGroup";
 
 export const LOAD_GROUP_DATA = "LOAD_GROUP_DATA"
 

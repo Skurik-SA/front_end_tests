@@ -4,15 +4,17 @@ import "../TemplateStyles/CommonTemplateStyles.css"
 import TemplateRow from "../../../components/TemplateRow/TemplateRow";
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {
-    createTemplateCreator, setGroupValue, setInputValue,
-    templatePageCreateCreator
-} from "../../../redux/store/reducers/Template_Reducers/store_TemplateCreatePageReducer";
-import {GET_TASK_TYPES, LOAD_TASK_TYPES} from "../../../redux/saga/tests/saga_LoadTaskTypes";
+import {GET_TASK_TYPES} from "../../../redux/saga/tests/saga_LoadTaskTypes";
 import {SEND_TEST_TEMPLATE} from "../../../redux/saga/tests/saga_SendNewTestTemplate";
 import {useNavigate} from "react-router-dom";
 import NinjaInput from "../../../components/Inputs/NinjaInput/NinjaInput";
 import NinjaSearchInput from "../../../components/Inputs/NinjaSearchInput/NinjaSearchInput";
+import {
+    add_task_to_test, clear_data,
+    save_test_template,
+    set_group_value,
+    set_input_value
+} from "../../../redux/store/slices/slice_CreateTemplates";
 
 
 const CreateTemplatePage = () => {
@@ -20,11 +22,11 @@ const CreateTemplatePage = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    const templateData = useSelector(state => state.templateData.test_data)
-    const task_types = useSelector(state => state.templateData.task_types)
+    const templateData = useSelector(state => state.ModifyTemplatesData.test_data)
+    const task_types = useSelector(state => state.ModifyTemplatesData.task_types)
 
-    const title = useSelector(state => state.templateData.title_value)
-    const group = useSelector(state => state.templateData.group_value)
+    const title = useSelector(state => state.ModifyTemplatesData.title_value)
+    const group = useSelector(state => state.ModifyTemplatesData.group_value)
 
     const [filterInput, setFilterInput] = useState("")
     const filtered_types = task_types.filter(type => {
@@ -33,31 +35,31 @@ const CreateTemplatePage = () => {
 
     const titleOnChange = (event) => {
         event.preventDefault()
-        dispatch(setInputValue(event.target.value))
-        dispatch(createTemplateCreator())
+        dispatch(set_input_value(event.target.value))
+        dispatch(save_test_template())
     }
 
     const groupOnChange = (event) => {
         event.preventDefault()
-        dispatch(setGroupValue(event.target.value))
-        dispatch(createTemplateCreator())
+        dispatch(set_group_value(event.target.value))
+        dispatch(save_test_template())
     }
 
     const addTask = (e) => {
         e.preventDefault()
-        dispatch(templatePageCreateCreator(e.target.children[0].textContent))
-        dispatch(createTemplateCreator())
+        console.log(e.target.children[0].textContent)
+        dispatch(add_task_to_test(e.target.children[0].textContent))
+        dispatch(save_test_template())
     }
 
     const saveBtn = async () => {
-        dispatch(createTemplateCreator())
+        dispatch(save_test_template())
         dispatch({type: SEND_TEST_TEMPLATE})
         navigate("/templates/custom_templates")
     }
 
-
-
     useEffect(() => {
+        dispatch(clear_data())
         dispatch({type: GET_TASK_TYPES})
         console.log(templateData)
     }, [])

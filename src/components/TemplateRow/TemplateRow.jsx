@@ -3,15 +3,11 @@ import {useState} from "react";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import {useDispatch} from "react-redux";
-import {
-    createTemplateCreator,
-    deleteTaskCreator,
-    toEditCreator
-} from "../../redux/store/reducers/Template_Reducers/store_TemplateCreatePageReducer";
+
 import {DELETE_TEMPLATE} from "../../redux/saga/tests/saga_DeleteTemplate";
-import {deleteCustomTemplatesCreator} from "../../redux/store/reducers/Template_Reducers/store_CustomTemplatesReducer";
-import {GET_TEST_TEMPLATE_BY_ID} from "../../redux/saga/tests/saga_LoadTestTemplate_byID";
 import {COPY_TEMPLATE} from "../../redux/saga/tests/saga_CopyTemplate";
+import {delete_custom_template} from "../../redux/store/slices/slice_CustomTemplates";
+import {delete_task_to_test, save_test_template} from "../../redux/store/slices/slice_CreateTemplates";
 
 const TemplateRow = ({test_title,
                       group,
@@ -34,8 +30,7 @@ const TemplateRow = ({test_title,
     }
 
     const edit_btn = () => {
-        // dispatch(toEditCreator(test))
-        // dispatch({type: GET_TEST_TEMPLATE_BY_ID})
+
         navigate(`/templates/edit_template/${test.id}/`)
         console.log("Edit button clicked")
     }
@@ -44,13 +39,13 @@ const TemplateRow = ({test_title,
         console.log(testID)
 
         if (page_name === "EDIT")
-            dispatch(deleteTaskCreator(testID))
-            dispatch(createTemplateCreator())
+            dispatch(delete_task_to_test(testID))
+            dispatch(save_test_template())
             console.log("edited")
 
         if (page_name === "CUSTOM") {
             dispatch({type: DELETE_TEMPLATE, payload: test.id})
-            dispatch(deleteCustomTemplatesCreator(test.id))
+            dispatch(delete_custom_template(test.id))
         }
 
         console.log("Delete button clicked")

@@ -1,6 +1,6 @@
 import {all, fork, call, put, takeEvery} from "redux-saga/effects"
-import {setIsActiveTask, testPageCreator} from "../../store/reducers/Test_Reducers/store_TestPageReducer";
 import {loadTestPage_data} from "../saga_Requests/api_saga/api_tests";
+import {set_is_active_task, set_test} from "../../store/slices/slice_TestForm";
 
 export const LOAD_TEST_PAGE = "LOAD_TEST_PAGE"
 
@@ -17,9 +17,9 @@ function* workerTestPage(payload) {
             answer: ''
         })
     }
-    console.log(responseData[0])
-    yield put(setIsActiveTask(responseData[0]))
-    yield put(testPageCreator(responseData))
+
+    yield put(set_is_active_task(responseData[0]))
+    yield put(set_test(responseData))
 
 
 }

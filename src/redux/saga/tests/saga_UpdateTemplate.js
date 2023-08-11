@@ -4,11 +4,9 @@ import {updateTemplate_api} from "../saga_Requests/api_saga/api_tests";
 export const UPDATE_TEST_TEMPLATE = "UPDATE_TEST_TEMPLATE"
 
 function* workerUpdateTemplate(params){
-    const stored_data = yield select(s => s.templateData.formData)
+    const stored_data = yield select(s => s.ModifyTemplatesData.formData)
 
-    const data = yield call(updateTemplate_api, params.id, stored_data)
-
-    console.log(data)
+    yield call(updateTemplate_api, params.id, stored_data)
 }
 
 function* watcherUpdateTemplate() {

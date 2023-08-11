@@ -1,6 +1,6 @@
 import {all, call, fork, put, takeEvery} from "redux-saga/effects"
 import {get_user_data_bd, get_user_groups} from "../saga_Requests/api_auth/api_auth";
-import {set_groups, set_userData} from "../../store/reducers/User_Reducers/store_UserReducer";
+import {set_user_data, set_user_groups} from "../../store/slices/slice_User";
 
 export const LOAD_USER_DATA = "LOAD_USER_DATA"
 
@@ -19,10 +19,10 @@ function* getGroupData(data) {
 
 function* workerUser(){
     const userdata = yield getUserData()
-    yield put(set_userData(userdata))
+    yield put(set_user_data(userdata))
 
     const groups_data = yield getGroupData()
-    yield put(set_groups(groups_data))
+    yield put(set_user_groups(groups_data))
 }
 
 function* watcherUser() {

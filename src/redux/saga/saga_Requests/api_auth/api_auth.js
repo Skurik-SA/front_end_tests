@@ -16,7 +16,7 @@ export async function send_user_data_bd(id, data) {
 // Request to server to get all the groups a user is a member of
 export async function get_user_groups(data) {
     const request = await axios.post(`${BASE_URL}/user/api/group_by_userID/`, data)
-    return request.data
+    return request.data.group
 }
 
 // Request to server to get a single one group by group id

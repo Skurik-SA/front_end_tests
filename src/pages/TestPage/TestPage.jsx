@@ -6,14 +6,14 @@ import {useNavigate, useParams} from "react-router-dom";
 import {verifyToken} from "../../api/auth/VerifyToken";
 import {useDispatch, useSelector} from "react-redux";
 import {LOAD_TEST_PAGE} from "../../redux/saga/tests/saga_LoadTestPageData";
-import {setIsActiveTask, testSaveCreator} from "../../redux/store/reducers/Test_Reducers/store_TestPageReducer";
+import {save_task, set_is_active_task} from "../../redux/store/slices/slice_TestForm";
 
 const TestPage = () => {
     const dispatch = useDispatch()
     const params = useParams()
 
-    const test = useSelector(state => state.test.test)
-    const isActiveTask = useSelector(state => state.active_task.activeTask)
+    const test = useSelector(state => state.TestFormData.test)
+    const isActiveTask = useSelector(state => state.TestFormData.activeTask)
 
     //Сделать несколько варинатов input
     const [inputValue, setInputsValue] = useState("")
@@ -27,12 +27,12 @@ const TestPage = () => {
     }
 
     const changeTaskList = (task) => {
-        dispatch(setIsActiveTask(task))
+        dispatch(set_is_active_task(task))
         setInputsValue(task.answer)
     }
 
     const saveAnswer = () => {
-        dispatch(testSaveCreator(test, isActiveTask.id, inputValue))
+        dispatch(save_task({test: test, active_id: isActiveTask.id, inputValue: inputValue}))
     }
 
     const navigate = useNavigate()

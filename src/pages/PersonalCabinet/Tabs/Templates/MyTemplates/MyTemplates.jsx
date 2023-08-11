@@ -14,7 +14,7 @@ import FilterInput from "../../../../../components/FilterInput/FilterInput";
 const MyTemplates = () => {
 
     const dispatch = useDispatch()
-    const tests = useSelector(state => state.custom_templates.custom_templates)
+    const tests = useSelector(state => state.CustomTemplatesData.custom_templates)
 
     const [filter_1, setFilter_1] = useState('')
     const changeFilter_1 = (value) => {
@@ -37,7 +37,7 @@ const MyTemplates = () => {
                 <MonoContent>
                     <div className="myTemplatesWrapper_upperBlock">
                         <Search
-                            style_params={{marginLeft: '16px'}}
+                            style_params={{marginLeft: '16px', width: "30%"}}
                             value={filterInput}
                             onChange={(e) => {
                                 e.preventDefault()
@@ -68,9 +68,9 @@ const MyTemplates = () => {
                         </div>
 
                         <div className="myTemplates_FiltersWrapper">
-                            <FilterInput placeholder={"Фильтр по группам1"} callbackFunc={changeFilter_1}/>
-                            <FilterInput placeholder={"Фильтр по группам 2"} callbackFunc={changeFilter_1}/>
-                            <div style={{background: 'white', width: '100%', color: 'black', cursor: 'pointer'}} onClick={() => {console.log(filter_1)}}>найти</div>
+                            <FilterInput placeholder={"Фильтр по группам1"} position={"up"} callbackFunc={changeFilter_1}/>
+                            <FilterInput placeholder={"Фильтр по группам 2"} position={"down"} callbackFunc={changeFilter_1}/>
+                            {/*<div style={{background: 'white', width: '100%', color: 'black', cursor: 'pointer'}} onClick={() => {console.log(filter_1)}}>найти</div>*/}
                         </div>
                     </div>
 

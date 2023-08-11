@@ -14,7 +14,7 @@ const Navbar = () => {
     const navigate = useNavigate()
 
     const [navPanelVisibility, setNavPanelVisibility] = useState(false)
-    const userData = useSelector(state => state.userData.user_data)
+    const userData = useSelector(state => state.UserData.user_data)
 
     const navPanelAction = () => {
         if (navPanelVisibility) {

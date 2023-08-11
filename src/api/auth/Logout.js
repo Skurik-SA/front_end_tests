@@ -1,7 +1,6 @@
-import {useEffect} from "react";
 import axios from "axios";
 import {useDispatch} from "react-redux";
-import {delete_userData} from "../../redux/store/reducers/User_Reducers/store_UserReducer";
+import {delete_user_data} from "../../redux/store/slices/slice_User";
 
 
 export const Logout = () => {
@@ -20,7 +19,7 @@ export const Logout = () => {
                             withCredentials: true}
                     );
                 localStorage.clear();
-                dispatch(delete_userData())
+                dispatch(delete_user_data())
                 axios.defaults.headers.common['Authorization'] = null;
                 window.location.href = '/login'
             } catch (e) {

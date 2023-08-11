@@ -6,7 +6,7 @@ import {LOAD_PERSONAL_PAGE_DATA} from "../../redux/saga/actions_Saga/actions_sag
 
 
 const AllTestsPage = () => {
-    const personalTests = useSelector(state => state.personal_tests.personal_tests)
+    const personalTests = useSelector(state => state.PersonalTestsData.personal_tests)
     const dispatch = useDispatch()
 
     useEffect(() => {

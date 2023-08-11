@@ -1,13 +1,12 @@
 import {call, put, takeEvery, all, fork} from "redux-saga/effects"
-import {customTemplatesCreator} from "../../store/reducers/Template_Reducers/store_CustomTemplatesReducer";
 import {LOAD_CUSTOM_TEMPLATES} from "../actions_Saga/actions_saga";
 import {loadCustomTemplates} from "../saga_Requests/api_saga/api_tests";
+import {get_custom_templates} from "../../store/slices/slice_CustomTemplates";
 
 
 function* workerCustomTemplates() {
     const data = yield call(loadCustomTemplates)
-
-    yield put(customTemplatesCreator(data))
+    yield put(get_custom_templates(data))
 }
 
 function* watcherCustomTemplates() {

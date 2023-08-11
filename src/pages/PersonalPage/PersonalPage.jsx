@@ -11,7 +11,7 @@ import TestData from "../../components/PesonalSubPages/Testdata/TestData";
 
 const PersonalPage = () => {
 
-    const userData = useSelector(state => state.userData)
+    const userData = useSelector(state => state.UserData)
 
     const [btnsActive, setBtnsActive] = useState(
         [

@@ -4,9 +4,7 @@ import {deleteTemplate_req} from "../saga_Requests/api_saga/api_tests";
 export const DELETE_TEMPLATE = "DELETE_TEMPLATE"
 
 function* workerDeleteTemplate(payload) {
-    const data = yield call(deleteTemplate_req, payload.payload)
-    console.log(payload)
-    console.log(data)
+    yield call(deleteTemplate_req, payload.payload)
 }
 
 function* watcherDeleteTemplate() {

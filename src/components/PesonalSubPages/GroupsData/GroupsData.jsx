@@ -1,13 +1,11 @@
 import "./GroupsData.css"
 import {useDispatch, useSelector} from "react-redux";
-import {set_group_data_by_id} from "../../../redux/store/reducers/PersonalPage_Reducers/store_PersonalGroupDataReducer";
 import {LOAD_GROUP_DATA} from "../../../redux/saga/auth/saga_GroupDataByID";
-import DotedLoader from "../../Loaders/DotedLoader/DotedLoader";
 
 const GroupsData = ({data}) => {
 
-    const userGroups = useSelector(state => state.userData.groups)
-    const groupById = useSelector(state => state.groupById.data)
+    const userGroups = useSelector(state => state.UserData.groups)
+    const groupById = useSelector(state => state.PersonalGroupData.data)
 
     const dispatch = useDispatch()
     const get_data_by_group = (id) => {
@@ -58,7 +56,7 @@ const GroupsData = ({data}) => {
                     </div>
                     <hr className="hr_style"/>
                     <div className={"row_wrapper"}>
-                        {userGroups.group.map((g, index) =>
+                        {userGroups && userGroups.map((g, index) =>
                             <div key={index}
                                  className="group_row"
                                  onClick={() => {

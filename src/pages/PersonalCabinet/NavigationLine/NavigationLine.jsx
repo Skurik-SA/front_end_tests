@@ -1,8 +1,7 @@
 import "./NavigationLine.css"
 import NavigationLineButton from "./NavigationLineButton/NavigationLineButton";
-import {useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {setActiveTab} from "../../../redux/store/reducers/Navigation_Reducer/store_NavigationReducer";
+import {useDispatch} from "react-redux";
+import {set_active_tab} from "../../../redux/store/slices/slice_Navigation";
 
 const NavigationLine = ({children, tab_id}) => {
     const links_data = [
@@ -33,15 +32,11 @@ const NavigationLine = ({children, tab_id}) => {
     ]
 
     const dispatch = useDispatch()
-    const activeTab = useSelector(state => state.activeTabsData.active_tab)
 
     const changeTab = (id) => {
-        dispatch(setActiveTab(id))
+        dispatch(set_active_tab(id))
     }
 
-    useEffect(() => {
-
-    }, [])
 
     return (
         <div className="wrapperNavigationLine">

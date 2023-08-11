@@ -4,9 +4,10 @@ import {useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {LOAD_CUSTOM_TEMPLATES} from "../../../redux/saga/actions_Saga/actions_saga";
-import {clearCreator} from "../../../redux/store/reducers/Template_Reducers/store_TemplateCreatePageReducer";
+// import {clearCreator} from "../../../redux/store/reducers/Template_Reducers/store_TemplateCreatePageReducer";
 import DotedLoader from "../../../components/Loaders/DotedLoader/DotedLoader";
 import NinjaSearchInput from "../../../components/Inputs/NinjaSearchInput/NinjaSearchInput";
+import {clear_data} from "../../../redux/store/slices/slice_CreateTemplates";
 
 
 const CustomTemplates = () => {
@@ -14,7 +15,7 @@ const CustomTemplates = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
-    const tests = useSelector(state => state.custom_templates.custom_templates)
+    const tests = useSelector(state => state.CustomTemplatesData.custom_templates)
 
     const [filterInput, setFilterInput] = useState("")
     const filteredData = tests.filter(test => {
@@ -22,7 +23,8 @@ const CustomTemplates = () => {
     })
 
     const createNewTemplate = () => {
-        dispatch(clearCreator())
+        // dispatch(clearCreator())
+        dispatch(clear_data)
         navigate("/templates/create_template/")
         console.log("Button clicked")
     }
