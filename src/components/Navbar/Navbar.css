@@ -4,6 +4,11 @@
     overflow: hidden;
 }
 
+.NavbarLink {
+    text-decoration: none;
+    color: white;
+    font-size: 1.2rem;
+}
 
 .NavbarBackground {
     /*background-color: #212121;*/
@@ -96,4 +101,16 @@
     background: #CBCBCB;
     transition: 0.4s;
     color: black;
+}
+
+@media screen and (min-width: 300px) {
+    .NavbarLink {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .NavbarLink {
+        display: unset;
+    }
 }

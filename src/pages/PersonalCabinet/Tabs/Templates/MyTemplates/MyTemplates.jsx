@@ -10,6 +10,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
 import {LOAD_CUSTOM_TEMPLATES} from "../../../../../redux/saga/actions_Saga/actions_saga";
 import FilterInput from "../../../../../components/FilterInput/FilterInput";
+import {set_navbar_link} from "../../../../../redux/store/slices/slice_Navbar";
 
 const MyTemplates = () => {
 
@@ -39,6 +40,20 @@ const MyTemplates = () => {
 
     useEffect(() => {
         dispatch({type: LOAD_CUSTOM_TEMPLATES})
+        dispatch(set_navbar_link(
+            [
+                {
+                    link: 'cabinet/personal_data',
+                    link_name: 'Личный кабинет | ',
+                    active: false,
+                },
+                {
+                    link: 'cabinet/my_templates',
+                    link_name: 'Мои шаблоны',
+                    active: false,
+                }
+            ]
+        ))
     }, [])
 
     return (

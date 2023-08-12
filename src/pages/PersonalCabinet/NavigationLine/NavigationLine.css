@@ -18,9 +18,18 @@
 @media screen and (min-width: 0) {
     .wrapperNavigationLine {
         display: flex;
-        height: 175px;
+        height: 130px;
     }
 }
+
+@media screen and (min-width: 600px) {
+    .wrapperNavigationLine {
+        display: flex;
+
+        height: 170px;
+    }
+}
+
 
 @media screen and (min-width: 1400px) {
     .wrapperNavigationLine {

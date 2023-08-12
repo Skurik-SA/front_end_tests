@@ -1,6 +1,6 @@
 import "./Navbar.css";
 import NavigationPanel from "./NavigationPanel/NavigationPanel";
-import {useEffect, useState} from "react";
+import {Fragment, useEffect, useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import {Logout} from "../../api/auth/Logout";
 import {MenuIconActive, MenuIconDefault} from "../Icons/MenuIcons";
@@ -15,6 +15,7 @@ const Navbar = () => {
 
     const [navPanelVisibility, setNavPanelVisibility] = useState(false)
     const userData = useSelector(state => state.UserData.user_data)
+    const navbarLinks = useSelector(state => state.NavbarData.navbar_link)
 
     const navPanelAction = () => {
         if (navPanelVisibility) {
@@ -55,7 +56,23 @@ const Navbar = () => {
                                 }
                             </div>
                             <div className="mt-1 px-3">
-                                Navbar
+                                {navbarLinks && navbarLinks.map((link, index) =>
+                                    <Fragment key={index}>
+                                        {link.active
+                                            ?
+                                                <span>
+                                                    <Link className="NavbarLink" to={link.link}>{link.link_name} > </Link>
+                                                </span>
+                                            :
+                                            <>
+                                                <span className="NavbarLink">
+                                                    {link.link_name}
+                                                </span>
+                                            </>
+                                        }
+
+                                    </Fragment>
+                                )}
                             </div>
                         </div>
                         <div className="NavbarContentRight">

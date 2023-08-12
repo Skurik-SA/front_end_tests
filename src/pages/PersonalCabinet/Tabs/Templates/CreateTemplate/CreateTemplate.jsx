@@ -18,6 +18,9 @@ import {
 } from "../../../../../redux/store/slices/slice_CreateTemplates";
 import {SEND_TEST_TEMPLATE} from "../../../../../redux/saga/tests/saga_SendNewTestTemplate";
 import {useNavigate} from "react-router-dom";
+import {set_navbar_link} from "../../../../../redux/store/slices/slice_Navbar";
+import TaskTypePlate from "../../../../../components/TaskTypePlate/TaskTypePlate";
+import {useDrop} from "react-dnd";
 
 const CreateTemplate = () => {
 
@@ -113,9 +116,37 @@ const CreateTemplate = () => {
         console.log("Удалить!")
     }
 
+    const [{isOver}, drop] = useDrop(() => ({
+        accept: "type_plate",
+        drop: (item) => addTask(item.id),
+        collect: (monitor) => ({
+            isOver: !!monitor.isOver(),
+        })
+    }))
+
+
     useEffect(() => {
         dispatch(clear_data())
         dispatch({type: GET_TASK_TYPES})
+        dispatch(set_navbar_link(
+            [
+                {
+                    link: 'cabinet/personal_data',
+                    link_name: 'Личный кабинет | ',
+                    active: false,
+                },
+                {
+                    link: 'cabinet/my_templates',
+                    link_name: 'Мои шаблоны',
+                    active: true,
+                },
+                {
+                    link: 'cabinet/my_templates/create',
+                    link_name: 'Создание',
+                    active: false,
+                }
+            ]
+        ))
     }, [])
 
     return (
@@ -166,7 +197,7 @@ const CreateTemplate = () => {
 
                         <DivideLineMono/>
 
-                        <div className={styles.CreateTemplateLeft_TaskArea}>
+                        <div className={styles.CreateTemplateLeft_TaskArea} ref={drop}>
                             {template_tasks.map((task, index) =>
                                 <RowModule
                                     key={index}
@@ -209,13 +240,12 @@ const CreateTemplate = () => {
                             </div>
                             <div className={styles.CreateTemplateLeft_taskTypesWrapper}>
                                 {filtered_types.map(task =>
-                                    <div key={task.task_id} id={task.task_id} className={styles.CreateTemplateLeft_taskTypesPlate} onClick={(e) => {
-                                        e.preventDefault()
-                                        // console.log(e.target.attributes["id"].value)
-                                        addTask(e.target.attributes["id"].value)
-                                    }}>
-                                        {task.name}
-                                    </div>
+                                    <TaskTypePlate
+                                        key={task.task_id}
+                                        task_id={task.task_id}
+                                        addTask={addTask}
+                                        task_name={task.name}
+                                    />
                                 )}
                             </div>
                         </div>

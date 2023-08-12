@@ -26,7 +26,7 @@ const NavigationLine = ({children, tab_id}) => {
             link: "/cabinet/my_templates"
         },
         {
-            button_name: "Личные данные",
+            button_name: "Профиль",
             link: "/cabinet/personal_data"
         },
     ]

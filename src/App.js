@@ -5,18 +5,22 @@ import Navbar from "./components/Navbar/Navbar";
 import "./styles/button_styles.css"
 import {createBrowserHistory} from "history";
 import Footer from "./components/Footer/Footer";
+import {DndProvider} from "react-dnd";
+import {HTML5Backend} from "react-dnd-html5-backend";
 
 const history = createBrowserHistory()
 
 function App() {
     return (
-        <BrowserRouter history={history}>
-            <Navbar/>
-            <div className="App">
-                <AppRouter/>
-            </div>
-            <Footer/>
-        </BrowserRouter>
+        <DndProvider backend={HTML5Backend}>
+            <BrowserRouter history={history}>
+                <Navbar/>
+                <div className="App">
+                    <AppRouter/>
+                </div>
+                <Footer/>
+            </BrowserRouter>
+        </DndProvider>
     );
 }
 

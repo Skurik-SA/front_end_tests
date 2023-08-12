@@ -19,10 +19,11 @@ const RowModule = (
 
         width_style={width: "70%"}
     }) => {
+
     const [open, setOpen] = useState(false);
 
     return (
-        <div style={width_style}>
+        <div draggable={true} style={width_style}>
             <div className="rowModuleWrapper">
                 <label className="rowLabelWrapper" onClick={() => {setOpen(!open)}}>
                     {index_row}. {template_name} / {template_group} / {template_tasks_count}

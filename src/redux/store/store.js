@@ -10,6 +10,7 @@ import Slice_TestForm from "./slices/slice_TestForm";
 import Slice_PersonalTests from "./slices/slice_PersonalTests";
 import Slice_User from "./slices/slice_User";
 import Slice_PersonalGroup from "./slices/slice_PersonalGroup";
+import Slice_Navbar from "./slices/slice_Navbar";
 
 
 const sagaMiddleware = createSagaMiddleware()
@@ -24,6 +25,7 @@ const rootReducer = combineReducers({
     UserData: Slice_User,
 
     NavigationData: Slice_Navigation,
+    NavbarData: Slice_Navbar,
 })
 
 export const store = configureStore({

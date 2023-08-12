@@ -156,27 +156,6 @@
     overflow: auto;
 }
 
-.CreateTemplateLeft_taskTypesPlate {
-    display: flex;
-    width: 95%;
-    flex-direction: column;
-    justify-content: center;
-
-
-    color: #FFF;
-    font-family: Roboto, serif;
-    font-size: 20px;
-
-    background: #4B4B4B;
-    cursor: pointer;
-}
-
-.CreateTemplateLeft_taskTypesPlate:hover {
-    background: #707070;
-}
-
-
-
 @media screen and (min-width: 300px) {
     .CreateTemplateLeft_wrapperInputs_row {
         display: flex;
