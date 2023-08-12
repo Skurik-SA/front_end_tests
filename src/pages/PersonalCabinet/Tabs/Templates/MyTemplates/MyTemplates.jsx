@@ -26,6 +26,17 @@ const MyTemplates = () => {
         return (test.title + " " + test.group_id).toLowerCase().includes(filterInput.toLowerCase())
     })
 
+    const copyRow = () => {
+        console.log("Копировать!!")
+    }
+
+    const editRow = () => {
+        console.log("Редактировать!")
+    }
+    const deleteRow = () => {
+        console.log("Удалить!")
+    }
+
     useEffect(() => {
         dispatch({type: LOAD_CUSTOM_TEMPLATES})
     }, [])
@@ -63,13 +74,17 @@ const MyTemplates = () => {
                                     template_group={"Группа: " + test.group_id}
                                     template_tasks_count={test.tasks_amount + " заданий"}
                                     template_tasks={test.tasks_description}
+
+                                    copyHandler={copyRow}
+                                    editHandler={editRow}
+                                    deleteHandler={deleteRow}
                                 />
                             )}
                         </div>
 
                         <div className="myTemplates_FiltersWrapper">
-                            <FilterInput placeholder={"Фильтр по группам1"} position={"up"} callbackFunc={changeFilter_1}/>
-                            <FilterInput placeholder={"Фильтр по группам 2"} position={"down"} callbackFunc={changeFilter_1}/>
+                            <FilterInput placeholder={"Сортировка"} position={"up"} callbackFunc={changeFilter_1}/>
+                            <FilterInput placeholder={"Фильтр по группе"} position={"down"} callbackFunc={changeFilter_1}/>
                             {/*<div style={{background: 'white', width: '100%', color: 'black', cursor: 'pointer'}} onClick={() => {console.log(filter_1)}}>найти</div>*/}
                         </div>
                     </div>

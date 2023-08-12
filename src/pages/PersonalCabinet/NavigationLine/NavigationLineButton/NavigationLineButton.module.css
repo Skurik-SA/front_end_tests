@@ -28,3 +28,24 @@
 .buttonNavigationLine.active {
     background: rgba(217, 217, 217, 0.9);
 }
+
+@media screen and (min-width: 0) {
+    .buttonNavigationLine {
+        font-size: 1rem;
+        width: 109px;
+    }
+}
+
+@media screen and (min-width: 600px) {
+    .buttonNavigationLine {
+        width: 218px;
+        font-size: 20px;
+
+    }
+}
+
+@media screen and (min-width: 1400px) {
+    .buttonNavigationLine {
+
+    }
+}

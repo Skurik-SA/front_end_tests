@@ -4,9 +4,9 @@ import {createSlice} from "@reduxjs/toolkit";
 const Slice_ModifyTemplates = createSlice({
     name: "create_custom_templates_slice",
     initialState: {
-        test_data: [], //Front Data
-        task_types: [],
-        formData: [],
+        test_data: [], //Local data in browser
+        task_types: [], // Task types loaded from server
+        formData: [], //Data to send to server
 
         title_value: "",
         group_value: "",
@@ -53,6 +53,16 @@ const Slice_ModifyTemplates = createSlice({
                 tasks_amount: state.test_data.length
             }
         },
+        save_test_template_new(state, action) {
+            state.formData = {
+                title: action.payload.title,
+                group_id: action.payload.group_id,
+                owner_id: localStorage.getItem('user_id'),
+                tasks: state.test_data.map(task => task['task_id']),
+                tasks_description: state.test_data.map(task => task['name']),
+                tasks_amount: state.test_data.length
+            }
+        },
         set_input_value(state, action) {
             state.title_value = action.payload
         },
@@ -76,6 +86,7 @@ export const {
     delete_task_to_test,
     load_task_types,
     save_test_template,
+    save_test_template_new,
     set_input_value,
     set_group_value,
     clear_data

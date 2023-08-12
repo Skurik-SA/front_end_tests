@@ -14,3 +14,17 @@
 
     overflow: hidden;
 }
+
+@media screen and (min-width: 300px) {
+    .wrapperPersonalCabinet {
+        margin: 2px;
+        padding: 2px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .wrapperPersonalCabinet {
+        margin: 14px;
+        padding: 14px;
+    }
+}

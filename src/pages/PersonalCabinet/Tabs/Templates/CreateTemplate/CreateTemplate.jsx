@@ -7,11 +7,27 @@ import DuoContentRightPart from "../../../DuoContent/DuoContentRightPart";
 import DivideLineMono from "../../../../../components/DivideLines/DivideLine_Mono/DivideLineMono";
 import Search from "../../../../../components/Search/Search";
 import FilterInput from "../../../../../components/FilterInput/FilterInput";
-import {useSelector} from "react-redux";
-import {useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {useEffect, useState} from "react";
 import RowModule from "../../../../../components/RowModule/RowModule";
+import {GET_TASK_TYPES} from "../../../../../redux/saga/tests/saga_LoadTaskTypes";
+import {
+    add_task_to_test,
+    clear_data, delete_task_to_test, save_test_template,
+    save_test_template_new
+} from "../../../../../redux/store/slices/slice_CreateTemplates";
+import {SEND_TEST_TEMPLATE} from "../../../../../redux/saga/tests/saga_SendNewTestTemplate";
+import {useNavigate} from "react-router-dom";
 
 const CreateTemplate = () => {
+
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+
+    const [templateTitle, setTemplateTitle] = useState("")
+    const handleTemplateTitle = (value) => {
+        setTemplateTitle(value)
+    }
 
     const user_groups = useSelector(state => state.UserData.groups).map(
         group => {
@@ -22,6 +38,7 @@ const CreateTemplate = () => {
     const [selectedGroup, SetSelectedGroup] = useState(null)
     const selectGroup = (value) => {
         SetSelectedGroup(value)
+        console.log(value)
     }
 
     const [selectedSubject, setSelectedSubject] = useState(null)
@@ -57,6 +74,50 @@ const CreateTemplate = () => {
         setSelectedTopic(value)
     }
 
+    const task_types = useSelector(state => state.ModifyTemplatesData.task_types)
+    const [filterInput, setFilterInput] = useState("")
+    const filtered_types = task_types.filter(type => {
+        return type.name.toLowerCase().includes(filterInput.toLowerCase())
+    })
+
+    const template_tasks = useSelector(state => state.ModifyTemplatesData.test_data)
+    const addTask = (task_ID) => {
+        dispatch(add_task_to_test(task_ID))
+    }
+
+    const [correctFields, setCorrectFields] = useState(false)
+    const saveBtn = async () => {
+        setCorrectFields(true)
+        if (templateTitle !== "" && selectedGroup) {
+            dispatch(save_test_template_new({
+                title: templateTitle,
+                group_id: selectedGroup.id
+            }))
+            setCorrectFields(false)
+            dispatch({type: SEND_TEST_TEMPLATE})
+            navigate("/cabinet/my_templates")
+        }
+    }
+
+    const copyRow = (taskID) => {
+        dispatch(add_task_to_test(taskID))
+        console.log("Копировать!!")
+    }
+
+    const editRow = () => {
+        console.log("Редактировать!")
+    }
+    const deleteRow = (rowID) => {
+        dispatch(delete_task_to_test(rowID))
+        dispatch(save_test_template())
+        console.log("Удалить!")
+    }
+
+    useEffect(() => {
+        dispatch(clear_data())
+        dispatch({type: GET_TASK_TYPES})
+    }, [])
+
     return (
         <>
             <WrapperPersonalCabinet>
@@ -64,31 +125,81 @@ const CreateTemplate = () => {
                 <DuoContent>
                     <DuoContentLeftPart>
                         <div className={styles.CreateTemplateLeft_wrapperInputs_row}>
-                            <div className={styles.CreateTemplateLeft_wrapperLeftInput_column}>
+                            <section className={styles.CreateTemplateLeft_wrapperLeftInput_column}>
                                 <label className={styles.CreateTemplateLeft_labelInput}>
                                     Название шаблона
                                 </label>
-                                <input className={styles.CreateTemplateLeft_default} placeholder={"Введите название"}/>
-                            </div>
-                            <div className={styles.CreateTemplateLeft_wrapperRightInput_column}>
+                                <input
+                                    value={templateTitle}
+                                    onChange={(e) => handleTemplateTitle(e.target.value)}
+                                    className={styles.CreateTemplateLeft_default}
+                                    placeholder={"Введите название"}
+                                />
+                                {templateTitle !== "" || !correctFields
+                                    ?
+                                    <>
+                                    </>
+                                    :
+                                    <label className={styles.CreateTemplateErrorLabel}>
+                                        Вы не ввели название*
+                                    </label>
+                                }
+
+                            </section>
+                            <section className={styles.CreateTemplateLeft_wrapperRightInput_column}>
                                 <label className={styles.CreateTemplateLeft_labelInput}>
                                     Группа
                                 </label>
                                 <div className={styles.CreateTemplateLeft_groupsSelector}>
                                     <FilterInput placeholder={"Выберите группу"} position={"down"} options={user_groups} callbackFunc={selectGroup}/>
                                 </div>
-                            </div>
+                                {selectedGroup || !correctFields
+                                    ?
+                                    <></>
+                                    :
+                                    <label className={styles.CreateTemplateErrorLabel}>
+                                        Вы не выбрали группу*
+                                    </label>
+                                }
+                            </section>
                         </div>
 
                         <DivideLineMono/>
-                        <RowModule
-                            width_style={{width: "100%"}}
-                        />
+
+                        <div className={styles.CreateTemplateLeft_TaskArea}>
+                            {template_tasks.map((task, index) =>
+                                <RowModule
+                                    key={index}
+                                    index_row={index + 1}
+                                    width_style={{width: "100%"}}
+
+                                    id={task.task_id}
+
+                                    copyHandler={copyRow}
+                                    editHandler={editRow}
+                                    deleteHandler={deleteRow}
+
+                                    template_name={task.name}
+                                />
+                            )}
+                        </div>
+                        <div>
+                            <button disabled={template_tasks.length <= 0} className={styles.CreateTemplateLeft_SaveButton} onClick={() => saveBtn()}>
+                                Сохранить
+                            </button>
+                        </div>
                     </DuoContentLeftPart>
                     <DuoContentRightPart>
                         <div className={styles.CreateTemplateRight_inputs}>
                             <div className={styles.CreateTemplateRight_filters}>
-                                <Search style_params={{width: "100%"}}/>
+                                <Search
+                                    style_params={{width: "100%"}}
+                                    value={filterInput}
+                                    onChange={(e) => {
+                                        e.preventDefault()
+                                        setFilterInput(e.target.value)
+                                    }}
+                                />
                                 <div>
                                     Фильтры:
                                 </div>
@@ -97,16 +208,15 @@ const CreateTemplate = () => {
                                 <FilterInput placeholder={"Выберите тематику"} position={"down"} options={Topics} callbackFunc={selectTopic}/>
                             </div>
                             <div className={styles.CreateTemplateLeft_taskTypesWrapper}>
-                                <div className={styles.CreateTemplateLeft_taskTypesPlate}>
-                                        asd
-                                        asd
-                                        asd
-                                </div>
-                                <div className={styles.CreateTemplateLeft_taskTypesPlate}>
-                                    asd
-                                    asd
-                                    asd
-                                </div>
+                                {filtered_types.map(task =>
+                                    <div key={task.task_id} id={task.task_id} className={styles.CreateTemplateLeft_taskTypesPlate} onClick={(e) => {
+                                        e.preventDefault()
+                                        // console.log(e.target.attributes["id"].value)
+                                        addTask(e.target.attributes["id"].value)
+                                    }}>
+                                        {task.name}
+                                    </div>
+                                )}
                             </div>
                         </div>
 

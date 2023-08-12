@@ -21,12 +21,16 @@ const FilterInput = ({callbackFunc, position="mid", placeholder="",
     const selectOption = (someval, someid) => {
         console.log(someval, someid)
         setSelectedOption(someval)
-        callbackFunc(someval)
+        callbackFunc({
+            value: someval,
+            id: someid
+        })
     }
 
     useEffect(() => {
         let handler = (e) => {
             if(!menuRef.current.contains(e.target)) {
+                console.log("Auf!")
                 setOpen(false)
             }
         }

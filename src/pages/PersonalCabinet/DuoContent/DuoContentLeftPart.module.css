@@ -6,8 +6,15 @@
     min-height: 100vh;
 
     padding-top: 16px;
-    padding-left: 32px;
-    padding-right: 32px;
+    padding-left: 16px;
+    padding-right: 16px;
 
     background: #2F2F2F;
+}
+
+
+@media screen and (min-width: 300px) {
+    .DuoContentLeftPart_Wrapper {
+        padding-top: 8px;
+    }
 }

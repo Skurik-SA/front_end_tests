@@ -86,36 +86,46 @@
 
 }
 
-@media (min-width: 0px) {
+@media screen and  (min-width: 0px) {
     .rowModuleWrapper {
         display: flex;
-        height: 160px;
+        height: 120px;
     }
     .rowLabelWrapper {
         height: 160px;
+        font-size: 1rem;
     }
     .rowButtonsWrapper {
         flex-direction: column;
+
     }
 }
 
-@media (min-width: 700px) {
+@media screen and  (min-width: 700px) {
     .rowModuleWrapper {
         display: flex;
         height: 100px;
         scale: 1;
+    }
+    .rowLabelWrapper {
+        height: 160px;
+        font-size: 20px;
     }
     .rowButtonsWrapper {
         flex-direction: row;
     }
 }
 
-@media (min-width: 1400px) {
+@media screen and  (min-width: 1400px) {
     .rowModuleWrapper {
         display: flex;
         height: 59px;
 
         scale: 1;
+    }
+    .rowLabelWrapper {
+        height: 160px;
+        font-size: 20px;
     }
     .rowButtonsWrapper {
         flex-direction: row;
