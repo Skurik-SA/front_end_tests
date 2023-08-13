@@ -1,0 +1,70 @@
+.copyButtonWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 50px;
+    height: 50px;
+
+    border-radius: 8px 0px 0px 8px;
+    background: #626262;
+}
+
+.copyButtonWrapper:hover {
+    background: #777777;
+    box-shadow: 0px 0px 4px 4px rgba(0, 0, 0, 0.25) inset;
+
+    cursor: pointer;
+}
+
+.copyButtonWrapper:active {
+    background: #575757;
+    box-shadow: 0px 0px 8px 8px rgba(0, 0, 0, 0.25) inset;
+
+}
+
+.copyButtonSVG {
+    width: 24px;
+    height: 24px;
+}
+
+@media screen and  (min-width: 0px) {
+    .copyButtonWrapper {
+        width: 35px;
+        height: 35px;
+        border-radius: 8px 8px 0px 0px;
+    }
+
+    .copyButtonSVG {
+        width: 14px;
+        height: 14px;
+        fill: none;
+    }
+}
+
+@media screen and  (min-width: 700px) {
+    .copyButtonWrapper {
+        width: 50px;
+        height: 50px;
+        border-radius: 8px 0px 0px 8px;
+    }
+
+    .copyButtonSVG {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+@media screen and  (min-width: 1400px) {
+    .copyButtonWrapper {
+
+        width: 50px;
+        height: 50px;
+    }
+
+    .copyButtonSVG {
+        width: 24px;
+        height: 24px;
+    }
+}
+

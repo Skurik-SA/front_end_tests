@@ -1,0 +1,21 @@
+.DuoContentLeftPart_Wrapper {
+    display: flex;
+    flex-direction: column;
+
+    width: 69.5%;
+    min-height: 100vh;
+
+    padding-top: 16px;
+    padding-left: 16px;
+    padding-right: 16px;
+    border-radius: 0px 0px 8px 8px;
+
+    background: #2F2F2F;
+}
+
+
+@media screen and (min-width: 300px) {
+    .DuoContentLeftPart_Wrapper {
+        padding-top: 8px;
+    }
+}

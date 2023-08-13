@@ -1,24 +1,46 @@
 import "./Navbar.css";
 import NavigationPanel from "./NavigationPanel/NavigationPanel";
-import {useState} from "react";
+import {Fragment, useEffect, useState} from "react";
+import {Link, useNavigate} from "react-router-dom";
+import {Logout} from "../../api/auth/Logout";
+import {MenuIconActive, MenuIconDefault} from "../Icons/MenuIcons";
+import {useDispatch, useSelector} from "react-redux";
+import {LOAD_USER_DATA} from "../../redux/saga/auth/saga_UserData";
+import NavigationButton from "./NavigationButton/NavigationButton";
 
 const Navbar = () => {
 
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+
     const [navPanelVisibility, setNavPanelVisibility] = useState(false)
-    const [menuIcon, setMenuIcon] = useState(false)
+    const userData = useSelector(state => state.UserData.user_data)
+    const navbarLinks = useSelector(state => state.NavbarData.navbar_link)
 
     const navPanelAction = () => {
         if (navPanelVisibility) {
             setNavPanelVisibility(false)
-            setMenuIcon(false)
             console.log(navPanelVisibility)
         }
         else {
             setNavPanelVisibility(true)
-            setMenuIcon(true)
             console.log(navPanelVisibility)
         }
     }
+
+    const [isAuth, setIsAuth] = useState(false)
+
+    useEffect(() => {
+        if (localStorage.getItem('access_token') !== null) {
+            setIsAuth(true)
+            // getUsername()
+            dispatch({type: LOAD_USER_DATA})
+        }
+        else {
+            navigate('/login')
+        }
+    }, [isAuth]);
+
 
     return (
         <>
@@ -27,48 +49,100 @@ const Navbar = () => {
                     <div className="NavbarBackground">
                         <div className="NavbarContentLeft">
                             <div className="mb-2 mt-1" onClick={navPanelAction}>
-                                {menuIcon ?
-                                    <svg width="24" height="32" viewBox="0 0 24 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <rect x="0.0708618" y="13.4297" width="25" height="3" rx="1.5" transform="rotate(-30 0.0708618 13.4297)" fill="#D9D9D9"/>
-                                        <rect x="1.67462" y="16.1519" width="25" height="3" rx="1.5" transform="rotate(30 1.67462 16.1519)" fill="#D9D9D9"/>
-                                        <rect x="17" y="13" width="6" height="6" rx="3" fill="#D9D9D9"/>
-                                    </svg>
+                                {navPanelVisibility ?
+                                    <MenuIconActive/>
                                     :
-                                    <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <rect width="25" height="6" fill="#D9D9D9"/>
-                                        <rect y="18" width="25" height="6" fill="#D9D9D9"/>
-                                        <rect y="9" width="25" height="6" fill="#D9D9D9"/>
-                                    </svg>
-
+                                    <MenuIconDefault/>
                                 }
-
                             </div>
                             <div className="mt-1 px-3">
-                                Navbar
+                                {navbarLinks && navbarLinks.map((link, index) =>
+                                    <Fragment key={index}>
+                                        {link.active
+                                            ?
+                                                <span>
+                                                    <Link className="NavbarLink" to={link.link}>{link.link_name} > </Link>
+                                                </span>
+                                            :
+                                            <>
+                                                <span className="NavbarLink">
+                                                    {link.link_name}
+                                                </span>
+                                            </>
+                                        }
+
+                                    </Fragment>
+                                )}
                             </div>
                         </div>
                         <div className="NavbarContentRight">
-                            <div className="NavbarTextStyle_1">
-                                username
-                            </div>
-                            <div className="NavbarTextStyle_2">
-                                logout
-                            </div>
+                            {userData
+                                ?
+                                <>
+                                    <div className="NavbarTextStyle_1">
+                                        {userData.is_teacher
+                                            ? <span>
+                                                Учитель: {userData.first_name
+                                                            ?
+                                                            <>{userData.first_name}</>
+                                                            :
+                                                            <>{userData.username}</>
+                                                                 }
+                                            </span>
+                                            :
+                                            <span>
+                                                Ученик: {userData.first_name
+                                                            ?
+                                                            <>{userData.first_name}</>
+                                                            :
+                                                            <>{userData.username}</>
+                                                        }
+                                            </span>
+                                        }
+
+                                    </div>
+                                    <div className="NavbarTextStyle_2">
+                                        <Logout/>
+                                    </div>
+                                </>
+                                :
+                                <></>
+                            }
                         </div>
                     </div>
                 </div>
             </div>
-            <NavigationPanel visible={navPanelVisibility} setVisible={setNavPanelVisibility} menuMode={menuIcon} setMenuMode={setMenuIcon}>
+            <NavigationPanel
+                visible={navPanelVisibility}
+                setVisible={setNavPanelVisibility}
+            >
                 <div className="NavPanelContent">
-                    <div>Личный кабинет</div>
-                    <div>Мои тесты</div>
-                    <div>Редактор тестов</div>
-                    <div>Группы</div>
-                    <div>Оценки</div>
-                    <div>Статистика</div>
-                    <div>Общие тесты</div>
-                </div>
+                    <NavigationButton link_to={"/personal"}>Личный кабинет</NavigationButton>
+                    <NavigationButton link_to={"/all_tests"}>Мои тесты</NavigationButton>
+                    <NavigationButton link_to={"/groups"}>Группы</NavigationButton>
+                    <NavigationButton link_to={"/marks"}>Оценки</NavigationButton>
+                    <NavigationButton link_to={"/statistic"}>Статистика</NavigationButton>
+                    <NavigationButton link_to={"/general_tests"}>Общие тесты</NavigationButton>
+                    <NavigationButton link_to={"/templates"}>Шаблоны</NavigationButton>
+                    <NavigationButton link_to={"/cabinet/my_templates"}>Новые шаблоны</NavigationButton>
 
+                    <div>
+                        <Link
+                            to={"/test/12"}
+                            style={{ textDecoration: 'none', color: 'red'}}
+                        >
+                            <div>TestPage</div>
+                        </Link>
+                    </div>
+                    <div>
+                        <Link
+                            to={"/test_edit"}
+                            style={{ textDecoration: 'none', color: 'red'}}
+                        >
+                            <div>Редактор тестов</div>
+                        </Link>
+                    </div>
+                </div>
             </NavigationPanel>
         </>
     )

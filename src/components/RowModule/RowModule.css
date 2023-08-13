@@ -1,0 +1,134 @@
+.rowModuleWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%;
+    height: 59px;
+
+    padding-left: 24px;
+    padding-right: 6px;
+
+
+    flex-shrink: 0;
+
+    border-radius: 0px 8px 8px 0px;
+    background: #EAEEFF;
+
+    overflow: hidden;
+}
+
+.rowModuleWrapper:hover {
+    scale: 1.01;
+}
+
+.rowLabelWrapper {
+    display: flex;
+    flex-direction: row;
+
+    width: 65%;
+
+    height: 59px;
+    justify-content: flex-start;
+    align-items: center;
+
+    color: #000;
+    font-family: Roboto Serif, serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+
+    overflow: hidden;
+    user-select: none;
+}
+
+.rowLabelWrapper:hover {
+    color: #000;
+    text-decoration-line: underline;
+    cursor: pointer;
+}
+
+.rowButtonsWrapper {
+    display: flex;
+    flex-direction: row;
+}
+
+
+.rowModalBlockWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 95.5%;
+
+    border-radius: 0px 0px 30px 30px;
+    border: 5px solid #EAEEFF;
+    background: #C9C9C9;
+
+    padding-right: 10px;
+    padding-left: 10px;
+
+    color: #000;
+    font-family: Roboto Serif, serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+}
+
+.rowModalBlockWrapper_inactive {
+    display: none;
+}
+
+.rowModalContentWrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+}
+
+@media screen and  (min-width: 0px) {
+    .rowModuleWrapper {
+        display: flex;
+        height: 120px;
+    }
+    .rowLabelWrapper {
+        height: 160px;
+        font-size: 1rem;
+    }
+    .rowButtonsWrapper {
+        flex-direction: column;
+
+    }
+}
+
+@media screen and  (min-width: 700px) {
+    .rowModuleWrapper {
+        display: flex;
+        height: 100px;
+        scale: 1;
+    }
+    .rowLabelWrapper {
+        height: 160px;
+        font-size: 20px;
+    }
+    .rowButtonsWrapper {
+        flex-direction: row;
+    }
+}
+
+@media screen and  (min-width: 1400px) {
+    .rowModuleWrapper {
+        display: flex;
+        height: 59px;
+
+        scale: 1;
+    }
+    .rowLabelWrapper {
+        height: 160px;
+        font-size: 20px;
+    }
+    .rowButtonsWrapper {
+        flex-direction: row;
+    }
+}
+

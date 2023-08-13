@@ -1,0 +1,102 @@
+.TestCard {
+    display: flex;
+    flex-direction: column;
+    background: #4E4E4E;
+    width: 1000px;
+    min-height: 200px;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 10px;
+    border: 2px solid #484848;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    box-shadow: -3px 3px 3px rgba(0, 0, 0, 0.9);
+}
+
+.TestCard:hover {
+    border: 2px dashed #88e2ff;
+}
+
+.TestCardMenu {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.TestCardMenuButtonEdit {
+    background: #4a9cb4;
+    width: auto;
+    height: 30px;
+    padding-bottom: 5px;
+    font-size: 16px;
+    margin-right: 8px;
+
+    border: none;
+    border-radius: 4px;
+    color: white;
+}
+
+.TestCardMenuButtonCopy {
+    background: #CBCBCB;
+    width: auto;
+    height: 30px;
+    padding-bottom: 5px;
+    font-size: 16px;
+    margin-right: 8px;
+
+    border: none;
+    border-radius: 4px;
+    color: black;
+}
+
+.TestCardMenuButtonDelete {
+    background: #9b3131;
+    width: auto;
+    height: 30px;
+    padding-bottom: 5px;
+    font-size: 16px;
+    margin-right: 8px;
+
+    border: none;
+    border-radius: 4px;
+    color: white;
+}
+
+
+.TestCardMenuButtonEdit:hover {
+    background: #55b3d0;
+}
+
+.TestCardMenuButtonEdit:active {
+    background: #367083;
+}
+
+
+.TestCardMenuButtonCopy:hover {
+    background: #ececec;
+}
+
+.TestCardMenuButtonCopy:active {
+    background: #969696;
+}
+
+
+.TestCardMenuButtonDelete:hover {
+    background: #cb3d3d;
+}
+
+.TestCardMenuButtonDelete:active {
+     background: #9a2f2f;
+ }
+
+.TextCardMenuSpan {
+    padding-left: 6px;
+}
+
+.TextAreaStyle {
+    outline: none;
+    width: 600px;
+    resize: none;
+}

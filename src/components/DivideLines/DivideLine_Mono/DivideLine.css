@@ -1,0 +1,11 @@
+.divideLineWrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.divideLine {
+    width: 100%;
+    height: 3px;
+    background: #CBCBCB;
+    margin-top: 20px;
+}

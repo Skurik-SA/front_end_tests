@@ -1,12 +1,17 @@
 .NavbarWrapper {
     display: flex;
     flex-direction: column;
-
+    overflow: hidden;
 }
 
+.NavbarLink {
+    text-decoration: none;
+    color: white;
+    font-size: 1.2rem;
+}
 
 .NavbarBackground {
-    background-color: #212121;
+    /*background-color: #212121;*/
     min-width: 100%;
     min-height: 45px;
     font-size: calc(10px + 2vmin);
@@ -37,18 +42,17 @@
 .NavbarContentRight {
     display: flex;
     flex-direction: row;
-    align-items: end;
+    justify-content: space-between;
 }
 
 .NavbarTextStyle_1 {
-    width: 80px;
     font-family: 'Inter', serif;
     font-style: normal;
     font-weight: 400;
     font-size: 18px;
-    line-height: 0px;
+    line-height: 0;
     /* or 0% */
-
+    margin-right: 20px;
     text-align: center;
 
     color: #FFFFFF;
@@ -56,20 +60,22 @@
 }
 
 .NavbarTextStyle_2 {
-
-
     font-family: 'Inter', ui-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
-    line-height: 0px;
+    line-height: 0;
     /* or 0% */
 
     text-align: center;
     text-decoration-line: underline;
 
     color: #A9A9A9;
+    cursor: pointer;
+}
 
+.NavbarTextStyle_2:hover {
+    color: #d7d7d7;
 }
 
 .NavPanelContent {
@@ -95,4 +101,16 @@
     background: #CBCBCB;
     transition: 0.4s;
     color: black;
+}
+
+@media screen and (min-width: 300px) {
+    .NavbarLink {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .NavbarLink {
+        display: unset;
+    }
 }

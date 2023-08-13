@@ -1,27 +1,33 @@
 .App {
-  background-color: #CBCBCB;
+  width: 100%;
+  min-height: 100vh;
+
+  display: flex;
+
+  background-color: #353535;
+  color: white;
+
+  overflow: hidden;
+
   text-align: center;
-  min-height: 100vh;
-  display: flex;
   font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.AppBack {
-  background: #CBCBCB;
+/* Works on Chrome, Edge, and Safari */
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: #fff; /*Цвет скролла*/
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 5px; /*Закругление ползунка*/
+  background-color: #808080; /*Цвет ползунка*/
+}
+::-webkit-scrollbar {
+  width: 6px;  /*Толщина скролла*/
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
+/* Works on Firefox */
+* {
+  scrollbar-color: #808080 #fff; /*Цвет скролла, цвет ползунка*/
+  scrollbar-width: thin; /*Толщина скролла thin, auto*/
 }

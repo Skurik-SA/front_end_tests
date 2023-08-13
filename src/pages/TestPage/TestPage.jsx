@@ -1,51 +1,104 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import "./TestPage.css"
-import PaginationButton from "../../components/PaginationButton/PaginationButton";
+import PaginatedControlPanel from "../../components/PaginatedControlPanel/PaginatedControlPanel";
+import BoxMultipleInput from "../../components/Inputs/BoxMultipleInput/BoxMultipleInput";
+import {useNavigate, useParams} from "react-router-dom";
+import {verifyToken} from "../../api/auth/VerifyToken";
+import {useDispatch, useSelector} from "react-redux";
+import {LOAD_TEST_PAGE} from "../../redux/saga/tests/saga_LoadTestPageData";
+import {save_task, set_is_active_task} from "../../redux/store/slices/slice_TestForm";
 
 const TestPage = () => {
+    const dispatch = useDispatch()
+    const params = useParams()
 
-    const [tasksNumbber, setTasksNumber] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9])
-    // const [boolTasks, setBoolTasks] = useState([false, false, false, false, false, false, false, false, false])
-    const [isActive, setIsActive] = useState(true)
+    const test = useSelector(state => state.TestFormData.test)
+    const isActiveTask = useSelector(state => state.TestFormData.activeTask)
 
-    const makeAction = () => {
-        console.log("asd")
+    //Сделать несколько варинатов input
+    const [inputValue, setInputsValue] = useState("")
+
+    function numericInputChange(event) {
+        setInputsValue(event.target.value.replace(/[^0-9]/g,""))
     }
-    // isSaved={isSaved} setIsSaved={setIsSaved} isActive={isActive} setIsActive={setIsActive}
+
+    const simpleInputChange = (event)=> {
+        setInputsValue(event.target.value)
+    }
+
+    const changeTaskList = (task) => {
+        dispatch(set_is_active_task(task))
+        setInputsValue(task.answer)
+    }
+
+    const saveAnswer = () => {
+        dispatch(save_task({test: test, active_id: isActiveTask.id, inputValue: inputValue}))
+    }
+
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        if (localStorage.getItem('access_token') === null) {
+            navigate('/login')
+        }
+        else {
+            try {
+                verifyToken(localStorage.getItem('access_token'))
+            }
+            catch (e) {
+                navigate('/login')
+            }
+        }
+    }, [])
+
+    useEffect(() => {
+        dispatch({type: LOAD_TEST_PAGE, id: params.task_id})
+    }, [])
+
     return (
         <>
-            <div>
-                <div className="TestPageLeftControlPanel">
-                    <div>
-                        <div>
-                            <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <rect x="0.5" y="0.5" width="49" height="49" rx="24.5" fill="#D9D9D9" stroke="#212121"/>
-                                <rect x="11" y="34.4158" width="26.3914" height="7.19767" rx="3.59883" transform="rotate(-62 11 34.4158)" fill="#212121"/>
-                                <rect x="32.6448" y="37.6814" width="26.3914" height="7.19767" rx="3.59883" transform="rotate(-118 32.6448 37.6814)" fill="#212121"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <div>
-                        {tasksNumbber.map((taskNumber) =>
-                            <div key={taskNumber}>
-                                <PaginationButton activeTask={isActive}>
-                                    {taskNumber}
-                                </PaginationButton>
-                            </div>
-                        )}
-
-                    </div>
-                    <div>
-                        <div>
-                            <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <rect x="0.5" y="0.5" width="49" height="49" rx="24.5" fill="#D9D9D9" stroke="#212121"/>
-                                <rect x="39" y="16.3792" width="26.3914" height="7.19767" rx="3.59883" transform="rotate(118 39 16.3792)" fill="#212121"/>
-                                <rect x="17.3552" y="13.1135" width="26.3914" height="7.19767" rx="3.59883" transform="rotate(62 17.3552 13.1135)" fill="#212121"/>
-                            </svg>
-                        </div>
-                    </div>
+            {test === undefined
+                ?
+                <div>
+                    Загрузка
                 </div>
-            </div>
+                :
+                <>
+                    {test === []
+                        ?
+                        <div></div>
+                        :
+                        <PaginatedControlPanel tasks={test} change={changeTaskList}/>
+
+                    }
+                    <div className="BlockWrapper">
+                        <div className="TaskContent">
+                            <div>
+                                {isActiveTask.taskTitle}
+                            </div>
+                            <div>
+                                {isActiveTask.taskText}
+                            </div>
+                        </div>
+                        <div className="BtnContent">
+                            <div>
+                                Поле ввода:
+                            </div>
+                            {isActiveTask.inputType === '8bit_input'
+                                ?
+                                <div className="CustomInputWrapper">
+                                    <BoxMultipleInput inputValue={inputValue} onChange={numericInputChange}/>
+                                </div>
+                                :
+                                <div>
+                                    <input type="text" className="simple_input" value={inputValue} onChange={simpleInputChange}/>
+                                </div>
+                            }
+                            <button onClick={saveAnswer}>Сохранить ответ</button>
+                        </div>
+                    </div>
+                </>
+            }
         </>
     )
 }

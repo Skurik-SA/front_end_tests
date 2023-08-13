@@ -1,0 +1,64 @@
+.deleteButtonWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 50px;
+    height: 50px;
+    flex-shrink: 0;
+
+    border-radius: 0px 8px 8px 0px;
+    background: #670000;
+}
+
+.deleteButtonWrapper:hover {
+    background: #9f0000;
+    box-shadow: 0px 0px 4px 4px rgba(0, 0, 0, 0.25) inset;
+    cursor: pointer;
+}
+
+.deleteButtonWrapper:active {
+    background: #6e0000;
+
+    box-shadow: 0px 0px 8px 8px rgba(0, 0, 0, 0.25) inset;
+}
+
+.deleteButtonSVG {
+    width: 29px;
+    height: 29px;
+}
+
+@media screen and  (min-width: 0px) {
+    .deleteButtonWrapper {
+        width: 35px;
+        height: 35px;
+        border-radius: 0px 0px 8px 8px;
+    }
+    .deleteButtonSVG {
+        width: 14px;
+        height: 14px;
+    }
+}
+
+@media screen and  (min-width: 700px) {
+    .deleteButtonWrapper {
+        width: 50px;
+        height: 50px;
+        border-radius: 0px 8px 8px 0px;
+    }
+    .deleteButtonSVG {
+        width: 29px;
+        height: 29px;
+    }
+}
+
+@media screen and  (min-width: 1400px) {
+    .deleteButtonWrapper {
+        width: 50px;
+        height: 50px;
+    }
+    .deleteButtonSVG {
+        width: 29px;
+        height: 29px;
+    }
+}
