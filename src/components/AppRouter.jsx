@@ -19,9 +19,10 @@ import MyTemplates from "../pages/PersonalCabinet/Tabs/Templates/MyTemplates/MyT
 import Journal from "../pages/PersonalCabinet/Tabs/Journal/Journal";
 import Analytics from "../pages/PersonalCabinet/Tabs/Analytics/Analytics";
 import TasksPlan from "../pages/PersonalCabinet/Tabs/TasksPlan/TasksPlan";
-import Groups from "../pages/PersonalCabinet/Tabs/Groups/Groups";
+import Groups from "../pages/PersonalCabinet/Tabs/Groups/MyGroups/Groups";
 import PersonalData from "../pages/PersonalCabinet/Tabs/PersonalData/PersonalData";
 import CreateTemplate from "../pages/PersonalCabinet/Tabs/Templates/CreateTemplate/CreateTemplate";
+import EditTemplate from "../pages/PersonalCabinet/Tabs/Templates/EditTemplate/EditTemplate";
 
 
 
@@ -52,6 +53,7 @@ const AppRouter = () => {
                     <Route path={'cabinet'}>
                         <Route path='my_templates' element={<MyTemplates/>}/>
                         <Route path='my_templates/create' element={<CreateTemplate/>}/>
+                        <Route path='my_templates/edit/:id' element={<EditTemplate/>}/>
                         <Route path='personal_data' element={<PersonalData/>}/>
                         <Route path='journal' element={<Journal/>}/>
                         <Route path='analytics' element={<Analytics/>}/>

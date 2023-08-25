@@ -8,6 +8,7 @@ function* workerTestTemplate_byID(params) {
 
     const data = yield call(getTestTemplate_byID_data, params.id)
 
+    console.log(data)
     yield put(add_task_to_test_from_db(data))
 }
 

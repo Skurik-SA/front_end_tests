@@ -27,25 +27,49 @@
     display: flex;
     flex-direction: row;
 
-    width: 65%;
-
+    width: 75%;
+    gap: 10px;
     height: 59px;
     justify-content: flex-start;
     align-items: center;
 
     color: #000;
     font-family: Roboto Serif, serif;
+    /*font-family: Exo, ui-monospace;*/
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
 
     overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
     user-select: none;
 }
 
 .rowLabelWrapper:hover {
     color: #000;
+    cursor: pointer;
+}
+
+.rowLabelWrapper > div {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.rowLabelWrapper > div > label:nth-child(1) {
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.rowLabelWrapper:hover > div > label:nth-child(1) {
     text-decoration-line: underline;
+    cursor: pointer;
+}
+
+
+.rowLabelWrapper:hover > div > label:nth-child(2) {
     cursor: pointer;
 }
 
@@ -95,6 +119,11 @@
         height: 160px;
         font-size: 1rem;
     }
+    .rowLabelWrapper > div {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
     .rowButtonsWrapper {
         flex-direction: column;
 
@@ -111,6 +140,11 @@
         height: 160px;
         font-size: 20px;
     }
+    .rowLabelWrapper > div {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+
     .rowButtonsWrapper {
         flex-direction: row;
     }

@@ -12,6 +12,7 @@
     width: 100%;
 }
 
+
 .filterInputSelectWrapperMid, .filterInputSelectWrapperUp, .filterInputSelectWrapperDown {
     display: flex;
     flex-direction: column;
@@ -23,6 +24,10 @@
 
     border-radius: 0 0 0 0;
     background: #EAEEFF;
+}
+
+.filterInputSelectWrapperMid:hover, .filterInputSelectWrapperUp:hover, .filterInputSelectWrapperDown:hover {
+    background: #c4fff4;
 }
 
 .filterInputSelectWrapperUp {
@@ -56,15 +61,24 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-left: 15%;
-    width: 70%;
+    margin-right: 12%;
+    width: 400px;
     height: 48px;
 
+    white-space: nowrap;
+    overflow: hidden;
     text-overflow: clip;
 }
 
 .filterInputSelectText:hover {
     border: 2px solid black;
+}
+
+.filterInputSelectText > div {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding-left: 12%;
 }
 
 .filterInputSelectIcon {

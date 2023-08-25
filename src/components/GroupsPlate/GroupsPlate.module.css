@@ -1,0 +1,17 @@
+.groupPlateWrapper {
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+
+    color: #FFF;
+    font-family: Roboto, serif;
+    font-size: 20px;
+
+    background: #4B4B4B;
+    cursor: pointer;
+}
+
+.groupPlateWrapper:hover {
+    background: #707070;
+
+}

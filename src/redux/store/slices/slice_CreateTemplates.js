@@ -1,5 +1,12 @@
 import {createSlice} from "@reduxjs/toolkit";
 
+const swap = (data, a, b) => {
+    let temp_data = data
+    let temp = temp_data[a]
+    temp_data[a] = temp_data[b]
+    temp_data[b] = temp
+    return temp_data
+}
 
 const Slice_ModifyTemplates = createSlice({
     name: "create_custom_templates_slice",
@@ -8,8 +15,11 @@ const Slice_ModifyTemplates = createSlice({
         task_types: [], // Task types loaded from server
         formData: [], //Data to send to server
 
-        title_value: "",
-        group_value: "",
+        title_value: null,
+        group_value: {
+            value: '',
+            id: ''
+        },
     },
     reducers: {
         add_task_to_test(state, action) {
@@ -35,7 +45,10 @@ const Slice_ModifyTemplates = createSlice({
             state.test_data = newArr
             state.formData = newFormData
             state.title_value = action.payload.title
-            state.group_value = action.payload.group_id
+            state.group_value = {
+                value: action.payload.group_title,
+                id: action.payload.group_id,
+            }
         },
         delete_task_to_test(state, action) {
             state.test_data = state.test_data.filter((task, index) => index !== action.payload)
@@ -57,6 +70,7 @@ const Slice_ModifyTemplates = createSlice({
             state.formData = {
                 title: action.payload.title,
                 group_id: action.payload.group_id,
+                group_title: action.payload.group_title,
                 owner_id: localStorage.getItem('user_id'),
                 tasks: state.test_data.map(task => task['task_id']),
                 tasks_description: state.test_data.map(task => task['name']),
@@ -74,6 +88,24 @@ const Slice_ModifyTemplates = createSlice({
             state.formData = []
             state.title_value = ""
             state.group_value = ""
+        },
+        change_pos_up(state, action) {
+            if (action.payload !== 0)
+            {
+                state.test_data = swap(state.test_data, action.payload, action.payload - 1)
+            }
+        },
+        change_pos_down(state, action) {
+            if (action.payload !== state.test_data.length - 1)
+            {
+                state.test_data = swap(state.test_data, action.payload, action.payload + 1)
+            }
+        },
+        change_pos(state, action) {
+            state.test_data = swap(state.test_data, action.payload.dragIndex, action.payload.hoverIndex)
+        },
+        test_data_check(state, action) {
+            state.test_data = action.payload
         }
     }
 })
@@ -89,5 +121,9 @@ export const {
     save_test_template_new,
     set_input_value,
     set_group_value,
-    clear_data
+    clear_data,
+    change_pos_up,
+    change_pos_down,
+    change_pos,
+    test_data_check
 } = Slice_ModifyTemplates.actions
