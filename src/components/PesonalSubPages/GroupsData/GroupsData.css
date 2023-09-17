@@ -53,26 +53,83 @@
     gap: 7px;
 }
 
+.title_labels {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.add_label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.add_svg {
+    display: flex;
+}
+
+.add_button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 1.2rem;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: transparent;
+    background: #00b153;
+    color: white;
+}
+
+.add_button:hover {
+    background: #009446;
+}
+
+.add_button:active {
+    background: #00b153;
+}
+
+.split_content_left {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.students_column, .tests_column {
+    display: flex;
+    flex-direction: column;
+    width: 49%;
+}
+
 .person_row {
     display: flex;
-    justify-content: flex-start;
-    background: rgba(89, 89, 89, 0.53);
+    justify-content: space-between;
+    align-items: center;
     cursor: pointer;
-    width: 95%;
+
     overflow: hidden;
     color: black;
     padding-left: 20px;
-    font-size: 20px;
-    gap: 10px;
-    transition: 0.5s ease-in-out;
+    margin-bottom: 4px;
+    font-size: 1.3rem;
+    font-family: Roboto, serif;
+
+    border-radius: 0px 5px 5px 0px;
+    background: #EAEEFF;
 }
 
 .person_row:hover {
-    background: #e1e1e1;
-
     color: black;
-    transform: scale(1.05);
-    transition: 0.1s ease-in-out;
+
+
+    text-decoration-line: underline;
+
+    border-radius: 0px 5px 5px 0px;
+    background: #EAEEFF;
 }
 
 .group_row {
@@ -95,4 +152,136 @@
     transform: scale(1.1);
 
     transition: 0.1s ease-in-out;
+}
+
+.fio_section {
+    display: flex;
+    flex-direction: row;
+    gap: 14px;
+    width: 70%;
+}
+
+.button_creation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70%;
+    height: 3rem;
+    flex-shrink: 0;
+
+    border-radius: 0px 0px 5px 0px;
+    border-color: transparent;
+    background: #005CB1;
+    font-size: 1.3rem;
+    color: white;
+
+    margin-bottom: 20px;
+}
+
+.button_creation:hover {
+    cursor: pointer;
+    background: #004585;
+}
+
+.button_creation:active {
+    background: #0067c5;
+}
+
+.del_button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 5px;
+    background: #BD0000;
+    border-radius: 5px;
+}
+
+.del_button:hover {
+    background: #a10000;
+}
+
+.del_button:active {
+    background: #BD0000;
+}
+
+.to_profile {
+    width: 116px;
+    height: 24px;
+}
+
+@media screen and  (min-width: 0px) {
+    .title_labels {
+        display: flex;
+        font-size: 0.6rem;
+        padding: 5px 0 5px 5px;
+    }
+    .add_label {
+        display: none;
+    }
+    .add_svg {
+        display: flex;
+    }
+    .person_row {
+        font-size: 0.7rem;
+        padding-left: 5px;
+    }
+    .add_button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        font-size: 0.5rem;
+        scale: 0.7;
+        border-radius: 25px;
+        border: transparent;
+        background: #00b153;
+        color: white;
+    }
+}
+
+@media screen and  (min-width: 700px) {
+    .title_labels {
+        font-size: 1.4rem;
+        padding: 20px;
+    }
+    .add_label {
+        display: flex;
+    }
+    .add_svg {
+        display: none;
+    }
+    .person_row {
+        font-size: 1.3rem;
+        padding-left: 20px;
+    }
+    .add_button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        scale: 1;
+
+        font-size: 1.2rem;
+        padding-left: 10px;
+        padding-right: 10px;
+
+        border-radius: 5px;
+        border: transparent;
+        background: #00b153;
+        color: white;
+    }
+}
+
+@media screen and  (min-width: 1400px) {
+    .add_button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        font-size: 1.2rem;
+        padding-left: 10px;
+        padding-right: 10px;
+        border: transparent;
+        background: #00b153;
+        color: white;
+    }
 }
