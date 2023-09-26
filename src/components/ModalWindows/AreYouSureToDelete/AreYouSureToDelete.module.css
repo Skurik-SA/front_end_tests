@@ -1,0 +1,36 @@
+.btn_wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding-top: 20px;
+    gap: 50px;
+}
+
+.btn_r, .btn_g {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-color: transparent;
+    border-radius: 10px;
+    width: 100px;
+    font-family: Roboto, sans-serif;
+    color: white;
+}
+
+.btn_g {
+    background: #4a9453;
+}
+
+.btn_r {
+    background: #ff2828;
+}
+
+.btn_g:hover {
+    background: #29562d;
+}
+.btn_r:hover {
+    background: #b22a2a;
+}

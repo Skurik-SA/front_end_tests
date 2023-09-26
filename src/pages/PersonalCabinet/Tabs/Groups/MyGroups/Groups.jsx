@@ -1,7 +1,7 @@
 import "./Groups.css"
 import WrapperPersonalCabinet from "../../../WrapperPersonalCabinet/WrapperPersonalCabinet";
 import NavigationLine from "../../../NavigationLine/NavigationLine";
-import {useEffect, useState} from "react";
+import {Fragment, useEffect, useState} from "react";
 import {set_navbar_link} from "../../../../../redux/store/slices/slice_Navbar";
 import {useDispatch, useSelector} from "react-redux";
 import DuoContent from "../../../DuoContent/DuoContent";
@@ -14,6 +14,10 @@ import {LOAD_GROUP_DATA} from "../../../../../redux/saga/auth/saga_GroupDataByID
 import GroupsPlate from "../../../../../components/GroupsPlate/GroupsPlate";
 import FiltersHeader from "../../../../../components/FiltersHeader/FiltersHeader";
 import DivideLineMono from "../../../../../components/DivideLines/DivideLine_Mono/DivideLineMono";
+import Portal from "../../../../../components/Portal/Portal";
+import ModalAddStudents from "../../../../../components/ModalWindows/ModalAddStudents/ModalAddStudents";
+import {delete_one_students} from "../../../../../redux/store/slices/slice_PersonalGroup";
+import AreYouSureToDelete from "../../../../../components/ModalWindows/AreYouSureToDelete/AreYouSureToDelete";
 
 const Groups = () => {
 
@@ -26,6 +30,9 @@ const Groups = () => {
         return (group.title).toLowerCase().includes(filterInput.toLowerCase())
     })
 
+
+
+
     const dispatch = useDispatch()
     const get_data_by_group = (id) => {
         dispatch({type: LOAD_GROUP_DATA, id})
@@ -33,6 +40,16 @@ const Groups = () => {
 
     const clearFilters = () => {
         setFilterInput("")
+    }
+
+
+
+    const [isOpen, setIsOpen] = useState(false)
+    const [isOpenAreYouSure, setIsOpenAreYouSure] = useState(false)
+    const [stToDel, setStToDel] = useState(null)
+    const del_st = (id, modOp) => {
+        setIsOpenAreYouSure(modOp)
+        setStToDel(id)
     }
 
     useEffect(() => {
@@ -64,20 +81,25 @@ const Groups = () => {
                             {teachers
                                 ?
                                 <div style={{fontSize: "18px", textDecoration: "underline", fontWeight: '200'}}>
-                                    {teachers.map((t, i) => <div>Учитель: {t}</div>)}
+                                    {teachers.map((t, i) => <div key={i}>Учитель: {t}</div>)}
                                 </div>
                                 :
                                 <></>
                             }
                         </div>
                         <DivideLineMono/>
+                        <Portal open={isOpen} onClose={() => setIsOpen(false)} style={{  boxShadow:
+                            "0 0 100px 0 rgba(0,0,0,0.75)", background: '#dadada'
+                        }}>
+                            <ModalAddStudents onClose={() => setIsOpen(false)}/>
+                        </Portal>
                         <div className="split_content_left">
                             {groupById.participants.length > 0
                                 ?
                                 <div className="students_column">
                                     <div className="title_labels">
                                         <div>Ученики: </div>
-                                        <button className="add_button">
+                                        <button className="add_button" onClick={() => setIsOpen(true)}>
                                             <label className="add_label">
                                                 Добавить
                                             </label>
@@ -87,8 +109,13 @@ const Groups = () => {
                                             </svg>
                                         </button>
                                     </div>
+                                    <Portal open={isOpenAreYouSure} onClose={() => setIsOpenAreYouSure(false)} style={{  boxShadow:
+                                            "0 0 100px 0 rgba(0,0,0,0.75)", background: '#dadada'
+                                    }}>
+                                        <AreYouSureToDelete onClose={() => setIsOpenAreYouSure(false)} index={stToDel}/>
+                                    </Portal>
                                     {groupById.participants.map((p, index) =>
-                                        <>
+                                        <Fragment key={p.id}>
                                             {p.role === 'Учитель'
                                                 ?
                                                 <></>
@@ -104,7 +131,8 @@ const Groups = () => {
                                                                 {p.sur_name}
                                                             </div>
                                                         </section>
-                                                        <div className="del_button">
+
+                                                        <div className="del_button" onClick={() => del_st(index, true)}>
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                                                                 <rect x="6.33008" y="4.44543" width="19.0336" height="2.66667" rx="1.33333" transform="rotate(45 6.33008 4.44543)" fill="white"/>
                                                                 <rect x="4.63477" y="17.893" width="18.8101" height="2.66667" rx="1.33333" transform="rotate(-45 4.63477 17.893)" fill="white"/>
@@ -114,7 +142,7 @@ const Groups = () => {
                                                 </div>
 
                                             }
-                                        </>
+                                        </Fragment>
                                     )}
                                 </div>
                                 :
@@ -138,15 +166,15 @@ const Groups = () => {
                                         </button>
                                     </div>
                                     {groupById.participants.map((p, index) =>
-                                        <>
-                                            <div className="person_row" key={index}>
+                                        <Fragment key={index}>
+                                            <div className="person_row" >
                                                 <section className="fio_section">
                                                     <div>
                                                         title_label
                                                     </div>
                                                 </section>
                                             </div>
-                                        </>
+                                        </Fragment>
                                     )}
                                 </div>
                                 :
