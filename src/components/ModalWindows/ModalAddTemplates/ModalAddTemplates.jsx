@@ -4,10 +4,11 @@ import {set_navbar_link} from "../../../redux/store/slices/slice_Navbar";
 import {useDispatch, useSelector} from "react-redux";
 import {LOAD_PERSONAL_CUSTOM_TEMPLATES} from "../../../redux/saga/tests/saga_LoadPersonalCustomTemplates";
 import {add_many_templates} from "../../../redux/store/slices/slice_PersonalGroup";
+import {ADD_TEMPLATES_TO_GROUP} from "../../../redux/saga/auth/saga_AddTemplatesToGroup";
 
 const ModalAddTemplates = (props) => {
 
-    const {onClose} = props
+    const {group_id, onClose} = props
 
     const dispatch = useDispatch()
     const templates = useSelector(state => state.CustomTemplatesData.custom_templates)
@@ -34,6 +35,11 @@ const ModalAddTemplates = (props) => {
                 allNewTemplates: checkedTemplates,
             }
         ))
+        dispatch({type: ADD_TEMPLATES_TO_GROUP,
+                    data: {
+                        group_id: group_id,
+                        checkedTemplates: checkedTemplates,
+                    }})
     }
 
     useEffect(() => {

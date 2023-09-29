@@ -102,7 +102,7 @@ const Groups = () => {
                         <Portal open={isOpenTemplates} onClose={() => setIsOpenTemplates(false)} style={{  boxShadow:
                                 "0 0 100px 0 rgba(0,0,0,0.75)", background: '#dadada'
                         }}>
-                            <ModalAddTemplates onClose={() => setIsOpenTemplates(false)}/>
+                            <ModalAddTemplates group_id={groupById.id} onClose={() => setIsOpenTemplates(false)}/>
                         </Portal>
 
                         <div className="split_content_left">

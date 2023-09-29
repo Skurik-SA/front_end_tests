@@ -12,6 +12,7 @@ import {loadUser} from "./auth/saga_UserData";
 import {update_UserData} from "./auth/saga_UpdateUserData";
 import {loadGroupData} from "./auth/saga_GroupDataByID";
 import {load_personal_custom_templates_data} from "./tests/saga_LoadPersonalCustomTemplates";
+import {addTemplatesToGroup} from "./auth/saga_AddTemplatesToGroup";
 
 // export function* rootSaga() {
 //     yield all([countWatcher(), userWatcher()])
@@ -32,6 +33,7 @@ export function* rootSaga() {
         loadUser,
         update_UserData,
         loadGroupData,
+        addTemplatesToGroup,
     ]
 
     const retrySagas = yield sagas.map(saga =>
