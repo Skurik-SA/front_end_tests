@@ -20,6 +20,7 @@ import {delete_one_students} from "../../../../../redux/store/slices/slice_Perso
 import AreYouSureToDelete from "../../../../../components/ModalWindows/AreYouSureToDelete/AreYouSureToDelete";
 import ModalAddTemplates from "../../../../../components/ModalWindows/ModalAddTemplates/ModalAddTemplates";
 import {LOAD_PERSONAL_CUSTOM_TEMPLATES} from "../../../../../redux/saga/tests/saga_LoadPersonalCustomTemplates";
+import CreateNewGroupWindow from "../../../../../components/ModalWindows/CreateNewGroupWindow/CreateNewGroupWindow";
 
 const Groups = () => {
 
@@ -49,6 +50,9 @@ const Groups = () => {
     const [isOpenStudents, setIsOpenStudents] = useState(false)
     const [isOpenTemplates, setIsOpenTemplates] = useState(false)
     const [isOpenAreYouSure, setIsOpenAreYouSure] = useState(false)
+    const [isOpenNewGroup, setIsOpenNewGroup] = useState(false)
+
+
     const [stToDel, setStToDel] = useState(null)
 
     const del_st = (id, modOp) => {
@@ -229,9 +233,17 @@ const Groups = () => {
                                     </GroupsPlate>
                                 )}
                             </div>
-                            <button className="button_creation">
+                            <button className="button_creation" onClick={() => {
+                                setIsOpenNewGroup(true)
+
+                            }}>
                                 Новая группа
                             </button>
+                            <Portal open={isOpenNewGroup} onClose={() => setIsOpenNewGroup(false)} style={{  boxShadow:
+                                    "0 0 100px 0 rgba(0,0,0,0.75)", background: '#EAEEFF'
+                            }}>
+                                <CreateNewGroupWindow onClose={() => setIsOpenNewGroup(false)}/>
+                            </Portal>
                         </div>
 
                     </DuoContentRightPart>

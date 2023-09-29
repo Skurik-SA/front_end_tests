@@ -30,3 +30,10 @@ export async function add_templates_to_group(data) {
     const request = await axios.post(`${BASE_URL}/user/api/group_change/`, data)
     return request.data
 }
+
+export async function send_create_new_group(data) {
+    const request = await axios.post(`${BASE_URL}/user/api/registrate_group_and_users/`, data)
+    console.log(request.data)
+    return request.data
+
+}
