@@ -15,6 +15,7 @@ import {useNavigate} from "react-router-dom";
 import {clear_data} from "../../../../../redux/store/slices/slice_CreateTemplates";
 import {sort_templates} from "../../../../../redux/store/slices/slice_CustomTemplates";
 import FiltersHeader from "../../../../../components/FiltersHeader/FiltersHeader";
+import {LOAD_PERSONAL_CUSTOM_TEMPLATES} from "../../../../../redux/saga/tests/saga_LoadPersonalCustomTemplates";
 
 const MyTemplates = () => {
 
@@ -101,7 +102,12 @@ const MyTemplates = () => {
     }
 
     useEffect(() => {
-        dispatch({type: LOAD_CUSTOM_TEMPLATES})
+        // Диспатч ниже загрузит абсолютно все шаблоны
+        // dispatch({type: LOAD_CUSTOM_TEMPLATES})
+
+        // Диспатч ниже загрузит только шаблоны пользователя
+        dispatch({type: LOAD_PERSONAL_CUSTOM_TEMPLATES, user_id: localStorage.getItem('user_id')})
+
         dispatch(set_navbar_link(
             [
                 {

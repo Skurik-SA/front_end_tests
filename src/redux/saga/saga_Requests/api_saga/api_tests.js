@@ -12,6 +12,14 @@ export async function loadCustomTemplates() {
     return request.data
 }
 
+export async function loadPersonalCustomTemplates(user_id) {
+    console.log(user_id)
+    const request = await axios.post(`${BASE_URL}/tests/api/get_my_templates/`, {
+        user_id: user_id
+    })
+    return request.data
+}
+
 // Request to server to load test template by id
 // In other words "get single test template"
 export async function getTestTemplate_byID_data(id) {

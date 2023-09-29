@@ -7,7 +7,9 @@ const Slice_PersonalGroup = createSlice({
         data: {
             id: "",
             group_title: "",
-            participants: []
+            participants: [],
+            templates_id: [],
+            templates_title: [],
         },
         teacher_fio: "",
     },
@@ -36,7 +38,9 @@ const Slice_PersonalGroup = createSlice({
             state.data = {
                 "id": state.data.id,
                 "group_title": state.data.group_title,
-                "participants": temp
+                "participants": temp,
+                "templates_id": state.data.templates_id,
+                "templates_title": state.data.templates_title,
             }
         },
         add_many_students(state, action) {
@@ -55,11 +59,66 @@ const Slice_PersonalGroup = createSlice({
             state.data = {
                 "id": state.data.id,
                 "group_title": state.data.group_title,
-                "participants": [...state.data.participants, ...selectedStudents]
+                "participants": [...state.data.participants, ...selectedStudents],
+                "templates_id": state.data.templates_id,
+                "templates_title": state.data.templates_title,
+            }
+        },
+        add_many_templates(state, action) {
+            const selectedTemplatesID = action.payload.allNewTemplates.filter((template) => template.checkedState).map((t) =>
+            {
+                    return t.template.id
+            })
+            const selectedTemplatesTitle = action.payload.allNewTemplates.filter((template) => template.checkedState).map((t) =>
+            {
+                return t.template.title
+            })
+            console.log(selectedTemplatesID)
+
+            if (state.data.templates_id && state.data.templates_title) {
+                state.data = {
+                    "id": state.data.id,
+                    "group_title": state.data.group_title,
+                    "participants": state.data.participants,
+                    "templates_id": [...state.data.templates_id, ...selectedTemplatesID],
+                    "templates_title": [...state.data.templates_title, ...selectedTemplatesTitle],
+                }
+            }
+            else if (state.data.templates_id && !state.data.templates_title) {
+                state.data = {
+                    "id": state.data.id,
+                    "group_title": state.data.group_title,
+                    "participants": state.data.participants,
+                    "templates_id": [...state.data.templates_id, ...selectedTemplatesID],
+                    "templates_title": [...selectedTemplatesTitle],
+                }
+            }
+            else if (!state.data.templates_id && state.data.templates_title) {
+                state.data = {
+                    "id": state.data.id,
+                    "group_title": state.data.group_title,
+                    "participants": state.data.participants,
+                    "templates_id": [...selectedTemplatesID],
+                    "templates_title": [...state.data.templates_title, ...selectedTemplatesTitle],
+                }
+            }
+            else {
+                state.data = {
+                    "id": state.data.id,
+                    "group_title": state.data.group_title,
+                    "participants": state.data.participants,
+                    "templates_id": [...selectedTemplatesID],
+                    "templates_title": [...selectedTemplatesTitle],
+                }
             }
         }
     }
 })
 
 export default Slice_PersonalGroup.reducer
-export const {set_group_data_by_id, add_one_student, add_many_students, delete_one_students} = Slice_PersonalGroup.actions
+export const {
+    set_group_data_by_id,
+    add_one_student,
+    add_many_students,
+    delete_one_students,
+    add_many_templates} = Slice_PersonalGroup.actions

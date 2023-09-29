@@ -18,6 +18,8 @@ import Portal from "../../../../../components/Portal/Portal";
 import ModalAddStudents from "../../../../../components/ModalWindows/ModalAddStudents/ModalAddStudents";
 import {delete_one_students} from "../../../../../redux/store/slices/slice_PersonalGroup";
 import AreYouSureToDelete from "../../../../../components/ModalWindows/AreYouSureToDelete/AreYouSureToDelete";
+import ModalAddTemplates from "../../../../../components/ModalWindows/ModalAddTemplates/ModalAddTemplates";
+import {LOAD_PERSONAL_CUSTOM_TEMPLATES} from "../../../../../redux/saga/tests/saga_LoadPersonalCustomTemplates";
 
 const Groups = () => {
 
@@ -44,15 +46,18 @@ const Groups = () => {
 
 
 
-    const [isOpen, setIsOpen] = useState(false)
+    const [isOpenStudents, setIsOpenStudents] = useState(false)
+    const [isOpenTemplates, setIsOpenTemplates] = useState(false)
     const [isOpenAreYouSure, setIsOpenAreYouSure] = useState(false)
     const [stToDel, setStToDel] = useState(null)
+
     const del_st = (id, modOp) => {
         setIsOpenAreYouSure(modOp)
         setStToDel(id)
     }
 
     useEffect(() => {
+        dispatch({type: LOAD_PERSONAL_CUSTOM_TEMPLATES, user_id: localStorage.getItem('user_id')})
         dispatch(set_navbar_link(
             [
                 {
@@ -88,18 +93,25 @@ const Groups = () => {
                             }
                         </div>
                         <DivideLineMono/>
-                        <Portal open={isOpen} onClose={() => setIsOpen(false)} style={{  boxShadow:
+                        <Portal open={isOpenStudents} onClose={() => setIsOpenStudents(false)} style={{  boxShadow:
                             "0 0 100px 0 rgba(0,0,0,0.75)", background: '#dadada'
                         }}>
-                            <ModalAddStudents onClose={() => setIsOpen(false)}/>
+                            <ModalAddStudents onClose={() => setIsOpenStudents(false)}/>
                         </Portal>
+
+                        <Portal open={isOpenTemplates} onClose={() => setIsOpenTemplates(false)} style={{  boxShadow:
+                                "0 0 100px 0 rgba(0,0,0,0.75)", background: '#dadada'
+                        }}>
+                            <ModalAddTemplates onClose={() => setIsOpenTemplates(false)}/>
+                        </Portal>
+
                         <div className="split_content_left">
                             {groupById.participants.length > 0
                                 ?
                                 <div className="students_column">
                                     <div className="title_labels">
                                         <div>Ученики: </div>
-                                        <button className="add_button" onClick={() => setIsOpen(true)}>
+                                        <button className="add_button" onClick={() => setIsOpenStudents(true)}>
                                             <label className="add_label">
                                                 Добавить
                                             </label>
@@ -121,7 +133,7 @@ const Groups = () => {
                                                 <></>
                                                 :
                                                 <div >
-                                                    <div className="person_row" key={index}>
+                                                    <div className="person_row">
                                                         <section className="fio_section">
                                                             <div>
                                                                 {p.last_name} <> </>
@@ -156,7 +168,10 @@ const Groups = () => {
                                     <div className="title_labels">
                                         <div>Тесты: </div>
                                         <button className="add_button">
-                                            <label className="add_label">
+                                            <label className="add_label"  onClick={() => {
+                                                setIsOpenTemplates(true)
+
+                                            }}>
                                                 Добавить
                                             </label>
                                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="add_svg">
@@ -165,14 +180,17 @@ const Groups = () => {
                                             </svg>
                                         </button>
                                     </div>
-                                    {groupById.participants.map((p, index) =>
+                                    {groupById.templates_title && groupById.templates_title.map((tt, index) =>
                                         <Fragment key={index}>
                                             <div className="person_row" >
                                                 <section className="fio_section">
                                                     <div>
-                                                        title_label
+                                                        {tt}
                                                     </div>
                                                 </section>
+                                                <button>
+                                                    Сгенерировать
+                                                </button>
                                             </div>
                                         </Fragment>
                                     )}

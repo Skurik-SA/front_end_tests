@@ -167,7 +167,8 @@ const ModalAddStudents = (props) => {
                         <section className={styles.modal_add_students_section_field}>
                             {
                                 newStudents.map((s, i) =>
-                                    <div key={i} className={styles.modal_add_students_lineINlist} onClick={() => handleCheckboxChange(i)}>
+                                    <div key={i} className={s.checkedState ? styles.modal_add_students_lineINlist_chosen : styles.modal_add_students_lineINlist}
+                                         onClick={() => handleCheckboxChange(i)}>
                                         <input style={{cursor: 'pointer'}} type="checkbox" checked={s.checkedState} onChange={() => handleCheckboxChange(i)}/>
                                         <label className={styles.modal_add_students_label}>{s.fio[0]} {s.fio[1]} {s.fio[2]}</label>
                                     </div>

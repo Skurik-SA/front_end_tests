@@ -92,6 +92,15 @@ const CreateTemplate = () => {
     const [correctFields, setCorrectFields] = useState(false)
     const saveBtn = async () => {
         setCorrectFields(true)
+        if (templateTitle !== "" && !selectedGroup) {
+            dispatch(save_test_template_new({
+                title: templateTitle,
+                group_id: 10
+            }))
+            setCorrectFields(false)
+            dispatch({type: SEND_TEST_TEMPLATE})
+            navigate("/cabinet/my_templates")
+        }
         if (templateTitle !== "" && selectedGroup) {
             dispatch(save_test_template_new({
                 title: templateTitle,
