@@ -1,10 +1,11 @@
 import "./NavigationLine.css"
 import NavigationLineButton from "./NavigationLineButton/NavigationLineButton";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {set_active_tab} from "../../../redux/store/slices/slice_Navigation";
 
 const NavigationLine = ({children, tab_id}) => {
-    const links_data = [
+    // tab_id: 0, 1, 2, 3, 4, 5
+    const links_data_teacher = [
         {
             button_name: "Журнал",
             link: "/cabinet/journal"
@@ -31,7 +32,21 @@ const NavigationLine = ({children, tab_id}) => {
         },
     ]
 
+    // tab_id: 10, 11...
+    const links_data_student = [
+        {
+            button_name: "Мои тесты",
+            link: "/cabinet/my_tests"
+        },
+        {
+            button_name: "Профиль",
+            link: "/cabinet/personal_data"
+        },
+    ]
+
     const dispatch = useDispatch()
+
+    const userData = useSelector(state => state.UserData.user_data)
 
     const changeTab = (id) => {
         dispatch(set_active_tab(id))
@@ -40,19 +55,40 @@ const NavigationLine = ({children, tab_id}) => {
 
     return (
         <div className="wrapperNavigationLine">
-            {links_data.map((i, index) =>
-                <div key={i.button_name}>
-                    <NavigationLineButton
-                        link_to={i.link}
-                        activeTab={tab_id}
-                        changeFunction={changeTab}
-                        index={index}
-                    >
-                        {i.button_name}
-                    </NavigationLineButton>
+            {userData && userData.is_teacher
+                ?
+                <>
+                    {links_data_teacher.map((i, index) =>
+                        <div key={i.button_name}>
+                            <NavigationLineButton
+                                link_to={i.link}
+                                activeTab={tab_id}
+                                changeFunction={changeTab}
+                                index={index}
+                            >
+                                {i.button_name}
+                            </NavigationLineButton>
 
-                </div>
-            )}
+                        </div>
+                    )}
+                </>
+                :
+                <>
+                    {links_data_student.map((i, index) =>
+                        <div key={i.button_name}>
+                            <NavigationLineButton
+                                link_to={i.link}
+                                activeTab={tab_id}
+                                changeFunction={changeTab}
+                                index={index}
+                            >
+                                {i.button_name}
+                            </NavigationLineButton>
+
+                        </div>
+                    )}
+                </>
+            }
         </div>
     )
 }

@@ -74,5 +74,15 @@ export async function loadTaskTypes_data() {
     return request.data
 }
 
+export async function getAllMyTests() {
+    const request = await axios.post(`${BASE_URL}/tests/api/get_all_own_tests/`, {
+        user_id: localStorage.getItem("user_id")
+    })
+    return request.data
+}
 
+export async function getTestData(id) {
+    const response = await axios.get(`http://127.0.0.1:8000/tests/api/personal_test/${id}`)
+    return response.data
+}
 

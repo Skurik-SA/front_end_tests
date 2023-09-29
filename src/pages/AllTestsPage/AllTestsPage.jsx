@@ -2,7 +2,8 @@ import {useEffect} from "react";
 import "./AllTestsPage.css"
 import TemplateRow from "../../components/TemplateRow/TemplateRow";
 import {useDispatch, useSelector} from "react-redux";
-import {LOAD_PERSONAL_PAGE_DATA} from "../../redux/saga/actions_Saga/actions_saga";
+import {LOAD_PERSONAL_PAGE_DATA} from "../../redux/saga/tests/saga_LoadPersonalTests";
+// import {LOAD_PERSONAL_PAGE_DATA} from "../../redux/saga/actions_Saga/actions_saga";
 
 
 const AllTestsPage = () => {

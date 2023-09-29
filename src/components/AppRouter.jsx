@@ -23,6 +23,7 @@ import Groups from "../pages/PersonalCabinet/Tabs/Groups/MyGroups/Groups";
 import PersonalData from "../pages/PersonalCabinet/Tabs/PersonalData/PersonalData";
 import CreateTemplate from "../pages/PersonalCabinet/Tabs/Templates/CreateTemplate/CreateTemplate";
 import EditTemplate from "../pages/PersonalCabinet/Tabs/Templates/EditTemplate/EditTemplate";
+import MyTests from "../pages/PersonalCabinet/Tabs/MyTests/MyTests";
 
 
 
@@ -59,6 +60,7 @@ const AppRouter = () => {
                         <Route path='analytics' element={<Analytics/>}/>
                         <Route path='plan' element={<TasksPlan/>}/>
                         <Route path='groups_new' element={<Groups/>}/>
+                        <Route path='my_tests' element={<MyTests/>}/>
                     </Route>
 
                 </Route>
