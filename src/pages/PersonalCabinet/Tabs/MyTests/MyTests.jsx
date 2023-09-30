@@ -44,19 +44,19 @@ const MyTests = () => {
                         Мои тесты
                     </label>
                     <div className="TemplateRows">
-                        {personalTests.length > 0
+                        {personalTests && personalTests.length > 0
                             ?
                             <>
-                                {personalTests.map(test =>
-                                    <TemplateRow key={test.id}
-                                                 test_title={test.title}
-                                                 group={"Группа " + test.group_id}
-                                                 tasks_amount={10}
-                                                 test={test}
-                                                 custom={false}
-                                                 pass_test={true}
-                                    />
-                                )}
+                                {/*{personalTests.map(test =>*/}
+                                {/*    <TemplateRow key={test.id}*/}
+                                {/*                 test_title={test.title}*/}
+                                {/*                 group={"Группа " + test.group_id}*/}
+                                {/*                 tasks_amount={10}*/}
+                                {/*                 test={test}*/}
+                                {/*                 custom={false}*/}
+                                {/*                 pass_test={true}*/}
+                                {/*    />*/}
+                                {/*)}*/}
                                 {personalTests.map((test, i) =>
                                     <RowModuleTests key={test.id}
                                                     test_title={test.title}
@@ -68,7 +68,9 @@ const MyTests = () => {
                                 )}
                             </>
                             :
-                            <></>
+                            <>
+                                Тесты не найдены
+                            </>
 
                         }
                     </div>

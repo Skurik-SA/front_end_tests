@@ -13,7 +13,7 @@ const Navbar = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    const [navPanelVisibility, setNavPanelVisibility] = useState(false)
+    const [navPanelVisibility, setNavPanelVisibility] = useState(true)
     const userData = useSelector(state => state.UserData.user_data)
     const navbarLinks = useSelector(state => state.NavbarData.navbar_link)
 

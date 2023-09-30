@@ -1,10 +1,13 @@
 import styles from "./RowModuleTests.module.css"
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {clear_personal_test} from "../../redux/store/slices/slice_TestForm";
 
 const RowModuleTests = (props) => {
 
     const navigate = useNavigate()
+    const dispatch = useDispatch()
 
     const {
         key,
@@ -16,17 +19,29 @@ const RowModuleTests = (props) => {
         mark
     } = props
 
-    const pass_btn = async () => {
-        // const {data} = await axios.get(`http://127.0.0.1:8000/tests/api/personal_test/${testID}`)
-        // navigate(`/test/${data.id}`)
-    }
-
     return (
         <>
             <div className={styles.row_module_tests_container}>
-                {test_title} {tasks_amount}
-                {is_closed ? "Завершён" : "Ожидает прохождения"}
-                {is_closed ? `Полученный балл: ${mark}` : ""}
+                <section className={styles.textInfo}>
+                    <div>
+                        {test_title} |
+                    </div>
+                    <div>
+                        {tasks_amount} заданий
+                    </div>
+                </section>
+                <section className={styles.textInfo}>
+                    {is_closed ? `Завершён. Полученный балл: ${mark}/${tasks_amount}` : "Ожидает прохождения..."}
+                    {is_closed ? <></> :
+                        <button className={styles.btnPassTest} onClick={() => {
+                            dispatch(clear_personal_test())
+                            navigate(`/test/${testID}`)
+                        }}>
+                            Пройти тест
+                        </button>
+                    }
+
+                </section>
             </div>
         </>
     )

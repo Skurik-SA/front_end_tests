@@ -6,13 +6,21 @@ import {useNavigate, useParams} from "react-router-dom";
 import {verifyToken} from "../../api/auth/VerifyToken";
 import {useDispatch, useSelector} from "react-redux";
 import {LOAD_TEST_PAGE} from "../../redux/saga/tests/saga_LoadTestPageData";
-import {save_task, set_is_active_task} from "../../redux/store/slices/slice_TestForm";
+import {
+    save_task,
+    send_data_to_check_test,
+    set_is_active_task,
+    set_test_id
+} from "../../redux/store/slices/slice_TestForm";
+import {SEND_TEST_DATA_TO_CHECK_ANSWERS} from "../../redux/saga/tests/saga_SendTestDataToCheckAnswers";
 
 const TestPage = () => {
     const dispatch = useDispatch()
     const params = useParams()
 
     const test = useSelector(state => state.TestFormData.test)
+    const test_id = useSelector(state => state.TestFormData.test_id)
+    const student_answers = useSelector(state => state.TestFormData.answers)
     const isActiveTask = useSelector(state => state.TestFormData.activeTask)
 
     //Сделать несколько варинатов input
@@ -23,7 +31,7 @@ const TestPage = () => {
     }
 
     const simpleInputChange = (event)=> {
-        setInputsValue(event.target.value)
+        setInputsValue(event.target.value.toUpperCase())
     }
 
     const changeTaskList = (task) => {
@@ -34,6 +42,16 @@ const TestPage = () => {
     const saveAnswer = () => {
         dispatch(save_task({test: test, active_id: isActiveTask.id, inputValue: inputValue}))
     }
+    const endTest = () => {
+        dispatch(send_data_to_check_test())
+        dispatch({type: SEND_TEST_DATA_TO_CHECK_ANSWERS,
+            data: {
+                id: test_id,
+                student_answers: student_answers
+            }
+        })
+        // navigate('/cabinet/my_tests')
+    }
 
     const navigate = useNavigate()
 
@@ -43,7 +61,9 @@ const TestPage = () => {
         }
         else {
             try {
-                verifyToken(localStorage.getItem('access_token'))
+                verifyToken(localStorage.getItem('access_token')).then(data => {
+                    console.log(data)
+                })
             }
             catch (e) {
                 navigate('/login')
@@ -53,6 +73,8 @@ const TestPage = () => {
 
     useEffect(() => {
         dispatch({type: LOAD_TEST_PAGE, id: params.task_id})
+
+        dispatch(set_test_id(test.test_id))
     }, [])
 
     return (
@@ -68,7 +90,7 @@ const TestPage = () => {
                         ?
                         <div></div>
                         :
-                        <PaginatedControlPanel tasks={test} change={changeTaskList}/>
+                        <PaginatedControlPanel tasks={test} change={changeTaskList} end={endTest}/>
 
                     }
                     <div className="BlockWrapper">
@@ -94,7 +116,8 @@ const TestPage = () => {
                                     <input type="text" className="simple_input" value={inputValue} onChange={simpleInputChange}/>
                                 </div>
                             }
-                            <button onClick={saveAnswer}>Сохранить ответ</button>
+
+                            <button onClick={saveAnswer}>{test.test_id} Сохранить ответ</button>
                         </div>
                     </div>
                 </>

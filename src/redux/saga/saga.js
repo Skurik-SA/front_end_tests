@@ -14,6 +14,8 @@ import {loadGroupData} from "./auth/saga_GroupDataByID";
 import {load_personal_custom_templates_data} from "./tests/saga_LoadPersonalCustomTemplates";
 import {addTemplatesToGroup} from "./auth/saga_AddTemplatesToGroup";
 import {createNewGroup} from "./auth/saga_CreateNewGroup";
+import {generate_tests_by_template_to_all_group} from "./tests/saga_GenerateTestsByTemplateToAllGroup";
+import {send_test_data_to_check_answers} from "./tests/saga_SendTestDataToCheckAnswers";
 
 // export function* rootSaga() {
 //     yield all([countWatcher(), userWatcher()])
@@ -36,6 +38,8 @@ export function* rootSaga() {
         loadGroupData,
         addTemplatesToGroup,
         createNewGroup,
+        generate_tests_by_template_to_all_group,
+        send_test_data_to_check_answers,
     ]
 
     const retrySagas = yield sagas.map(saga =>

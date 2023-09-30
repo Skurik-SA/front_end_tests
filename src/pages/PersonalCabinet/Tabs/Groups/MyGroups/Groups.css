@@ -36,6 +36,7 @@
 
 .add_button:active {
     background: #00b153;
+    scale: 0.95;
 }
 
 
@@ -61,6 +62,7 @@
     overflow: hidden;
     color: black;
     padding-left: 20px;
+    padding-right: 10px;
     margin-bottom: 4px;
     font-size: 1.3rem;
     font-family: Roboto, serif;
@@ -133,6 +135,7 @@
 
 .button_creation:active {
     background: #0067c5;
+    scale: 0.95;
 }
 
 .del_button {
@@ -150,11 +153,33 @@
 
 .del_button:active {
     background: #BD0000;
+    scale: 0.95;
 }
 
 .to_profile {
     width: 116px;
     height: 24px;
+}
+
+.gen_button {
+    border-color: transparent;
+    border-radius: 5px;
+    background: #003F43;
+
+    color: #FFF;
+    text-align: center;
+    font-family: Bitter, serif;
+    font-size: 16px;
+    font-style: normal;
+}
+
+.gen_button:hover {
+    background: #005e64;
+}
+
+.gen_button:active {
+    background: #003b3f;
+    scale: 0.95;
 }
 
 @media screen and  (min-width: 0px) {

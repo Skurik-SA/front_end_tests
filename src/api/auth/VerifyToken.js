@@ -2,12 +2,17 @@ import axios from "axios";
 
 export const verifyToken = async (token) => {
     try {
-        await axios.post("http://127.0.0.1:8000/user/api/token/verify/",
+        const data = await axios.post("http://127.0.0.1:8000/user/api/token/verify/",
             {
                 token: token
-            }).catch(function (error) {
-                localStorage.clear()
-                console.log(error)
+            }).then(function (data) {
+                if (data.response.status === 401) {
+                    localStorage.clear()
+                    window.location.replace('http://localhost:3000/');
+                }
+                else {
+                    return data.data
+                }
             })
     }
     catch (error) {

@@ -21,6 +21,9 @@ import AreYouSureToDelete from "../../../../../components/ModalWindows/AreYouSur
 import ModalAddTemplates from "../../../../../components/ModalWindows/ModalAddTemplates/ModalAddTemplates";
 import {LOAD_PERSONAL_CUSTOM_TEMPLATES} from "../../../../../redux/saga/tests/saga_LoadPersonalCustomTemplates";
 import CreateNewGroupWindow from "../../../../../components/ModalWindows/CreateNewGroupWindow/CreateNewGroupWindow";
+import {
+    GENERATE_TESTS_BY_TEMPLATE_TO_ALL_GROUP
+} from "../../../../../redux/saga/tests/saga_GenerateTestsByTemplateToAllGroup";
 
 const Groups = () => {
 
@@ -166,42 +169,45 @@ const Groups = () => {
                                     Выберите группу
                                 </div>
                             }
-                            {groupById.participants.length > 0
-                                ?
-                                <div className="tests_column">
-                                    <div className="title_labels">
-                                        <div>Тесты: </div>
-                                        <button className="add_button">
-                                            <label className="add_label"  onClick={() => {
-                                                setIsOpenTemplates(true)
+                            <div className="tests_column">
+                                <div className="title_labels">
+                                    <div>Тесты: </div>
+                                    <button className="add_button">
+                                        <label className="add_label"  onClick={() => {
+                                            setIsOpenTemplates(true)
 
-                                            }}>
-                                                Добавить
-                                            </label>
-                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="add_svg">
-                                                <rect x="13.4551" y="2.58942" width="19.0336" height="2.66667" rx="1.33333" transform="rotate(90 13.4551 2.58942)" fill="white"/>
-                                                <rect x="2.74805" y="10.8995" width="18.8101" height="2.66667" rx="1.33333" fill="white"/>
-                                            </svg>
-                                        </button>
-                                    </div>
-                                    {groupById.templates_title && groupById.templates_title.map((tt, index) =>
-                                        <Fragment key={index}>
-                                            <div className="person_row" >
-                                                <section className="fio_section">
-                                                    <div>
-                                                        {tt}
-                                                    </div>
-                                                </section>
-                                                <button>
-                                                    Сгенерировать
-                                                </button>
-                                            </div>
-                                        </Fragment>
-                                    )}
+                                        }}>
+                                            Добавить
+                                        </label>
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="add_svg">
+                                            <rect x="13.4551" y="2.58942" width="19.0336" height="2.66667" rx="1.33333" transform="rotate(90 13.4551 2.58942)" fill="white"/>
+                                            <rect x="2.74805" y="10.8995" width="18.8101" height="2.66667" rx="1.33333" fill="white"/>
+                                        </svg>
+                                    </button>
                                 </div>
-                                :
-                                <></>
-                            }
+                                {groupById.templates_title && groupById.templates_title.map((tt, index) =>
+                                    <Fragment key={index}>
+                                        <div className="person_row">
+                                            <section className="fio_section">
+                                                <div>
+                                                    {tt}
+                                                </div>
+                                            </section>
+                                            <button className={"gen_button"} onClick={() => {
+                                                dispatch({type: GENERATE_TESTS_BY_TEMPLATE_TO_ALL_GROUP,
+                                                    data: {
+                                                        group_id:  groupById.id,
+                                                        template_id: groupById.templates_id[index],
+                                                        user_id: Number(localStorage.getItem("user_id"))
+                                                    }
+                                                })
+                                            }}>
+                                                Сгенерировать
+                                            </button>
+                                        </div>
+                                    </Fragment>
+                                )}
+                            </div>
                         </div>
                     </DuoContentLeftPart>
                     <DuoContentRightPart>

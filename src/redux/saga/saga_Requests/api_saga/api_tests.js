@@ -70,7 +70,7 @@ export async function loadTestPage_data(id) {
 
 // Request to server to load task types
 export async function loadTaskTypes_data() {
-    const request = await axios.get(`http://127.0.0.1:8000/tests/api/task_types`)
+    const request = await axios.get(`${BASE_URL}/tests/api/task_types`)
     return request.data
 }
 
@@ -82,7 +82,21 @@ export async function getAllMyTests() {
 }
 
 export async function getTestData(id) {
-    const response = await axios.get(`http://127.0.0.1:8000/tests/api/personal_test/${id}`)
+    const response = await axios.get(`${BASE_URL}/tests/api/personal_test/${id}`)
     return response.data
 }
 
+export async function generateTestsByTemplateToAllGroup(data) {
+    // console.log(data)
+    const response = await axios.post(`${BASE_URL}/tests/api/generate_to_group_by_template/`, data)
+    return response.data
+}
+
+export async function sendTestDataToCheckAnswers(data) {
+    console.log(data)
+    const response = await axios.put(`${BASE_URL}/tests/api/personal_test/${data.id}/`, {
+        student_answers: data.student_answers
+    })
+    return response.data
+
+}
