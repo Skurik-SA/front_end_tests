@@ -98,5 +98,13 @@ export async function sendTestDataToCheckAnswers(data) {
         student_answers: data.student_answers
     })
     return response.data
+}
+
+export async function getClosedTestData(data) {
+    console.log(data)
+    const response = await axios.get(`${BASE_URL}/tests/api/get_all_own_tests/${data.testID}/`, {
+        user_id: localStorage.getItem('user_id')
+    })
+    return response.data
 
 }

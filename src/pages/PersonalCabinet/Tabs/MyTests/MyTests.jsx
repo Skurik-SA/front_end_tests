@@ -1,6 +1,6 @@
 import styles from "./MyTests.module.css"
 import {useDispatch, useSelector} from "react-redux";
-import {useEffect} from "react";
+import {Fragment, useEffect, useState} from "react";
 import {LOAD_PERSONAL_CUSTOM_TEMPLATES} from "../../../../redux/saga/tests/saga_LoadPersonalCustomTemplates";
 import {set_navbar_link} from "../../../../redux/store/slices/slice_Navbar";
 import NavigationLine from "../../NavigationLine/NavigationLine";
@@ -9,12 +9,15 @@ import WrapperPersonalCabinet from "../../WrapperPersonalCabinet/WrapperPersonal
 import {LOAD_PERSONAL_PAGE_DATA} from "../../../../redux/saga/tests/saga_LoadPersonalTests";
 import TemplateRow from "../../../../components/TemplateRow/TemplateRow";
 import RowModuleTests from "../../../../components/RowModuleTests/RowModuleTests";
+import DivideLineMono from "../../../../components/DivideLines/DivideLine_Mono/DivideLineMono";
+import Portal from "../../../../components/Portal/Portal";
 // import {LOAD_PERSONAL_PAGE_DATA} from "../../../../redux/saga/actions_Saga/actions_saga";
 
 const MyTests = () => {
     const dispatch = useDispatch()
     const isTeacher = useSelector(state => state.UserData.user_data.is_teacher)
     const personalTests = useSelector(state => state.PersonalTestsData.personal_tests)
+
 
     useEffect(() => {
         dispatch({type: LOAD_PERSONAL_PAGE_DATA})
@@ -43,6 +46,8 @@ const MyTests = () => {
                     <label>
                         Мои тесты
                     </label>
+                    <DivideLineMono/>
+
                     <div className="TemplateRows">
                         {personalTests && personalTests.length > 0
                             ?
@@ -58,13 +63,14 @@ const MyTests = () => {
                                 {/*    />*/}
                                 {/*)}*/}
                                 {personalTests.map((test, i) =>
-                                    <RowModuleTests key={test.id}
-                                                    test_title={test.title}
-                                                    tasks_amount={test.tasks_amount}
-                                                    is_closed={test.is_Closed}
-                                                    testID={test.id}
-                                                    mark={test.mark}
-                                    />
+                                    <Fragment key={i}>
+                                        <RowModuleTests test_title={test.title}
+                                                        tasks_amount={test.tasks_amount}
+                                                        is_closed={test.is_Closed}
+                                                        testID={test.id}
+                                                        mark={test.mark}
+                                        />
+                                    </Fragment>
                                 )}
                             </>
                             :
