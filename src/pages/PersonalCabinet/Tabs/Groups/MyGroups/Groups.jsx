@@ -170,21 +170,27 @@ const Groups = () => {
                                 </div>
                             }
                             <div className="tests_column">
-                                <div className="title_labels">
-                                    <div>Тесты: </div>
-                                    <button className="add_button">
-                                        <label className="add_label"  onClick={() => {
+                                {groupById.group_title === ""
+                                    ?
+                                    <>
+                                    </>
+                                    :
+                                    <div className="title_labels">
+                                        <div>Тесты: </div>
+                                        <button className="add_button" onClick={() => {
                                             setIsOpenTemplates(true)
-
                                         }}>
-                                            Добавить
-                                        </label>
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="add_svg">
-                                            <rect x="13.4551" y="2.58942" width="19.0336" height="2.66667" rx="1.33333" transform="rotate(90 13.4551 2.58942)" fill="white"/>
-                                            <rect x="2.74805" y="10.8995" width="18.8101" height="2.66667" rx="1.33333" fill="white"/>
-                                        </svg>
-                                    </button>
-                                </div>
+                                            <label className="add_label"  >
+                                                Добавить
+                                            </label>
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="add_svg">
+                                                <rect x="13.4551" y="2.58942" width="19.0336" height="2.66667" rx="1.33333" transform="rotate(90 13.4551 2.58942)" fill="white"/>
+                                                <rect x="2.74805" y="10.8995" width="18.8101" height="2.66667" rx="1.33333" fill="white"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                }
+
                                 {groupById.templates_title && groupById.templates_title.map((tt, index) =>
                                     <Fragment key={index}>
                                         <div className="person_row">

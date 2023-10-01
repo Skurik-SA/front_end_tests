@@ -12,6 +12,8 @@ const Slice_TestForm = createSlice({
     reducers: {
         set_test(state, action) {
             state.test = action.payload
+            state.answers = action.payload.map(() => "")
+            console.log(action.payload.length)
         },
         save_task(state, action) {
             state.test = action.payload.test.map(

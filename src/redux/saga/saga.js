@@ -17,6 +17,7 @@ import {createNewGroup} from "./auth/saga_CreateNewGroup";
 import {generate_tests_by_template_to_all_group} from "./tests/saga_GenerateTestsByTemplateToAllGroup";
 import {send_test_data_to_check_answers} from "./tests/saga_SendTestDataToCheckAnswers";
 import {get_closed_test_data} from "./tests/saga_GetClosedTestData";
+import {get_analytics_data} from "./analytics/saga_GetAnalyticsData";
 
 // export function* rootSaga() {
 //     yield all([countWatcher(), userWatcher()])
@@ -41,7 +42,8 @@ export function* rootSaga() {
         createNewGroup,
         generate_tests_by_template_to_all_group,
         send_test_data_to_check_answers,
-        get_closed_test_data
+        get_closed_test_data,
+        get_analytics_data
     ]
 
     const retrySagas = yield sagas.map(saga =>

@@ -1,0 +1,111 @@
+.journal_wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+}
+
+.journal_input_borders {
+    width: 30%;
+}
+
+.journal_table {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    margin-top: 5%;
+    margin-bottom: 10px;
+
+
+    background: transparent;
+    color: black;
+
+    width: 100%;
+
+    font-size: 1.2rem;
+    font-family: Roboto, serif;
+
+    border: 1px solid black;
+
+    overflow: auto;
+}
+
+.journal_tabs {
+    display: flex;
+    flex-direction: row;
+    /*justify-content: end;*/
+    padding-left: 25%;
+    width: 100%;
+}
+
+.journal_col {
+    width: 60px;
+
+    height: 80px;
+    outline: 1px solid black;
+    /*border-left:black solid 1px;*/
+    /*border-bottom:black solid 1px;*/
+    /*border-radius:5px;*/
+}
+
+.journal_testTitles {
+    rotate: 90deg;
+    width: 10px;
+    /*width: 100px;*/
+
+    white-space: nowrap;
+
+}
+
+.journal_names {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow: auto;
+
+}
+
+.journal_row {
+    display: flex;
+
+
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.journal_fio {
+    width: 25%;
+    border-top: 1px solid black;
+    border-right: 1px solid black;
+}
+
+.journal_mark_green, .journal_mark_red {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 60px;
+    border-top: 1px solid black;
+    border-right: 1px solid black;
+}
+
+.journal_mark_green {
+    color: green;
+}
+
+.journal_mark_red {
+    color: red;
+}
+
+.journal_mark_green:hover, .journal_mark_red:hover {
+    color: white;
+    cursor: pointer;
+}
+
+.journal_modal {
+
+}

@@ -61,8 +61,7 @@
 
     overflow: hidden;
     color: black;
-    padding-left: 20px;
-    padding-right: 10px;
+    padding: 2px 5px 2px 20px;
     margin-bottom: 4px;
     font-size: 1.3rem;
     font-family: Roboto, serif;

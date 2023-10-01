@@ -13,6 +13,7 @@ import {
     set_test_id
 } from "../../redux/store/slices/slice_TestForm";
 import {SEND_TEST_DATA_TO_CHECK_ANSWERS} from "../../redux/saga/tests/saga_SendTestDataToCheckAnswers";
+import DivideLineMono from "../../components/DivideLines/DivideLine_Mono/DivideLineMono";
 
 const TestPage = () => {
     const dispatch = useDispatch()
@@ -50,7 +51,7 @@ const TestPage = () => {
                 student_answers: student_answers
             }
         })
-        // navigate('/cabinet/my_tests')
+        navigate('/cabinet/my_tests')
     }
 
     const navigate = useNavigate()
@@ -73,7 +74,7 @@ const TestPage = () => {
 
     useEffect(() => {
         dispatch({type: LOAD_TEST_PAGE, id: params.task_id})
-
+        dispatch(send_data_to_check_test())
         dispatch(set_test_id(test.test_id))
     }, [])
 
@@ -95,29 +96,24 @@ const TestPage = () => {
                     }
                     <div className="BlockWrapper">
                         <div className="TaskContent">
-                            <div>
+                            <h1 >
                                 {isActiveTask.taskTitle}
-                            </div>
+                            </h1>
+                            <DivideLineMono/>
                             <div>
                                 {isActiveTask.taskText}
                             </div>
                         </div>
                         <div className="BtnContent">
-                            <div>
-                                Поле ввода:
-                            </div>
-                            {isActiveTask.inputType === '8bit_input'
-                                ?
-                                <div className="CustomInputWrapper">
-                                    <BoxMultipleInput inputValue={inputValue} onChange={numericInputChange}/>
-                                </div>
-                                :
+                            <div style={{display: "flex", justifyContent: 'center', alignItems: "center", fontSize: '1.5rem', gap: '20px'}}>
                                 <div>
-                                    <input type="text" className="simple_input" value={inputValue} onChange={simpleInputChange}/>
+                                    Поле ввода:
                                 </div>
-                            }
-
-                            <button onClick={saveAnswer}>{test.test_id} Сохранить ответ</button>
+                                <div>
+                                    <input type="text" className="testPage_input" value={inputValue} onChange={simpleInputChange}/>
+                                </div>
+                            </div>
+                            <button onClick={saveAnswer}> Сохранить ответ</button>
                         </div>
                     </div>
                 </>
