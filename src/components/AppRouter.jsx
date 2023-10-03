@@ -3,12 +3,8 @@ import Layout from "./Layout";
 import LoginPage from "../pages/AuthPages/LoginPage/LoginPage";
 import RegistrationPage from "../pages/AuthPages/RegistrationPage/RegistrationPage";
 import TestPage from "../pages/TestPage/TestPage";
-import PersonalPage from "../pages/PersonalPage/PersonalPage";
 import AllTestsPage from "../pages/AllTestsPage/AllTestsPage";
-import TestEditorPage from "../pages/TestEditorPage/TestEditorPage";
 import GroupsPage from "../pages/GroupsPage/GroupsPage";
-import MarksPage from "../pages/MarksPage/MarksPage";
-import StatisticsPage from "../pages/StatisticPage/StatisticsPage";
 import ChooseTemplate from "../pages/TemplatesPage/ChooseTemplate/ChooseTemplate";
 import CustomTemplates from "../pages/TemplatesPage/TemplateView/CustomTemplates";
 import GeneralTemplates from "../pages/TemplatesPage/TemplateView/GeneralTemplates";
@@ -38,18 +34,14 @@ const AppRouter = () => {
                     <Route path='test' element={<TestPage/>}/>
                     <Route path='test/:task_id' element={<TestPage/>}/>
 
-                    <Route path="templates" element={<ChooseTemplate/>}/>
-                    <Route path="templates/custom_templates" element={<CustomTemplates/>}/>
-                    <Route path="templates/general_templates" element={<GeneralTemplates/>}/>
-                    <Route path="templates/create_template/" element={<CreateTemplatePage/>}/>
-                    <Route path="templates/edit_template/:id_template" element={<EditTemplatePage/>}/>
+                    {/*<Route path="templates" element={<ChooseTemplate/>}/>*/}
+                    {/*<Route path="templates/custom_templates" element={<CustomTemplates/>}/>*/}
+                    {/*<Route path="templates/general_templates" element={<GeneralTemplates/>}/>*/}
+                    {/*<Route path="templates/create_template/" element={<CreateTemplatePage/>}/>*/}
+                    {/*<Route path="templates/edit_template/:id_template" element={<EditTemplatePage/>}/>*/}
 
-                    <Route path='personal' element={<PersonalPage/>}/>
-                    <Route path='all_tests' element={<AllTestsPage/>}/>
-                    <Route path='test_edit' element={<TestEditorPage/>}/>
-                    <Route path='groups' element={<GroupsPage/>}/>
-                    <Route path='marks' element={<MarksPage/>}/>
-                    <Route path='statistic' element={<StatisticsPage/>}/>
+                    {/*<Route path='all_tests' element={<AllTestsPage/>}/>*/}
+                    {/*<Route path='groups' element={<GroupsPage/>}/>*/}
 
                     <Route path={'cabinet'}>
                         <Route path='my_templates' element={<MyTemplates/>}/>

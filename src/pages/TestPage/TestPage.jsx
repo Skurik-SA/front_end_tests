@@ -1,7 +1,6 @@
 import {useEffect, useState} from "react";
 import "./TestPage.css"
 import PaginatedControlPanel from "../../components/PaginatedControlPanel/PaginatedControlPanel";
-import BoxMultipleInput from "../../components/Inputs/BoxMultipleInput/BoxMultipleInput";
 import {useNavigate, useParams} from "react-router-dom";
 import {verifyToken} from "../../api/auth/VerifyToken";
 import {useDispatch, useSelector} from "react-redux";

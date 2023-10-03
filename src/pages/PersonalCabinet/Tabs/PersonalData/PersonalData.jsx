@@ -12,8 +12,9 @@ import {
     change_user_email,
     change_user_firstname,
     change_user_lastname, change_user_phoneNumber,
-    change_user_surname
+    change_user_surname, save_user_changes
 } from "../../../../redux/store/slices/slice_User";
+import {UPDATE_USER_DATA} from "../../../../redux/saga/auth/saga_UpdateUserData";
 
 const PersonalData = () => {
 
@@ -110,6 +111,14 @@ const PersonalData = () => {
                                     Изменить пароль
                                 </label>
                             </div>
+                            <div className="">
+                                <button onClick={() => {
+                                    dispatch(save_user_changes())
+                                    dispatch({type: UPDATE_USER_DATA})
+                                }}>
+                                    Сохранить
+                                </button>
+                            </div>
                         </section>
                     </DuoContentLeftPart>
                     <DuoContentRightPart>
@@ -131,6 +140,7 @@ const PersonalData = () => {
                                     email
                                 </label>
                             </section>
+
                         </div>
                     </DuoContentRightPart>
                 </DuoContent>

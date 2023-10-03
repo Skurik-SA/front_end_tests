@@ -10,6 +10,7 @@ const NavigationPanel = ({children, visible, setVisible}) => {
     }
 
     return (
+        // <div style={{display: 'none'}} className={blur} onClick={() => {setVisible(true)}}>
         <div className={blur} onClick={() => {setVisible(true)}}>
             <div className={rootClasses.join(' ')} onClick={() => {setVisible(false)}}>
                 <div className={np.NavPanelContent} onClick={(e) => e.stopPropagation()}>

@@ -13,9 +13,11 @@ import FilterInput from "../../../../../components/FilterInput/FilterInput";
 import {set_navbar_link} from "../../../../../redux/store/slices/slice_Navbar";
 import {useNavigate} from "react-router-dom";
 import {clear_data} from "../../../../../redux/store/slices/slice_CreateTemplates";
-import {sort_templates} from "../../../../../redux/store/slices/slice_CustomTemplates";
+import {delete_custom_template, sort_templates} from "../../../../../redux/store/slices/slice_CustomTemplates";
 import FiltersHeader from "../../../../../components/FiltersHeader/FiltersHeader";
 import {LOAD_PERSONAL_CUSTOM_TEMPLATES} from "../../../../../redux/saga/tests/saga_LoadPersonalCustomTemplates";
+import {COPY_TEMPLATE} from "../../../../../redux/saga/tests/saga_CopyTemplate";
+import {DELETE_TEMPLATE} from "../../../../../redux/saga/tests/saga_DeleteTemplate";
 
 const MyTemplates = () => {
 
@@ -81,7 +83,9 @@ const MyTemplates = () => {
         }
     })
 
-    const copyRow = () => {
+    const copyRow = (id) => {
+        dispatch({type: COPY_TEMPLATE, payload: id})
+
         console.log("Копировать!!")
     }
 
@@ -90,7 +94,9 @@ const MyTemplates = () => {
         navigate(`/cabinet/my_templates/edit/${template_id}`)
         console.log("Редактировать!")
     }
-    const deleteRow = () => {
+    const deleteRow = (id) => {
+        dispatch({type: DELETE_TEMPLATE, payload: id})
+        dispatch(delete_custom_template(id))
         console.log("Удалить!")
     }
 
@@ -168,6 +174,7 @@ const MyTemplates = () => {
                                     copyHandler={copyRow}
                                     editHandler={editRow}
                                     deleteHandler={deleteRow}
+                                    isTemplate={true}
                                 />
                             )}
                         </div>

@@ -23,6 +23,7 @@ const RowModule = (
 
         isSorting,
         isDraggable,
+        isTemplate,
         width_style={width: "70%"}
     }) => {
 
@@ -84,7 +85,7 @@ const RowModule = (
                     }
                     {copyHandler
                         ?
-                        <CopyButton copyHandler={copyHandler} id={id}/>
+                        <CopyButton copyHandler={copyHandler} id={isTemplate ? template_id : id}/>
                         :
                         <></>
                     }
@@ -96,7 +97,7 @@ const RowModule = (
                     }
                     {deleteHandler
                         ?
-                        <DeleteButton deleteHandler={deleteHandler} rowID={index_row - 1}/>
+                        <DeleteButton deleteHandler={deleteHandler} rowID={isTemplate ? template_id : index_row - 1}/>
                         :
                         <></>
                     }

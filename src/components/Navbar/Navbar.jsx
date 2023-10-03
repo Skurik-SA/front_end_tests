@@ -48,7 +48,8 @@ const Navbar = () => {
                 <div className="NavbarContent">
                     <div className="NavbarBackground">
                         <div className="NavbarContentLeft">
-                            <div className="mb-2 mt-1" onClick={navPanelAction}>
+                            {/*<div className="mb-2 mt-1" onClick={navPanelAction}>*/}
+                            <div className="mb-2 mt-1">
                                 {navPanelVisibility ?
                                     <MenuIconActive/>
                                     :
@@ -116,12 +117,10 @@ const Navbar = () => {
                 visible={navPanelVisibility}
                 setVisible={setNavPanelVisibility}
             >
-                <div className="NavPanelContent">
-                    <NavigationButton link_to={"/personal"}>Личный кабинет</NavigationButton>
+                <div style={{display: 'none'}} className="NavPanelContent">
+                {/*<div className="NavPanelContent">*/}
                     <NavigationButton link_to={"/all_tests"}>Мои тесты</NavigationButton>
                     <NavigationButton link_to={"/groups"}>Группы</NavigationButton>
-                    <NavigationButton link_to={"/marks"}>Оценки</NavigationButton>
-                    <NavigationButton link_to={"/statistic"}>Статистика</NavigationButton>
                     <NavigationButton link_to={"/general_tests"}>Общие тесты</NavigationButton>
                     <NavigationButton link_to={"/templates"}>Шаблоны</NavigationButton>
                     <NavigationButton link_to={"/cabinet/my_templates"}>Новые шаблоны</NavigationButton>
