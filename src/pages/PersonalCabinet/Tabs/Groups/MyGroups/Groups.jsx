@@ -16,7 +16,7 @@ import FiltersHeader from "../../../../../components/FiltersHeader/FiltersHeader
 import DivideLineMono from "../../../../../components/DivideLines/DivideLine_Mono/DivideLineMono";
 import Portal from "../../../../../components/Portal/Portal";
 import ModalAddStudents from "../../../../../components/ModalWindows/ModalAddStudents/ModalAddStudents";
-import {delete_one_students} from "../../../../../redux/store/slices/slice_PersonalGroup";
+// import {delete_one_students} from "../../../../../redux/store/slices/slice_PersonalGroup";
 import AreYouSureToDelete from "../../../../../components/ModalWindows/AreYouSureToDelete/AreYouSureToDelete";
 import ModalAddTemplates from "../../../../../components/ModalWindows/ModalAddTemplates/ModalAddTemplates";
 import {LOAD_PERSONAL_CUSTOM_TEMPLATES} from "../../../../../redux/saga/tests/saga_LoadPersonalCustomTemplates";

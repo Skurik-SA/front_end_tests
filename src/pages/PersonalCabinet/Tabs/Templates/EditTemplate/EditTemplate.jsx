@@ -6,7 +6,7 @@ import {
     delete_task_to_test, save_test_template,
     save_test_template_new, set_group_value, set_input_value
 } from "../../../../../redux/store/slices/slice_CreateTemplates";
-import {SEND_TEST_TEMPLATE} from "../../../../../redux/saga/tests/saga_SendNewTestTemplate";
+// import {SEND_TEST_TEMPLATE} from "../../../../../redux/saga/tests/saga_SendNewTestTemplate";
 import {useDrop} from "react-dnd";
 import {GET_TASK_TYPES} from "../../../../../redux/saga/tests/saga_LoadTaskTypes";
 import {set_navbar_link} from "../../../../../redux/store/slices/slice_Navbar";

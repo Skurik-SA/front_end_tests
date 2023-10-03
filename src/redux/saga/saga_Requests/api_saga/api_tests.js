@@ -13,7 +13,6 @@ export async function loadCustomTemplates() {
 }
 
 export async function loadPersonalCustomTemplates(user_id) {
-    console.log(user_id)
     const request = await axios.post(`${BASE_URL}/tests/api/get_my_templates/`, {
         user_id: user_id
     })
@@ -37,7 +36,6 @@ export async function sendNewTemplate(data) {
 export async function updateTemplate_api(id, data) {
     const request = await axios.put(`${BASE_URL}/tests/api/test_template/${id}/`, data)
 
-    console.log(request)
     return request.data
 }
 
@@ -93,7 +91,6 @@ export async function generateTestsByTemplateToAllGroup(data) {
 }
 
 export async function sendTestDataToCheckAnswers(data) {
-    console.log(data)
     const response = await axios.put(`${BASE_URL}/tests/api/personal_test/${data.id}/`, {
         student_answers: data.student_answers
     })
@@ -101,10 +98,8 @@ export async function sendTestDataToCheckAnswers(data) {
 }
 
 export async function getClosedTestData(data) {
-    console.log(data)
     const response = await axios.get(`${BASE_URL}/tests/api/get_all_own_tests/${data.testID}/`, {
         user_id: localStorage.getItem('user_id')
     })
     return response.data
-
 }

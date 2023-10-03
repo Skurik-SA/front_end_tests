@@ -3,8 +3,8 @@ import WrapperPersonalCabinet from "../../WrapperPersonalCabinet/WrapperPersonal
 import NavigationLine from "../../NavigationLine/NavigationLine";
 import MonoContent from "../../MonoContent/MonoContent";
 import {useEffect} from "react";
-import {clear_data} from "../../../../redux/store/slices/slice_CreateTemplates";
-import {GET_TASK_TYPES} from "../../../../redux/saga/tests/saga_LoadTaskTypes";
+// import {clear_data} from "../../../../redux/store/slices/slice_CreateTemplates";
+// import {GET_TASK_TYPES} from "../../../../redux/saga/tests/saga_LoadTaskTypes";
 import {set_navbar_link} from "../../../../redux/store/slices/slice_Navbar";
 import {useDispatch} from "react-redux";
 
