@@ -11,8 +11,7 @@ export const Logout = () => {
     const logoutBtn = () => {
         (async () => {
             try {
-                const {data} = await
-                    axios.post(`${BASE_URL}/user/api/logout/`,{
+                await axios.post(`${BASE_URL}/user/api/logout/`,{
                             refresh_token:localStorage.getItem('refresh_token')
                         },{
                             headers: {'Content-Type': 'application/json'}

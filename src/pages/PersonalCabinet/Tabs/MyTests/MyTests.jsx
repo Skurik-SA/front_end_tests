@@ -1,17 +1,15 @@
 import styles from "./MyTests.module.css"
 import {useDispatch, useSelector} from "react-redux";
-import {Fragment, useEffect, useState} from "react";
-import {LOAD_PERSONAL_CUSTOM_TEMPLATES} from "../../../../redux/saga/tests/saga_LoadPersonalCustomTemplates";
+import {Fragment, useEffect} from "react";
 import {set_navbar_link} from "../../../../redux/store/slices/slice_Navbar";
 import NavigationLine from "../../NavigationLine/NavigationLine";
 import MonoContent from "../../MonoContent/MonoContent";
 import WrapperPersonalCabinet from "../../WrapperPersonalCabinet/WrapperPersonalCabinet";
 import {LOAD_PERSONAL_PAGE_DATA} from "../../../../redux/saga/tests/saga_LoadPersonalTests";
-import TemplateRow from "../../../../components/TemplateRow/TemplateRow";
+
 import RowModuleTests from "../../../../components/RowModuleTests/RowModuleTests";
 import DivideLineMono from "../../../../components/DivideLines/DivideLine_Mono/DivideLineMono";
-import Portal from "../../../../components/Portal/Portal";
-// import {LOAD_PERSONAL_PAGE_DATA} from "../../../../redux/saga/actions_Saga/actions_saga";
+
 
 const MyTests = () => {
     const dispatch = useDispatch()
@@ -52,16 +50,6 @@ const MyTests = () => {
                         {personalTests && personalTests.length > 0
                             ?
                             <>
-                                {/*{personalTests.map(test =>*/}
-                                {/*    <TemplateRow key={test.id}*/}
-                                {/*                 test_title={test.title}*/}
-                                {/*                 group={"Группа " + test.group_id}*/}
-                                {/*                 tasks_amount={10}*/}
-                                {/*                 test={test}*/}
-                                {/*                 custom={false}*/}
-                                {/*                 pass_test={true}*/}
-                                {/*    />*/}
-                                {/*)}*/}
                                 {personalTests.map((test, i) =>
                                     <Fragment key={i}>
                                         <RowModuleTests test_title={test.title}
