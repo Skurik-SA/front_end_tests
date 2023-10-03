@@ -48,8 +48,8 @@ const Navbar = () => {
                 <div className="NavbarContent">
                     <div className="NavbarBackground">
                         <div className="NavbarContentLeft">
-                            <div className="mb-2 mt-1" onClick={navPanelAction}>
-                            {/*<div className="mb-2 mt-1">*/}
+                            {/*<div className="mb-2 mt-1" onClick={navPanelAction}>*/}
+                            <div className="mb-2 mt-1">
                                 {navPanelVisibility ?
                                     <MenuIconActive/>
                                     :
@@ -117,8 +117,8 @@ const Navbar = () => {
                 visible={navPanelVisibility}
                 setVisible={setNavPanelVisibility}
             >
-                {/*<div style={{display: 'none'}} className="NavPanelContent">*/}
-                <div className="NavPanelContent">
+                <div style={{display: 'none'}} className="NavPanelContent">
+                {/*<div className="NavPanelContent">*/}
                     <NavigationButton link_to={"/all_tests"}>Мои тесты</NavigationButton>
                     <NavigationButton link_to={"/groups"}>Группы</NavigationButton>
                     <NavigationButton link_to={"/general_tests"}>Общие тесты</NavigationButton>
