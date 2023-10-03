@@ -80,6 +80,7 @@
     width: 25%;
     border-top: 1px solid black;
     border-right: 1px solid black;
+    color: white;
 }
 
 .journal_mark_green, .journal_mark_red {

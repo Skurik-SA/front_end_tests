@@ -13,7 +13,6 @@ function* workerSendTestDataToCheckAnswers(payload) {
     console.log(body)
     yield delay(1000)
     const data = yield call(sendTestDataToCheckAnswers, body)
-
 }
 
 function* watcherSendTestDataToCheckAnswers() {

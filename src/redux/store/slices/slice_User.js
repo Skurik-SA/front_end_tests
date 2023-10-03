@@ -20,7 +20,8 @@ const Slice_User = createSlice({
         input_last_name: "",
         input_phone_number: "",
         input_email: "",
-        groups: []
+        groups: [],
+        students_data: []
     },
     reducers: {
         set_user_data(state, action) {
@@ -64,6 +65,9 @@ const Slice_User = createSlice({
                 phone_number: state.input_phone_number,
             }
         },
+        set_students_data(state, action) {
+            state.students_data = action.payload
+        }
     }
 })
 
@@ -79,4 +83,5 @@ export const {
     change_user_phoneNumber,
     change_user_email,
     save_user_changes,
+    set_students_data,
 } = Slice_User.actions

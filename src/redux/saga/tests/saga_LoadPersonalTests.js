@@ -4,9 +4,12 @@ import {getAllMyTests, getPersonalTests} from "../saga_Requests/api_saga/api_tes
 import {get_personal_tests} from "../../store/slices/slice_PersonalTests";
 
 export const LOAD_PERSONAL_PAGE_DATA = "LOAD_PERSONAL_PAGE_DATA"
+const delay = (ms) => new Promise(res => setTimeout(res, ms))
 
 export function* workerLoadPersonalTests() {
     // const data = yield call(getPersonalTests)
+    yield delay(1000)
+
     const data = yield call(getAllMyTests)
 
     yield put(get_personal_tests(data))

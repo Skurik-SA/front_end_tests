@@ -19,8 +19,9 @@
 
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
-    padding: 100px;
     gap: 20px;
 
     font-family: Roboto, serif;
@@ -34,10 +35,9 @@
 
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 
-    padding-left: 30px;
     gap: 10px;
 
 
@@ -45,14 +45,21 @@
     color: black;
 }
 
+.btn_wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    gap: 20px;
+}
+
 .BtnContent button {
     height: 60px;
     background: #5cff7d;
     border: none;
     font-size: 24px;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-right: 20px;
+
 }
 
 .BtnContent button:hover {
@@ -84,3 +91,74 @@
     box-shadow: 0 0 0 0.2rem rgba(158, 158, 158, 0.25);
 }
 
+@media screen and (min-width: 300px) {
+    .BlockWrapper {
+        margin: 8px;
+    }
+
+    .TaskContent {
+        padding: 0;
+    }
+
+    .testPage_input {
+        width: 100px
+    }
+
+    .BtnContent {
+        background: #F5F5F5;
+        border: 1px solid black;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        padding-left: 20px;
+        gap: 10px;
+        padding-right: 20px;
+
+        min-height: 200px;
+    }
+
+    .btn_wrapper {
+        flex-direction: column;
+    }
+
+    .BtnContent button {
+        height: 60px;
+        background: #5cff7d;
+        border: none;
+        font-size: 24px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .BlockWrapper {
+        margin: 16px;
+    }
+
+    .BtnContent {
+        background: #F5F5F5;
+        border: 1px solid black;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        padding-left: 30px;
+        gap: 10px;
+
+
+        min-height: 100px;
+        color: black;
+    }
+
+    .btn_wrapper {
+        flex-direction: row;
+    }
+
+    .testPage_input {
+        width: calc(100% + 200px);
+    }
+}
