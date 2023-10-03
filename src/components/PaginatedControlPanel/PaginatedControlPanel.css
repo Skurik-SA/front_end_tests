@@ -10,4 +10,42 @@
     border: 1px solid #000000;
     align-items: center;
     justify-content: space-between;
+
+    font-family: Roboto, serif;
+}
+
+.btn_yes, .btn_no {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-color: transparent;
+    border-radius: 10px;
+    width: 100px;
+    font-family: Roboto, sans-serif;
+    color: white;
+}
+
+.btn_yes {
+    background: #4a9453;
+}
+
+.btn_no {
+    background: #ff2828;
+}
+
+.btn_yes:hover {
+    background: #29562d;
+}
+.btn_no:hover {
+    background: #b22a2a;
+}
+
+.btn_yes:active {
+    background: #4a9453;
+    scale: 0.95;
+}
+.btn_no:active {
+    background: #ff2828;
+    scale: 0.95;
 }

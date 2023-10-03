@@ -4,13 +4,20 @@ import {useEffect, useRef, useState} from "react";
 
 
 
-const FilterInput = ({callbackFunc, position="mid", placeholder="",
-                         options=[
-                            {value: "Грибы", id: 0},
-                            {value: "Молоко", id: 1},
-                            {value: "Рыба", id: 2},
-                            {value: "Группа с очень большим названием, которое не помещается в контейнер как бы ни пытался это сделать ", id: 3},
-                         ]
+const FilterInput = ({
+                        children,
+                        callbackFunc,
+                        position="mid",
+                        placeholder="",
+                        keyWord = "",
+                        IsDefaultValue,
+                        options= [
+                        {value: "Грибы", id: 0},
+                        {value: "Молоко", id: 1},
+                        {value: "Рыба", id: 2},
+                        {value: "Группа с очень большим названием, которое не помещается в контейнер как бы ни пытался это сделать ", id: 3},
+                        ],
+
 }) => {
 
     const [selectedOption, setSelectedOption] = useState(placeholder)
@@ -23,7 +30,7 @@ const FilterInput = ({callbackFunc, position="mid", placeholder="",
         setSelectedOption(someval)
         callbackFunc({
             value: someval,
-            id: someid
+            id: Number(someid)
         })
     }
 
@@ -51,7 +58,14 @@ const FilterInput = ({callbackFunc, position="mid", placeholder="",
                 {/*<div className="filterInputSelectWrapper" onClick={() => {setOpen(!open)}}>*/}
                     <div className="filterInputSelect">
                         <div className="filterInputSelectText">
-                            {selectedOption}
+                            <div>
+                                {IsDefaultValue
+                                    ?
+                                    <>{keyWord} {children}</>
+                                    :
+                                    <>{keyWord} {selectedOption}</>
+                                }
+                            </div>
                         </div>
 
                         <div className="filterInputSelectIcon">

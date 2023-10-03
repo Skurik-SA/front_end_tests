@@ -36,7 +36,7 @@ const LoginPage = () => {
     useEffect(() => {
         if (localStorage.getItem('access_token') !== null) {
             dispatch({type: LOAD_USER_DATA})
-            navigate("/personal")
+            navigate("/cabinet/personal_data")
         }
     }, [isLoading]);
 

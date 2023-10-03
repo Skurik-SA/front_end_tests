@@ -12,17 +12,23 @@
     margin-top: 20px;
     margin-bottom: 20px;
     user-select: none;
+    font-weight: 800;
+
 }
 
 
 .PaginationButtonMainStyle.saved {
     background: #767676;
     color: white;
+    font-weight: 800;
+
 }
 
 .PaginationButtonMainStyle.active {
     background: #212121;
     color: white;
+    font-weight: 800;
+
 }
 
 p {

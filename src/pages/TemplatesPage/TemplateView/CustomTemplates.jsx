@@ -8,6 +8,7 @@ import {LOAD_CUSTOM_TEMPLATES} from "../../../redux/saga/actions_Saga/actions_sa
 import DotedLoader from "../../../components/Loaders/DotedLoader/DotedLoader";
 import NinjaSearchInput from "../../../components/Inputs/NinjaSearchInput/NinjaSearchInput";
 import {clear_data} from "../../../redux/store/slices/slice_CreateTemplates";
+import {LOAD_PERSONAL_CUSTOM_TEMPLATES} from "../../../redux/saga/tests/saga_LoadPersonalCustomTemplates";
 
 
 const CustomTemplates = () => {
@@ -30,7 +31,7 @@ const CustomTemplates = () => {
     }
 
     useEffect(() => {
-        dispatch({type: LOAD_CUSTOM_TEMPLATES})
+        dispatch({type: LOAD_PERSONAL_CUSTOM_TEMPLATES, user_id: localStorage.getItem('user_id')})
     }, [])
 
     return (

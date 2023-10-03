@@ -1,5 +1,7 @@
 import styles from "./TaskTypePlate.module.css"
 import {DragPreviewImage, useDrag} from "react-dnd";
+import {useEffect} from "react";
+import {getEmptyImage} from "react-dnd-html5-backend";
 
 const TaskTypePlate = ({task_id, task_name, addTask}) => {
 
@@ -11,20 +13,9 @@ const TaskTypePlate = ({task_id, task_name, addTask}) => {
         })
     }))
 
-    const dosmth = (smth) => {
-        return(
-            // <div
-            //     ref={dragPreview}
-            //     key={task_id}
-            //     id={task_id}
-            //     className={styles.TaskTypePlate_onDrag}
-            // >
-            // </div>
-            <>
-                {dragPreview(smth)}
-            </>
-        )
-    }
+    useEffect(() => {
+        // dragPreview(getEmptyImage(), { captureDraggingState: true })
+    }, [])
 
     return (
         <>
@@ -40,22 +31,8 @@ const TaskTypePlate = ({task_id, task_name, addTask}) => {
             >
                 {task_name}
             </div>
-
-            {isDragging ?
-                dosmth(            <div
-                    ref={dragPreview}
-                    key={task_id}
-                    id={task_id}
-                    className={styles.TaskTypePlate_onDrag}
-                >
-                </div>)
-            :
-            <></>
-            }
-            <DragPreviewImage connect={dragPreview} src={""}/>
-
-
         </>
+
     )
 }
 

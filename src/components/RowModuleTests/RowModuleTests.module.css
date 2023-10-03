@@ -1,0 +1,57 @@
+.row_module_tests_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 92%;
+    height: 50px;
+
+    padding-left: 30px;
+    padding-right: 30px;
+    border-radius: 20px;
+
+    background: #EAEEFF;
+    color: black;
+
+    font-family: Roboto, serif;
+    font-size: 1.3rem;
+}
+
+.textInfo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    gap: 10px;
+}
+
+.btnPassTest {
+    height: 28px;
+    border-radius: 9px;
+    border-color: transparent;
+    color: black;
+
+    background: #F4F4F4;
+
+    font-size: 18px;
+
+    padding-left: 10px;
+    padding-right: 10px;
+
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .35);
+    cursor: pointer;
+    user-select: none;
+}
+
+.btnPassTest:hover {
+    background: #dadada;
+}
+
+.btnPassTest:active {
+    background: #F4F4F4;
+
+    box-shadow: 0 0 0 0 rgba(0, 40, 120, 0);
+    /*background-position: 0 0;*/
+}
+

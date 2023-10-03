@@ -11,35 +11,109 @@ import {useEffect, useState} from "react";
 import {LOAD_CUSTOM_TEMPLATES} from "../../../../../redux/saga/actions_Saga/actions_saga";
 import FilterInput from "../../../../../components/FilterInput/FilterInput";
 import {set_navbar_link} from "../../../../../redux/store/slices/slice_Navbar";
+import {useNavigate} from "react-router-dom";
+import {clear_data} from "../../../../../redux/store/slices/slice_CreateTemplates";
+import {delete_custom_template, sort_templates} from "../../../../../redux/store/slices/slice_CustomTemplates";
+import FiltersHeader from "../../../../../components/FiltersHeader/FiltersHeader";
+import {LOAD_PERSONAL_CUSTOM_TEMPLATES} from "../../../../../redux/saga/tests/saga_LoadPersonalCustomTemplates";
+import {COPY_TEMPLATE} from "../../../../../redux/saga/tests/saga_CopyTemplate";
+import {DELETE_TEMPLATE} from "../../../../../redux/saga/tests/saga_DeleteTemplate";
 
 const MyTemplates = () => {
 
+    const navigate = useNavigate()
     const dispatch = useDispatch()
-    const tests = useSelector(state => state.CustomTemplatesData.custom_templates)
+    const templates = useSelector(state => state.CustomTemplatesData.custom_templates)
 
-    const [filter_1, setFilter_1] = useState('')
-    const changeFilter_1 = (value) => {
-        setFilter_1(value)
+    const options_order = [
+        {
+            value: 'По алфавиту',
+            id: 0,
+        },
+        {
+            value: 'В обратном порядке',
+            id: 1,
+        },
+        {
+            value: 'По дате создания',
+            id: 2,
+        },
+        {
+            value: 'По дате обновления',
+            id: 3,
+        },
+    ]
+    const [filter_order, setFilter_Order] = useState(options_order[3])
+    const changeFilter_Order = (value) => {
+        setFilter_Order(value)
+        dispatch(sort_templates({id: value.id}))
+    }
+
+    const options_groups = [
+        {
+            value: "Все группы",
+            id: -1
+        },
+        ...useSelector(state => state.UserData.groups).map(
+            group => {
+                 return {
+                        value: group.title,
+                        id: group.id
+                    }
+            })
+    ]
+    const [filter_group, setFilter_Group] = useState(options_groups[0])
+
+    const changeFilter_Group = (value) => {
+        setFilter_Group(value)
     }
 
     const [filterInput, setFilterInput] = useState("")
-    const filteredData = tests.filter(test => {
-        return (test.title + " " + test.group_id).toLowerCase().includes(filterInput.toLowerCase())
+    const filteredData = templates.filter(template => {
+        if (filter_group.id === -1) {
+            return (template.title + " " + template.group_id).toLowerCase().includes(filterInput.toLowerCase())
+        }
+        else {
+            if (template.group_id === filter_group.id) {
+                return (template.title + " " + template.group_id).toLowerCase().includes(filterInput.toLowerCase())
+            }
+            else if (filter_group.id === -1) {
+                return (template.title + " " + template.group_id).toLowerCase().includes(filterInput.toLowerCase())
+            }
+        }
     })
 
-    const copyRow = () => {
+    const copyRow = (id) => {
+        dispatch({type: COPY_TEMPLATE, payload: id})
+
         console.log("Копировать!!")
     }
 
-    const editRow = () => {
+    const editRow = (template_id) => {
+        dispatch(clear_data())
+        navigate(`/cabinet/my_templates/edit/${template_id}`)
         console.log("Редактировать!")
     }
-    const deleteRow = () => {
+    const deleteRow = (id) => {
+        dispatch({type: DELETE_TEMPLATE, payload: id})
+        dispatch(delete_custom_template(id))
         console.log("Удалить!")
     }
 
+    const clearFilters = () => {
+        setFilterInput("")
+        setFilter_Order(options_order[3])
+        dispatch(sort_templates({id: 3}))
+        setFilter_Group(options_groups[0])
+    }
+
     useEffect(() => {
-        dispatch({type: LOAD_CUSTOM_TEMPLATES})
+        // Диспатч ниже загрузит абсолютно все шаблоны
+        // dispatch({type: LOAD_CUSTOM_TEMPLATES})
+
+        // Диспатч ниже загрузит только шаблоны пользователя
+        dispatch({type: LOAD_PERSONAL_CUSTOM_TEMPLATES, user_id: localStorage.getItem('user_id')})
+
         dispatch(set_navbar_link(
             [
                 {
@@ -80,27 +154,50 @@ const MyTemplates = () => {
                     <DivideLineMono/>
                     <div className="myTemplates_ContentWrapper">
                         <div className="myTemplates_TemplateWrapper">
-                            {filteredData.map((test, index) =>
+                            <section className="subButtonsToFilter">
+                                <label className="subButtonsToFilter_label">
+                                    Найдено: {filteredData.length}
+                                </label>
+                            </section>
+                            {filteredData.map((template, index) =>
                                 <RowModule
                                     key={index}
                                     index_row={index + 1}
                                     width_style={{width: "97%"}}
-                                    template_name={test.title}
-                                    template_group={"Группа: " + test.group_id}
-                                    template_tasks_count={test.tasks_amount + " заданий"}
-                                    template_tasks={test.tasks_description}
+                                    template_name={template.title}
+                                    template_group={template.group_title}
+                                    // template_tasks_count={template.tasks_amount + " заданий"}
+                                    template_tasks={template.tasks_description}
+                                    template_id={template.id}
+
 
                                     copyHandler={copyRow}
                                     editHandler={editRow}
                                     deleteHandler={deleteRow}
+                                    isTemplate={true}
                                 />
                             )}
                         </div>
 
                         <div className="myTemplates_FiltersWrapper">
-                            <FilterInput placeholder={"Сортировка"} position={"up"} callbackFunc={changeFilter_1}/>
-                            <FilterInput placeholder={"Фильтр по группе"} position={"down"} callbackFunc={changeFilter_1}/>
-                            {/*<div style={{background: 'white', width: '100%', color: 'black', cursor: 'pointer'}} onClick={() => {console.log(filter_1)}}>найти</div>*/}
+                            <FiltersHeader clearFilters={clearFilters}/>
+                            <FilterInput placeholder={"Сортировка"}
+                                         position={"up"}
+                                         options={options_order}
+                                         callbackFunc={changeFilter_Order}
+                                         keyWord={"Сортировать: "}
+                                         IsDefaultValue
+                            >
+                                {filter_order.value}
+                            </FilterInput>
+                            <FilterInput placeholder={"Все группы"}
+                                         position={"down"}
+                                         options={options_groups}
+                                         callbackFunc={changeFilter_Group}
+                                         IsDefaultValue
+                            >
+                                {filter_group.value}
+                            </FilterInput>
                         </div>
                     </div>
 

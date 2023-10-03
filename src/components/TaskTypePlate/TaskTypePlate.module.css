@@ -11,6 +11,7 @@
 
     background: #4B4B4B;
     cursor: pointer;
+
 }
 
 .TaskTypePlate_taskTypesPlate:hover {
@@ -18,8 +19,13 @@
 }
 
 .TaskTypePlate_onDrag {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: 50px;
     height: 50px;
 
     background: black;
+
 }

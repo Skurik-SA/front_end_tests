@@ -8,8 +8,7 @@ import DivideLineMono from "../../../../../components/DivideLines/DivideLine_Mon
 import Search from "../../../../../components/Search/Search";
 import FilterInput from "../../../../../components/FilterInput/FilterInput";
 import {useDispatch, useSelector} from "react-redux";
-import {useEffect, useState} from "react";
-import RowModule from "../../../../../components/RowModule/RowModule";
+import {useEffect, useRef, useState} from "react";
 import {GET_TASK_TYPES} from "../../../../../redux/saga/tests/saga_LoadTaskTypes";
 import {
     add_task_to_test,
@@ -21,6 +20,8 @@ import {useNavigate} from "react-router-dom";
 import {set_navbar_link} from "../../../../../redux/store/slices/slice_Navbar";
 import TaskTypePlate from "../../../../../components/TaskTypePlate/TaskTypePlate";
 import {useDrop} from "react-dnd";
+import RowModuleDnD from "../../../../../components/RowModule/RowModuleDnD";
+import FiltersHeader from "../../../../../components/FiltersHeader/FiltersHeader";
 
 const CreateTemplate = () => {
 
@@ -91,6 +92,15 @@ const CreateTemplate = () => {
     const [correctFields, setCorrectFields] = useState(false)
     const saveBtn = async () => {
         setCorrectFields(true)
+        if (templateTitle !== "" && !selectedGroup) {
+            dispatch(save_test_template_new({
+                title: templateTitle,
+                group_id: 10
+            }))
+            setCorrectFields(false)
+            dispatch({type: SEND_TEST_TEMPLATE})
+            navigate("/cabinet/my_templates")
+        }
         if (templateTitle !== "" && selectedGroup) {
             dispatch(save_test_template_new({
                 title: templateTitle,
@@ -116,9 +126,21 @@ const CreateTemplate = () => {
         console.log("Удалить!")
     }
 
+    const clearFilters = () => {
+        setFilterInput("")
+    }
+
     const [{isOver}, drop] = useDrop(() => ({
         accept: "type_plate",
-        drop: (item) => addTask(item.id),
+        drop: (item, monitor) => {
+
+            // console.log("getDifferenceFromInitialOffset", monitor.getDifferenceFromInitialOffset())
+            // console.log("getClientOffset| Позиция, где курсор оказался на момент отжатия кнопки", monitor.getClientOffset())
+            // console.log("getInitialSourceClientOffset| Позиция курсора в момент захвата", monitor.getInitialSourceClientOffset())
+            // console.log("getSourceClientOffset| Позиция курсора в момент отпускания", monitor.getSourceClientOffset())
+
+            addTask(item.id)
+        },
         collect: (monitor) => ({
             isOver: !!monitor.isOver(),
         })
@@ -199,17 +221,20 @@ const CreateTemplate = () => {
 
                         <div className={styles.CreateTemplateLeft_TaskArea} ref={drop}>
                             {template_tasks.map((task, index) =>
-                                <RowModule
+                                <RowModuleDnD
                                     key={index}
                                     index_row={index + 1}
                                     width_style={{width: "100%"}}
 
                                     id={task.task_id}
 
+                                    test_data={template_tasks}
+
                                     copyHandler={copyRow}
                                     editHandler={editRow}
                                     deleteHandler={deleteRow}
 
+                                    isDraggable
                                     template_name={task.name}
                                 />
                             )}
@@ -231,8 +256,8 @@ const CreateTemplate = () => {
                                         setFilterInput(e.target.value)
                                     }}
                                 />
-                                <div>
-                                    Фильтры:
+                                <div style={{width: "100%"}}>
+                                    <FiltersHeader clearFilters={clearFilters}/>
                                 </div>
                                 <FilterInput placeholder={"Выберите предмет"} position={"up"} options={Subjects} callbackFunc={selectSubject}/>
                                 <FilterInput placeholder={"Выберите сложность"} position={"mid"} options={Difficulties} callbackFunc={selectDifficulty}/>

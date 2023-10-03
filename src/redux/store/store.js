@@ -11,6 +11,7 @@ import Slice_PersonalTests from "./slices/slice_PersonalTests";
 import Slice_User from "./slices/slice_User";
 import Slice_PersonalGroup from "./slices/slice_PersonalGroup";
 import Slice_Navbar from "./slices/slice_Navbar";
+import Slice_Analytics from "./slices/slice_Analytics";
 
 
 const sagaMiddleware = createSagaMiddleware()
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
 
     PersonalGroupData: Slice_PersonalGroup,
     UserData: Slice_User,
+    AnalyticsData: Slice_Analytics,
 
     NavigationData: Slice_Navigation,
     NavbarData: Slice_Navbar,

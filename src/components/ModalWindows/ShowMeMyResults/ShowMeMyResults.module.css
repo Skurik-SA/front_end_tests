@@ -1,0 +1,71 @@
+.modal_showMe_wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    width: 70vw;
+    height: 70vh;
+
+    font-family: Roboto, serif;
+    overflow: hidden;
+}
+
+.modal_showMe_top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.modal_showMe_content {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
+
+.modal_showMe_task_block {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal_showMe_correct_answer {
+    color: #006209;
+}
+
+.modal_showMe_incorrect_answer {
+    color: #620000;
+}
+
+.modal_showMe_exit_btn_wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.modal_showMe_exit_btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 24px;
+    height: 24px;
+
+    cursor: pointer;
+    border-radius: 5px;
+    background: #404040;
+}
+
+.modal_showMe_exit_btn:hover {
+    background: #6b6b6b;
+}
+
+.modal_showMe_exit_btn:active {
+    background: #404040;
+}
+
+.modal_showMe_loader_wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
