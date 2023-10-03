@@ -24,10 +24,12 @@ import CreateNewGroupWindow from "../../../../../components/ModalWindows/CreateN
 import {
     GENERATE_TESTS_BY_TEMPLATE_TO_ALL_GROUP
 } from "../../../../../redux/saga/tests/saga_GenerateTestsByTemplateToAllGroup";
+import {GET_STUDENTS_DATA} from "../../../../../redux/saga/tests/saga_GetStudentsData";
 
 const Groups = () => {
 
     const userGroups = useSelector(state => state.UserData.groups)
+    const studentsAccData = useSelector(state => state.UserData.students_data)
     const groupById = useSelector(state => state.PersonalGroupData.data)
     const teachers = useSelector(state => state.PersonalGroupData.teacher_fio)
 
@@ -54,6 +56,7 @@ const Groups = () => {
     const [isOpenTemplates, setIsOpenTemplates] = useState(false)
     const [isOpenAreYouSure, setIsOpenAreYouSure] = useState(false)
     const [isOpenNewGroup, setIsOpenNewGroup] = useState(false)
+    const [isOpenStudentsAccInfo, setIsOpenStudentsAccInfo] = useState(false)
 
 
     const [stToDel, setStToDel] = useState(null)
@@ -112,12 +115,26 @@ const Groups = () => {
                             <ModalAddTemplates group_id={groupById.id} onClose={() => setIsOpenTemplates(false)}/>
                         </Portal>
 
+                        <Portal open={isOpenStudentsAccInfo} onClose={() => setIsOpenStudentsAccInfo(false)} style={{  boxShadow:
+                                "0 0 100px 0 rgba(0,0,0,0.75)", background: '#EAEEFF'
+                        }}>
+                            <div style={{display: 'flex', flexDirection: 'column', gap: '10px', width: '50vw', height: '50vh', overflow: 'auto'}}>
+                                {studentsAccData && studentsAccData.length > 0 && studentsAccData.map((student, index) =>
+                                    <div>
+                                        <div style={{fontSize: '1.3rem'}}>{index + 1}. {student.fio}</div>
+                                        <div style={{paddingLeft: '30px'}}>Логин: {student.login} </div>
+                                        <div style={{paddingLeft: '30px'}}>Пароль: {student.password} </div>
+                                    </div>
+                                )}
+                            </div>
+                        </Portal>
+
                         <div className="split_content_left">
                             {groupById.participants.length > 0
                                 ?
                                 <div className="students_column">
                                     <div className="title_labels">
-                                        <div>Ученики: </div>
+                                        <div style={{cursor: "pointer"}} onClick={() => setIsOpenStudentsAccInfo(true)}>Ученики: </div>
                                         <button className="add_button" onClick={() => setIsOpenStudents(true)}>
                                             <label className="add_label">
                                                 Добавить
@@ -239,6 +256,7 @@ const Groups = () => {
                                         key={group.id}
                                         onClick={() => {
                                             get_data_by_group(group.id)
+                                            dispatch({type: GET_STUDENTS_DATA, group_id: group.id})
                                         }}
                                     >
                                         {group.title}

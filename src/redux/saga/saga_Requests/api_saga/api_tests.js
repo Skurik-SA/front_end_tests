@@ -103,3 +103,11 @@ export async function getClosedTestData(data) {
     })
     return response.data
 }
+
+export async function getStudentsData(group_id) {
+    const response = await axios.post(`${BASE_URL}/other/api/get_st_data/`, {
+        group_id: group_id,
+        owner_id: localStorage.getItem('user_id')
+    })
+    return response.data
+}

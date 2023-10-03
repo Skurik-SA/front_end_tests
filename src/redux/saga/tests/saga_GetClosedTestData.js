@@ -6,7 +6,6 @@ export const GET_CLOSED_TEST_DATA = "GET_CLOSED_TEST_DATA"
 
 function* workerGetClosedTestData(test_id) {
     const data = yield call(getClosedTestData, test_id)
-    console.log(data)
     yield put(set_closed_personal_test_info(data))
 }
 

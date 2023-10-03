@@ -36,6 +36,9 @@ const Slice_PersonalTests = createSlice({
                 answers: [],
                 is_correct_answers: [],
             }
+        },
+        clear_pt(state) {
+            state.personal_tests = []
         }
     }
 })
@@ -46,4 +49,5 @@ export const {
     get_personal_tests,
     set_closed_personal_test_info,
     clear_closed_personal_test_info,
+    clear_pt,
 } = Slice_PersonalTests.actions

@@ -13,6 +13,8 @@ import {
 } from "../../redux/store/slices/slice_TestForm";
 import {SEND_TEST_DATA_TO_CHECK_ANSWERS} from "../../redux/saga/tests/saga_SendTestDataToCheckAnswers";
 import DivideLineMono from "../../components/DivideLines/DivideLine_Mono/DivideLineMono";
+import {clear_pt} from "../../redux/store/slices/slice_PersonalTests";
+import {set_navbar_link} from "../../redux/store/slices/slice_Navbar";
 
 const TestPage = () => {
     const dispatch = useDispatch()
@@ -50,7 +52,8 @@ const TestPage = () => {
                 student_answers: student_answers
             }
         })
-        navigate('/cabinet/my_tests')
+        dispatch(clear_pt())
+        navigate('/cabinet/personal_data')
     }
 
     const navigate = useNavigate()
@@ -75,6 +78,15 @@ const TestPage = () => {
         dispatch({type: LOAD_TEST_PAGE, id: params.task_id})
         dispatch(send_data_to_check_test())
         dispatch(set_test_id(test.test_id))
+        dispatch(set_navbar_link(
+            [
+                {
+                    link: 'cabinet/my_tests',
+                    link_name: 'Мои тесты | ',
+                    active: true,
+                }
+            ]
+        ))
     }, [])
 
     return (
@@ -104,7 +116,7 @@ const TestPage = () => {
                             </div>
                         </div>
                         <div className="BtnContent">
-                            <div style={{display: "flex", justifyContent: 'center', alignItems: "center", fontSize: '1.5rem', gap: '20px'}}>
+                            <div className="btn_wrapper">
                                 <div>
                                     Поле ввода:
                                 </div>
