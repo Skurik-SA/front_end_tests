@@ -1,6 +1,7 @@
 import axios from "axios";
 import {useDispatch} from "react-redux";
 import {delete_user_data} from "../../redux/store/slices/slice_User";
+import {BASE_URL} from "../../redux/saga/saga_Requests/api_base_constants";
 
 
 export const Logout = () => {
@@ -11,7 +12,7 @@ export const Logout = () => {
         (async () => {
             try {
                 const {data} = await
-                    axios.post('http://localhost:8000/user/api/logout/',{
+                    axios.post(`${BASE_URL}/user/api/logout/`,{
                             refresh_token:localStorage.getItem('refresh_token')
                         },{
                             headers: {'Content-Type': 'application/json'}
