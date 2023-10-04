@@ -46,7 +46,7 @@ const LoginPage = () => {
                 <div className="AuthPageContent">
                     <div className="AuthPageContentBlock">
                         <div className="partUp">
-                            <div>
+                            <div className="auth_logo">
                                 Авторизация
                             </div>
                             <div>
@@ -54,8 +54,8 @@ const LoginPage = () => {
                             </div>
                         </div>
 
-                        <form>
-                            <div>
+                        <form className="form_style">
+                            <div className="input_container">
                                 <UsernameIcon/>
                                 <input type="text"
                                        placeholder="логин"
@@ -64,7 +64,7 @@ const LoginPage = () => {
                                        onChange={e => setUsername(e.target.value)}
                                 />
                             </div>
-                            <div>
+                            <div className="input_container">
                                 <Password1Icon/>
                                 <input type="password"
                                        placeholder="пароль"
@@ -73,12 +73,10 @@ const LoginPage = () => {
                                        onChange={e => setPassword(e.target.value)}
                                 />
                             </div>
-                            <div>
-                                <div>
-                                    <button type="submit" className="submitButton" onClick={login}>Войти</button>
-                                </div>
-
+                            <div className="btn_wrapper2">
+                                <button type="submit" className="submitButton" onClick={login}>Войти</button>
                             </div>
+
                         </form>
                     </div>
                 </div>

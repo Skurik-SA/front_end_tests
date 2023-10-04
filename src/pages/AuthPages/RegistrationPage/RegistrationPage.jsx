@@ -60,7 +60,7 @@ const RegistrationPage = () => {
                 <div className="AuthPageContent">
                     <div className="AuthPageContentBlock">
                         <div className="partUp">
-                            <div>
+                            <div className="auth_logo">
                                 Регистрация
                             </div>
                             <div>
@@ -68,8 +68,8 @@ const RegistrationPage = () => {
                             </div>
                         </div>
 
-                        <form>
-                            <div>
+                        <form className="form_style">
+                            <div className="input_container">
                                 <UsernameIcon/>
                                 <input type="text"
                                        placeholder="логин"
@@ -78,7 +78,7 @@ const RegistrationPage = () => {
                                        onChange={e => setUsername(e.target.value)}
                                 />
                             </div>
-                            <div>
+                            <div className="input_container">
                                 <Password1Icon/>
                                 <input type="password"
                                        placeholder="пароль"
@@ -87,7 +87,7 @@ const RegistrationPage = () => {
                                        onChange={e => setPassword1(e.target.value)}
                                 />
                             </div>
-                            <div>
+                            <div className="input_container">
                                 <Password2Icon/>
                                 <input type="password"
                                        placeholder="повторите пароль"
