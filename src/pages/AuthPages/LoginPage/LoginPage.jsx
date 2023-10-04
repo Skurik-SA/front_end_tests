@@ -46,7 +46,7 @@ const LoginPage = () => {
                 <div className="AuthPageContent">
                     <div className="AuthPageContentBlock">
                         <div className="partUp">
-                            <div>
+                            <div className="auth_logo">
                                 Авторизация
                             </div>
                             <div>

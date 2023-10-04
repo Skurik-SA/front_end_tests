@@ -68,7 +68,8 @@ form div {
     background: #57A0D6;
     border: none;
     color: white;
-
+    font-family: Roboto, serif;
+    font-size: 1.2rem;
     width: 100%;
     border-radius: 5px;
 }
@@ -107,6 +108,10 @@ form div {
 .btn_wrapper2 {
     width: 40%;
     padding-left: 5%;
+}
+
+.auth_logo {
+    font-size: 1.4rem;
 }
 
 @media screen and  (min-width: 0px) {
