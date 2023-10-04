@@ -73,7 +73,7 @@ const LoginPage = () => {
                                        onChange={e => setPassword(e.target.value)}
                                 />
                             </div>
-                            <div>
+                            <div className="btn_wrapper2">
                                 <button type="submit" className="submitButton" onClick={login}>Войти</button>
                             </div>
 

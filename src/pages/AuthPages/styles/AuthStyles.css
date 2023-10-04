@@ -86,7 +86,7 @@ form div {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
+    padding-right: 10%;
 }
 
 .switchPageAuthBtn {
@@ -104,6 +104,10 @@ form div {
     background: #7c7c7c;
 }
 
+.btn_wrapper2 {
+    width: 40%;
+    padding-left: 5%;
+}
 
 @media screen and  (min-width: 0px) {
     .partUp {
@@ -111,8 +115,22 @@ form div {
 
         flex-direction: column;
         gap: 20px;
-
+        margin-left: 12px;
     }
+
+    .btn_wrapper2 {
+        width: 60%;
+        padding-left: 12%;
+    }
+
+    .form_style {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-right: 5%;
+    }
+
     .switchPageAuthBtn {
         background: none;
         border: 1px solid #000000; /* Параметры рамки */
@@ -135,6 +153,11 @@ form div {
 
         flex-direction: row;
 
+    }
+
+    .btn_wrapper2 {
+        width: 40%;
+        padding-left: 5%;
     }
 
     .AuthPageContentBlock {
