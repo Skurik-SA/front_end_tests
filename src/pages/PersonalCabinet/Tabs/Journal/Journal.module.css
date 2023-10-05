@@ -4,6 +4,7 @@
     justify-content: center;
     align-items: flex-start;
 
+    width: 82vw;
 }
 
 .journal_input_borders {
@@ -33,6 +34,29 @@
     overflow: auto;
 }
 
+.journal_names {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    overflow: auto;
+}
+
+.journal_marks {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    overflow: auto;
+}
+
+.journal_columns {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+
+
+}
+
 .journal_tabs {
     display: flex;
     flex-direction: row;
@@ -45,7 +69,7 @@
     width: 60px;
 
     height: 80px;
-    outline: 1px solid black;
+    /*outline: 1px solid black;*/
     /*border-left:black solid 1px;*/
     /*border-bottom:black solid 1px;*/
     /*border-radius:5px;*/
@@ -60,13 +84,7 @@
 
 }
 
-.journal_names {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    overflow: auto;
 
-}
 
 .journal_row {
     display: flex;
@@ -77,21 +95,29 @@
 }
 
 .journal_fio {
-    width: 25%;
-    border-top: 1px solid black;
-    border-right: 1px solid black;
+
+    min-width: 350px;
+    padding: 10px;
+
+    font-size: 1rem;
+    /*border-top: 1px solid black;*/
+    /*border-right: 1px solid black;*/
     color: white;
+    border: 1px solid black;
+
 }
 
 .journal_mark_green, .journal_mark_red {
+    font-size: 1rem;
+    min-width: 100px;
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
-    padding-left: 10px;
-    padding-right: 10px;
-    width: 60px;
-    border-top: 1px solid black;
-    border-right: 1px solid black;
+    justify-content: center;
+    padding: 10px;
+
+    border: 1px solid black;
+
+    white-space: nowrap;
 }
 
 .journal_mark_green {
@@ -109,4 +135,16 @@
 
 .journal_modal {
 
+}
+
+@media screen and (min-width: 300px) {
+    .journal_input_borders {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .journal_input_borders {
+        width: 30%;
+    }
 }
