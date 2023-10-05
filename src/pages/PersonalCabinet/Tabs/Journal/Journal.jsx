@@ -85,13 +85,17 @@ const Journal = () => {
                             </div>
                         </Portal>
                         <div className={styles.journal_table}>
-                            <div className={styles.journal_names}>
-                                {journalData.length > 0 && journalData.map((persona, index) =>
-                                    <div key={index}>
-                                        <div className={styles.journal_row}>
-                                            <div className={styles.journal_fio}>
-                                                {persona.user_data.last_name} {persona.user_data.first_name} {persona.user_data.sur_name}
-                                            </div>
+                            <div className={styles.journal_columns}>
+                                <div className={styles.journal_names}>
+                                    {journalData.length > 0 && journalData.map((persona, index) =>
+                                        <div className={styles.journal_fio}>
+                                            {persona.user_data.last_name} {persona.user_data.first_name} {persona.user_data.sur_name}
+                                        </div>
+                                    )}
+                                </div>
+                                <div className={styles.journal_marks}>
+                                    {journalData.length > 0 && journalData.map((persona, index) =>
+                                        <div key={index} style={{display: 'flex', flexDirection: 'row'}}>
                                             {persona.user_tests.map(test =>
                                                 <div className={test.is_Closed ? styles.journal_mark_green : styles.journal_mark_red}
                                                      onClick={() => {
@@ -108,11 +112,10 @@ const Journal = () => {
                                                 </div>
                                             )}
                                         </div>
+                                    )}
 
-                                    </div>
-                                )}
+                                </div>
                             </div>
-
                         </div>
                     </div>
                 </MonoContent>

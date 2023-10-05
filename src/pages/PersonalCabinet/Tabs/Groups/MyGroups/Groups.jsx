@@ -203,7 +203,9 @@ const Groups = () => {
                                 </div>
                                 :
                                 <div style={{marginLeft: "20px"}}>
-                                    Выберите группу
+                                    <DuoContentMobileRightPart onClick={() => setIsOpenGroupsMobile(true)}>
+                                        Выберите группу
+                                    </DuoContentMobileRightPart>
                                 </div>
                             }
                             <div className="tests_column">
