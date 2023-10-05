@@ -126,10 +126,10 @@ const RowModuleTests = (props) => {
                                 <g filter="url(#filter0_f_719_50)">
                                     <circle cx="15" cy="15" r="11" fill="#999999"/>
                                 </g>
-                                <circle cx="15" cy="15" r="6" stroke="black" stroke-width="2"/>
+                                <circle cx="15" cy="15" r="6" stroke="black" strokeWidth="2"/>
                                 <defs>
-                                    <filter id="filter0_f_719_50" x="0" y="0" width="30" height="30" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                                        <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                                    <filter id="filter0_f_719_50" x="0" y="0" width="30" height="30" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+                                        <feFlood floodOpacity="0" result="BackgroundImageFix"/>
                                         <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
                                         <feGaussianBlur stdDeviation="2" result="effect1_foregroundBlur_719_50"/>
                                     </filter>
