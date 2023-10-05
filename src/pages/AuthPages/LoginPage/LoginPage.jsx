@@ -50,7 +50,7 @@ const LoginPage = () => {
                                 Авторизация
                             </div>
                             <div>
-                                <button type="button" onClick={toRegister} className="switchPageAuthBtn">Зарегистрироваться</button>
+                                <button type="button" onClick={toRegister} className="switchPageAuthBtn" style={{display: "none"}}>Зарегистрироваться</button>
                             </div>
                         </div>
 
