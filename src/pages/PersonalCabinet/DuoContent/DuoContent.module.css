@@ -11,3 +11,17 @@
     overflow: hidden;
 
 }
+
+@media screen and (min-width: 0px) {
+    .DuoContent_Wrapper {
+        margin-top: 4px;
+
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .DuoContent_Wrapper {
+        margin-top: 16px;
+
+    }
+}

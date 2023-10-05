@@ -31,7 +31,7 @@
 
 @media screen and (min-width: 0) {
     .buttonNavigationLine {
-        font-size: 1rem;
+        font-size: 0.8rem;
         width: 109px;
     }
 }

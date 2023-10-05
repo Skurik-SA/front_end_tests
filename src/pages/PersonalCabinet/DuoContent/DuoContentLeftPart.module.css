@@ -14,8 +14,17 @@
 }
 
 
-@media screen and (min-width: 300px) {
+@media screen and (min-width: 0px) {
     .DuoContentLeftPart_Wrapper {
         padding-top: 8px;
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .DuoContentLeftPart_Wrapper {
+        padding-top: 16px;
+        width: 69.5%;
+        
     }
 }

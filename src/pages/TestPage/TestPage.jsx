@@ -22,6 +22,7 @@ const TestPage = () => {
 
     const test = useSelector(state => state.TestFormData.test)
     const test_id = useSelector(state => state.TestFormData.test_id)
+    const test_title = useSelector(state => state.TestFormData.title)
     const student_answers = useSelector(state => state.TestFormData.answers)
     const isActiveTask = useSelector(state => state.TestFormData.activeTask)
 
@@ -85,7 +86,7 @@ const TestPage = () => {
                     link: 'cabinet/my_tests',
                     link_name: 'Мои тесты | ',
                     active: true,
-                }
+                },
             ]
         ))
     }, [])
@@ -99,38 +100,76 @@ const TestPage = () => {
                 </div>
                 :
                 <>
-                    {test === []
-                        ?
-                        <div></div>
-                        :
-                        <PaginatedControlPanel tasks={test} change={changeTaskList} end={endTest}/>
-
-                    }
-                    <div className="BlockWrapper">
-                        <div className="TaskContent">
+                    <PaginatedControlPanel tasks={test} change={changeTaskList} end={endTest}/>
+                    <div className="TestPageTestWrapper">
+                        <section className="TaskContent">
                             <h1 >
                                 {isActiveTask.taskTitle}
                             </h1>
                             <DivideLineMono/>
-                            <div>
+                            <div className="inside_text">
                                 {isActiveTask.taskText}
                             </div>
-                        </div>
-                        <div className="BtnContent">
-                            <div className="btn_wrapper">
-                                <div>
-                                    Поле ввода:
+                        </section>
+                        <section>
+                            <div className="BtnContent">
+                                <div className="btn_wrapper">
+                                    <div className="input_text_val">
+                                        Поле ввода:
+                                    </div>
+                                    <div>
+                                        <input type="text" className="testPage_input" value={inputValue} onChange={simpleInputChange}/>
+                                    </div>
                                 </div>
-                                <div>
-                                    <input type="text" className="testPage_input" value={inputValue} onChange={simpleInputChange}/>
-                                </div>
+                                <button className="sv_btn" onClick={saveAnswer}> Сохранить</button>
                             </div>
-                            <button onClick={saveAnswer}> Сохранить ответ</button>
-                        </div>
+                        </section>
                     </div>
+
                 </>
             }
         </>
+
+    // <>
+    //     {test === undefined
+    //         ?
+    //         <div>
+    //             Загрузка
+    //         </div>
+    //         :
+    //         <>
+    //             {test === []
+    //                 ?
+    //                 <div></div>
+    //                 :
+    //                 <PaginatedControlPanel tasks={test} change={changeTaskList} end={endTest}/>
+    //
+    //             }
+    //             <div className="BlockWrapper">
+    //                 <div className="TaskContent">
+    //                     <h1 >
+    //                         {isActiveTask.taskTitle}
+    //                     </h1>
+    //                     <DivideLineMono/>
+    //                     <div>
+    //                         {isActiveTask.taskText}
+    //                     </div>
+    //                 </div>
+    //                 <div className="BtnContent">
+    //                     <div className="btn_wrapper">
+    //                         <div className="input_text_val">
+    //                             Поле ввода:
+    //                         </div>
+    //                         <div>
+    //                             <input type="text" className="testPage_input" value={inputValue} onChange={simpleInputChange}/>
+    //                         </div>
+    //                     </div>
+    //                     <button className="sv_btn" onClick={saveAnswer}> Сохранить</button>
+    //                 </div>
+    //             </div>
+    //         </>
+    //     }
+    // </>
     )
 }
 

@@ -8,3 +8,15 @@
 
     background: #2F2F2F;
 }
+
+@media screen and (min-width: 0px) {
+    .DuoContentRightPart_Wrapper {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .DuoContentRightPart_Wrapper {
+        display: flex;
+    }
+}

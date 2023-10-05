@@ -1,28 +1,39 @@
-.BlockWrapper {
+.TestPageTestWrapper {
     display: flex;
     flex-direction: column;
     margin: 16px;
     width: 100%;
     height: 100vh;
-    gap: 36px;
+    gap: 6px;
+}
+
+.test_content {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.inside_text {
+    padding: 20px;
 }
 
 .TaskContent {
     background: #F5F5F5;
+    background: rgba(217, 217, 217, 0.8);
+
     border: 1px solid black;
 
     border-radius: 25px;
 
-    min-height: 720px;
-    max-height: 1920px;
-    height: auto;
+    width: 100%;
+    min-height: 60%;
+    /*height: auto;*/
 
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 
-    gap: 20px;
 
     font-family: Roboto, serif;
 
@@ -31,7 +42,11 @@
 
 .BtnContent {
     background: #F5F5F5;
+    background: rgba(217, 217, 217, 0.8);
+
     border: 1px solid black;
+
+    border-radius: 24px;
 
     display: flex;
     flex-direction: row;
@@ -51,18 +66,18 @@
     justify-content: center;
     align-items: center;
     font-size: 1.5rem;
-    gap: 20px;
 }
 
-.BtnContent button {
-    height: 60px;
+.sv_btn {
+    padding: 8px;
     background: #5cff7d;
     border: none;
     font-size: 24px;
+    font-family: Roboto, serif;
 
 }
 
-.BtnContent button:hover {
+.sv_btn:hover {
     background: #339444;
     cursor: pointer;
 }
@@ -98,14 +113,15 @@
 
     .TaskContent {
         padding: 0;
+        min-height: 80%;
     }
 
     .testPage_input {
-        width: 100px
+        font-size: 1rem;
+        width: 90%
     }
 
     .BtnContent {
-        background: #F5F5F5;
         border: 1px solid black;
 
         display: flex;
@@ -113,32 +129,47 @@
         justify-content: center;
         align-items: center;
 
-        padding-left: 20px;
         gap: 10px;
-        padding-right: 20px;
-
-        min-height: 200px;
+        padding-top: 10px;
+        padding-bottom: 10px;
     }
 
     .btn_wrapper {
-        flex-direction: column;
+        font-size: 1.2rem;
+        flex-direction: row;
+        gap: 12px;
     }
 
-    .BtnContent button {
-        height: 60px;
+    .sv_btn {
+
+        border-radius: 10px;
         background: #5cff7d;
         border: none;
-        font-size: 24px;
+        font-size: 1rem;
+
+    }
+
+    .input_text_val {
+        display: none
     }
 }
 
 @media screen and (min-width: 1200px) {
+
+    .input_text_val {
+        display: flex;
+    }
+
     .BlockWrapper {
         margin: 16px;
     }
 
+    .TaskContent {
+
+    }
+
     .BtnContent {
-        background: #F5F5F5;
+
         border: 1px solid black;
 
         display: flex;
@@ -147,6 +178,7 @@
         align-items: center;
 
         padding-left: 30px;
+        padding-right: 30px;
         gap: 10px;
 
 
@@ -160,5 +192,16 @@
 
     .testPage_input {
         width: calc(100% + 200px);
+    }
+
+    .sv_btn {
+
+        border-radius: 10px;
+        padding: 12px;
+
+        background: #5cff7d;
+        border: none;
+        font-size: 1.2rem;
+
     }
 }
