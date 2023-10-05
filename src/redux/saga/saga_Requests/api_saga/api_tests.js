@@ -58,6 +58,9 @@ export async function getPersonalTests() {
 // In other words "get single personal test"
 export async function loadTestPage_data(id) {
     const request = await axios.get(`${BASE_URL}/tests/api/personal_test/${id}`, {
+            user_id: 1
+        },
+        {
         headers: {
             'Content-Type': 'application/json'
         },

@@ -6,6 +6,7 @@ const Slice_TestForm = createSlice({
     initialState: {
         test: [],
         test_id: -1,
+        owner_id: "",
         answers: [],
         activeTask: {}
     },
@@ -35,6 +36,9 @@ const Slice_TestForm = createSlice({
         },
         send_data_to_check_test(state, action) {
             state.answers = state.test.map(t => t.answer)
+        },
+        set_owner_id(state, action) {
+            state.owner_id = action.payload
         }
     }
 })
@@ -47,5 +51,6 @@ export const {
     set_is_active_task,
     set_test_id,
     clear_personal_test,
-    send_data_to_check_test
+    send_data_to_check_test,
+    set_owner_id,
 } = Slice_TestForm.actions
