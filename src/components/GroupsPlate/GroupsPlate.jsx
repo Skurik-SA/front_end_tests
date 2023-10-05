@@ -1,8 +1,8 @@
 import styles from "./GroupsPlate.module.css"
 
-const GroupsPlate = ({children, onClick}) => {
+const GroupsPlate = ({children, onClick, key_d}) => {
     return (
-        <div className={styles.groupPlateWrapper} onClick={onClick}>
+        <div key={key_d} className={styles.groupPlateWrapper} onClick={onClick}>
             {children}
         </div>
     )

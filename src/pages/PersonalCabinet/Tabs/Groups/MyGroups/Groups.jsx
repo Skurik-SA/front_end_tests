@@ -17,7 +17,7 @@ import DivideLineMono from "../../../../../components/DivideLines/DivideLine_Mon
 import Portal from "../../../../../components/Portal/Portal";
 import ModalAddStudents from "../../../../../components/ModalWindows/ModalAddStudents/ModalAddStudents";
 // import {delete_one_students} from "../../../../../redux/store/slices/slice_PersonalGroup";
-import AreYouSureToDelete from "../../../../../components/ModalWindows/AreYouSureToDelete/AreYouSureToDelete";
+import AreYouSureTo from "../../../../../components/ModalWindows/AreYouSureToDelete/AreYouSureTo";
 import ModalAddTemplates from "../../../../../components/ModalWindows/ModalAddTemplates/ModalAddTemplates";
 import {LOAD_PERSONAL_CUSTOM_TEMPLATES} from "../../../../../redux/saga/tests/saga_LoadPersonalCustomTemplates";
 import CreateNewGroupWindow from "../../../../../components/ModalWindows/CreateNewGroupWindow/CreateNewGroupWindow";
@@ -25,6 +25,9 @@ import {
     GENERATE_TESTS_BY_TEMPLATE_TO_ALL_GROUP
 } from "../../../../../redux/saga/tests/saga_GenerateTestsByTemplateToAllGroup";
 import {GET_STUDENTS_DATA} from "../../../../../redux/saga/tests/saga_GetStudentsData";
+import {delete_one_students} from "../../../../../redux/store/slices/slice_PersonalGroup";
+import DuoContentMobileRightPart from "../../../DuoContent/DuoContentMobileRightPart";
+import SelectGroupMobile from "../../../../../components/ModalWindows/SelectGroupMobile/SelectGroupMobile";
 
 const Groups = () => {
 
@@ -32,6 +35,7 @@ const Groups = () => {
     const studentsAccData = useSelector(state => state.UserData.students_data)
     const groupById = useSelector(state => state.PersonalGroupData.data)
     const teachers = useSelector(state => state.PersonalGroupData.teacher_fio)
+
 
     const [filterInput, setFilterInput] = useState("")
     const filteredGroups = userGroups.filter(group => {
@@ -57,7 +61,7 @@ const Groups = () => {
     const [isOpenAreYouSure, setIsOpenAreYouSure] = useState(false)
     const [isOpenNewGroup, setIsOpenNewGroup] = useState(false)
     const [isOpenStudentsAccInfo, setIsOpenStudentsAccInfo] = useState(false)
-
+    const [isOpenGroupsMobile, setIsOpenGroupsMobile] = useState(false)
 
     const [stToDel, setStToDel] = useState(null)
 
@@ -92,7 +96,11 @@ const Groups = () => {
                     <DuoContentLeftPart>
                         {/*Upper Panel*/}
                         <div>
-                            <h2>{groupById.group_title}</h2>
+                            <h2>
+                                <DuoContentMobileRightPart onClick={() => setIsOpenGroupsMobile(true)}>
+                                    {groupById.group_title}
+                                </DuoContentMobileRightPart>
+                            </h2>
                             {teachers
                                 ?
                                 <div style={{fontSize: "18px", textDecoration: "underline", fontWeight: '200'}}>
@@ -120,7 +128,7 @@ const Groups = () => {
                         }}>
                             <div style={{display: 'flex', flexDirection: 'column', gap: '10px', width: '50vw', height: '50vh', overflow: 'auto'}}>
                                 {studentsAccData && studentsAccData.length > 0 && studentsAccData.map((student, index) =>
-                                    <div>
+                                    <div key={index}>
                                         <div style={{fontSize: '1.3rem'}}>{index + 1}. {student.fio}</div>
                                         <div style={{paddingLeft: '30px'}}>Логин: {student.login} </div>
                                         <div style={{paddingLeft: '30px'}}>Пароль: {student.password} </div>
@@ -145,10 +153,22 @@ const Groups = () => {
                                             </svg>
                                         </button>
                                     </div>
-                                    <Portal open={isOpenAreYouSure} onClose={() => setIsOpenAreYouSure(false)} style={{  boxShadow:
-                                            "0 0 100px 0 rgba(0,0,0,0.75)", background: '#dadada'
-                                    }}>
-                                        <AreYouSureToDelete onClose={() => setIsOpenAreYouSure(false)} index={stToDel}/>
+                                    <Portal open={isOpenAreYouSure}
+                                            onClose={() => setIsOpenAreYouSure(false)}
+                                            style={{
+                                                boxShadow: "0 0 100px 0 rgba(0,0,0,0.75)",
+                                                background: '#dadada',
+                                                marginLeft: '20px',
+                                                marginRight: '20px'
+                                            }}
+                                    >
+                                        <AreYouSureTo onClickNO={() => setIsOpenAreYouSure(false)}
+                                                      onClickYES={() => {
+                                                          dispatch(delete_one_students({index: stToDel}))
+                                                          setIsOpenAreYouSure(false)
+                                                      }}>
+                                            Вы уверены, что хотите удалить этого ученика?
+                                        </AreYouSureTo>
                                     </Portal>
                                     {groupById.participants.map((p, index) =>
                                         <Fragment key={p.id}>
@@ -252,15 +272,16 @@ const Groups = () => {
                             </div>
                             <div className={styles.CreateTemplateLeft_taskTypesWrapper}>
                                 {filteredGroups.map(group =>
-                                    <GroupsPlate
-                                        key={group.id}
-                                        onClick={() => {
-                                            get_data_by_group(group.id)
-                                            dispatch({type: GET_STUDENTS_DATA, group_id: group.id})
-                                        }}
-                                    >
-                                        {group.title}
-                                    </GroupsPlate>
+                                    <Fragment key={group.id}>
+                                        <GroupsPlate
+                                            onClick={() => {
+                                                get_data_by_group(group.id)
+                                                dispatch({type: GET_STUDENTS_DATA, group_id: group.id})
+                                            }}
+                                        >
+                                            {group.title}
+                                        </GroupsPlate>
+                                    </Fragment>
                                 )}
                             </div>
                             <button className="button_creation" onClick={() => {
@@ -277,6 +298,21 @@ const Groups = () => {
                         </div>
 
                     </DuoContentRightPart>
+                    <Portal open={isOpenGroupsMobile} onClose={() => setIsOpenGroupsMobile(false)} style={{  boxShadow:
+                            "0 0 100px 0 rgba(0,0,0,0.75)", background: '#EAEEFF', width: '300px', height: '500px'
+                    }}>
+                        {/*<CreateNewGroupWindow onClose={() => setIsOpenGroupsMobile(false)}/>*/}
+                        <SelectGroupMobile onClose={() => setIsOpenGroupsMobile(false)}
+                                        filterInput={filterInput}
+                                        setFilterInput={setFilterInput}
+                                        clearFilters={clearFilters}
+                                        filteredGroups={filteredGroups}
+                                        get_data_by_group={get_data_by_group}
+                                        setIsOpenNewGroup={setIsOpenNewGroup}
+                                        isOpenNewGroup={isOpenNewGroup}
+                                        exp_styles={styles}
+                        />
+                    </Portal>
                 </DuoContent>
             </WrapperPersonalCabinet>
         </>

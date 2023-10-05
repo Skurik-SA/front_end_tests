@@ -12,7 +12,7 @@ const Portal = (props) => {
     const {
         open,
         onClose,
-        style,
+        style
     } = props
 
     useEffect(() => {

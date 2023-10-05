@@ -24,6 +24,7 @@ const MyTemplates = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const templates = useSelector(state => state.CustomTemplatesData.custom_templates)
+    const is_teacher = useSelector(state => state.UserData.user_data.is_teacher)
 
     const options_order = [
         {
@@ -108,6 +109,10 @@ const MyTemplates = () => {
     }
 
     useEffect(() => {
+        if (!is_teacher) {
+            navigate('/cabinet/personal_data')
+        }
+
         // Диспатч ниже загрузит абсолютно все шаблоны
         // dispatch({type: LOAD_CUSTOM_TEMPLATES})
 
@@ -134,74 +139,82 @@ const MyTemplates = () => {
         <>
             <WrapperPersonalCabinet>
                 <NavigationLine tab_id={4}></NavigationLine>
-                <MonoContent>
-                    <div className="myTemplatesWrapper_upperBlock">
-                        <Search
-                            style_params={{marginLeft: '16px', width: "30%"}}
-                            value={filterInput}
-                            onChange={(e) => {
-                                e.preventDefault()
-                                setFilterInput(e.target.value)
-                            }}
-                        />
-                        <CreateBlueButton
-                            button_params={{marginRight: '16px'}}
-                            link_to={'/cabinet/my_templates/create'}
-                        >
-                            Создать новый шаблон
-                        </CreateBlueButton>
-                    </div>
-                    <DivideLineMono/>
-                    <div className="myTemplates_ContentWrapper">
-                        <div className="myTemplates_TemplateWrapper">
-                            <section className="subButtonsToFilter">
-                                <label className="subButtonsToFilter_label">
-                                    Найдено: {filteredData.length}
-                                </label>
-                            </section>
-                            {filteredData.map((template, index) =>
-                                <RowModule
-                                    key={index}
-                                    index_row={index + 1}
-                                    width_style={{width: "97%"}}
-                                    template_name={template.title}
-                                    template_group={template.group_title}
-                                    // template_tasks_count={template.tasks_amount + " заданий"}
-                                    template_tasks={template.tasks_description}
-                                    template_id={template.id}
+                    <MonoContent>
+                        {is_teacher
+                            ?
+                            <>
+                                <div className="myTemplatesWrapper_upperBlock">
+                                    <Search
+                                        style_params={{marginLeft: '16px', width: "30%"}}
+                                        value={filterInput}
+                                        onChange={(e) => {
+                                            e.preventDefault()
+                                            setFilterInput(e.target.value)
+                                        }}
+                                    />
+                                    <CreateBlueButton
+                                        button_params={{marginRight: '16px'}}
+                                        link_to={'/cabinet/my_templates/create'}
+                                    >
+                                        Создать новый шаблон
+                                    </CreateBlueButton>
+                                </div>
+                                <DivideLineMono/>
+                                <div className="myTemplates_ContentWrapper">
+                                    <div className="myTemplates_TemplateWrapper">
+                                        <section className="subButtonsToFilter">
+                                            <label className="subButtonsToFilter_label">
+                                                Найдено: {filteredData.length}
+                                            </label>
+                                        </section>
+                                        {filteredData.map((template, index) =>
+                                            <RowModule
+                                                key={index}
+                                                index_row={index + 1}
+                                                width_style={{width: "97%"}}
+                                                template_name={template.title}
+                                                template_group={template.group_title}
+                                                // template_tasks_count={template.tasks_amount + " заданий"}
+                                                template_tasks={template.tasks_description}
+                                                template_id={template.id}
 
 
-                                    copyHandler={copyRow}
-                                    editHandler={editRow}
-                                    deleteHandler={deleteRow}
-                                    isTemplate={true}
-                                />
-                            )}
-                        </div>
+                                                copyHandler={copyRow}
+                                                editHandler={editRow}
+                                                deleteHandler={deleteRow}
+                                                isTemplate={true}
+                                            />
+                                        )}
+                                    </div>
 
-                        <div className="myTemplates_FiltersWrapper">
-                            <FiltersHeader clearFilters={clearFilters}/>
-                            <FilterInput placeholder={"Сортировка"}
-                                         position={"up"}
-                                         options={options_order}
-                                         callbackFunc={changeFilter_Order}
-                                         keyWord={"Сортировать: "}
-                                         IsDefaultValue
-                            >
-                                {filter_order.value}
-                            </FilterInput>
-                            <FilterInput placeholder={"Все группы"}
-                                         position={"down"}
-                                         options={options_groups}
-                                         callbackFunc={changeFilter_Group}
-                                         IsDefaultValue
-                            >
-                                {filter_group.value}
-                            </FilterInput>
-                        </div>
-                    </div>
+                                    <div className="myTemplates_FiltersWrapper">
+                                        <FiltersHeader clearFilters={clearFilters}/>
+                                        <FilterInput placeholder={"Сортировка"}
+                                                     position={"up"}
+                                                     options={options_order}
+                                                     callbackFunc={changeFilter_Order}
+                                                     keyWord={"Сортировать: "}
+                                                     IsDefaultValue
+                                        >
+                                            {filter_order.value}
+                                        </FilterInput>
+                                        <FilterInput placeholder={"Все группы"}
+                                                     position={"down"}
+                                                     options={options_groups}
+                                                     callbackFunc={changeFilter_Group}
+                                                     IsDefaultValue
+                                        >
+                                            {filter_group.value}
+                                        </FilterInput>
+                                    </div>
+                                </div>
+                            </>
+                        :
+                            <>
+                            </>
+                        }
+                    </MonoContent>
 
-                </MonoContent>
             </WrapperPersonalCabinet>
         </>
     )

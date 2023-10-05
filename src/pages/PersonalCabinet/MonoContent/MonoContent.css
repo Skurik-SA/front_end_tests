@@ -13,3 +13,17 @@
 
     overflow: hidden;
 }
+
+@media screen and (min-width: 0px) {
+    .monoContentWrapper {
+        margin-top: 4px;
+
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .monoContentWrapper {
+        margin-top: 16px;
+
+    }
+}

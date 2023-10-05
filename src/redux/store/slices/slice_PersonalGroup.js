@@ -26,6 +26,7 @@ const Slice_PersonalGroup = createSlice({
         },
         delete_one_students(state, action) {
             state.data.participants = state.data.participants.filter((p, i) => i !== action.payload.index)
+            console.log(state.data.participants)
         },
         add_one_student(state, action) {
             let temp = [...state.data.participants, {

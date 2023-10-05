@@ -7,8 +7,8 @@
     width: 92%;
     height: 50px;
 
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: 20px;
+    padding-right: 10px;
     border-radius: 20px;
 
     background: #EAEEFF;
@@ -23,18 +23,32 @@
     flex-direction: row;
     align-items: center;
 
+    width: 80px;
+    overflow: hidden;
+    gap: 10px;
+    white-space: nowrap;
+}
+.textInfo2 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
     gap: 10px;
 }
 
 .btnPassTest {
-    height: 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     border-radius: 9px;
     border-color: transparent;
     color: black;
 
+    height: 50%;
     background: #F4F4F4;
 
-    font-size: 18px;
+    font-size: 14px;
 
     padding-left: 10px;
     padding-right: 10px;
@@ -55,3 +69,53 @@
     /*background-position: 0 0;*/
 }
 
+.tasks_div {
+    display: none;
+}
+
+.test_indicator_block {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    gap: 10px;
+}
+
+@media screen and (min-width: 300px) {
+    .row_module_tests_container {
+        width: 100%;
+    }
+    .tasks_div {
+        display: none;
+    }
+    .textInfo {
+        font-size: 0.7rem;
+    }
+    .textInfo2 {
+        font-size: 0.7rem;
+    }
+    .btnPassTest {
+        display: none;
+        height: 50%;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .btnPassTest {
+        display: flex;
+        height: 50%;
+    }
+    .textInfo {
+        font-size: 1.2rem;
+    }
+    .textInfo2 {
+        font-size: 1.2rem;
+    }
+    .tasks_div {
+        display: flex;
+    }
+    .row_module_tests_container {
+        width: 92%;
+    }
+}

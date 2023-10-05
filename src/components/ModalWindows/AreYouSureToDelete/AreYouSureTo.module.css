@@ -1,3 +1,9 @@
+.info_text {
+    display: flex;
+    flex-direction: column;
+
+}
+
 .btn_wrapper {
     display: flex;
     flex-direction: row;

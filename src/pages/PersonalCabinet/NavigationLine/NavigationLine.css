@@ -1,7 +1,8 @@
 .wrapperNavigationLine {
     width: 100%;
-    height: 75px;
 
+    padding-top: 14px;
+    padding-bottom: 14px;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -18,7 +19,6 @@
 @media screen and (min-width: 0) {
     .wrapperNavigationLine {
         display: flex;
-        height: 130px;
     }
 }
 
@@ -26,7 +26,6 @@
     .wrapperNavigationLine {
         display: flex;
 
-        height: 170px;
     }
 }
 
@@ -35,7 +34,6 @@
     .wrapperNavigationLine {
         display: flex;
 
-        height: 75px;
     }
 }
 

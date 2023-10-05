@@ -19,7 +19,16 @@ const Slice_PersonalTests = createSlice({
     },
     reducers: {
         get_personal_tests(state, action) {
-            state.personal_tests = action.payload
+            state.personal_tests = action.payload.sort(function (a, b) {
+                    if (a.is_Closed) {
+                        return 1;
+                    }
+                    if (b.is_Closed) {
+                        return -1;
+                    }
+                    // a должно быть равным b
+                    return 0;
+            })
         },
         set_closed_personal_test_info(state, action) {
             state.closed_personal_test_info = action.payload

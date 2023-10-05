@@ -181,6 +181,10 @@
     scale: 0.95;
 }
 
+.mw_are_you_sure {
+    width: 80%;
+}
+
 @media screen and  (min-width: 0px) {
     .title_labels {
         display: flex;
