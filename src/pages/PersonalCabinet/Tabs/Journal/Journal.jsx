@@ -8,6 +8,7 @@ import {set_navbar_link} from "../../../../redux/store/slices/slice_Navbar";
 import FilterInput from "../../../../components/FilterInput/FilterInput";
 import {GET_ANALYTICS_DATA} from "../../../../redux/saga/analytics/saga_GetAnalyticsData";
 import Portal from "../../../../components/Portal/Portal";
+import ShowMeMyResults from "../../../../components/ModalWindows/ShowMeMyResults/ShowMeMyResults";
 
 const Journal = () => {
 
@@ -35,10 +36,14 @@ const Journal = () => {
 
     const [isOpen, setIsOpen] = useState(false)
     const [someState, setSomeState] = useState({
-        test_title: "",
-        test_tasks: [],
-        test_answers: [],
+        title: "",
+        tasks: [],
+        tasks_amount: 0,
+        is_correct_answers: [],
+        answers: [],
         student_answers: [],
+        mark: "",
+
     })
 
     useEffect(() => {
@@ -70,19 +75,15 @@ const Journal = () => {
                                          callbackFunc={selectGroup}
                             />
                         </div>
-                        <Portal open={isOpen} onClose={() => setIsOpen(false)} style={{  boxShadow:
-                                "0 0 100px 0 rgba(0,0,0,0.75)", background: '#EAEEFF'
-                        }}>
-                            <div>
-                                {someState.test_title}
-                            </div>
-                            <div>
-                                {someState && someState.test_answers.map((answers, index) =>
-                                    <div>
-                                        Верные ответы: {answers} / Ответы ученика: {someState.student_answers ? someState.student_answers[index] : ""}
-                                    </div>
-                                )}
-                            </div>
+                        <Portal open={isOpen}
+                                onClose={() => setIsOpen(false)}
+                                style={{  boxShadow:
+                                        "0 0 100px 0 rgba(0,0,0,0.75)", background: '#EAEEFF'
+                                }}
+                        >
+                            <ShowMeMyResults onClose={() => setIsOpen(false)}
+                                             pt_data={someState}
+                            />
                         </Portal>
                         <div className={styles.journal_table}>
                             <div className={styles.journal_columns}>
@@ -101,10 +102,13 @@ const Journal = () => {
                                                      onClick={() => {
                                                          setIsOpen(true)
                                                          setSomeState({
-                                                             test_title: test.title,
-                                                             test_tasks: test.tasks,
-                                                             test_answers: test.answers,
+                                                             title: test.title,
+                                                             tasks: test.tasks,
+                                                             tasks_amount: test.tasks_amount,
+                                                             answers: test.answers,
                                                              student_answers: test.student_answers,
+                                                             is_correct_answers: test.is_correct_answers,
+                                                             mark: test.mark
                                                          })
                                                      }}
                                                 >

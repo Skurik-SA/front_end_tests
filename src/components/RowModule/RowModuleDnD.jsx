@@ -9,6 +9,7 @@ import {
 import {useDispatch} from "react-redux";
 import {useDrag, useDrop} from "react-dnd";
 import update from 'immutability-helper';
+import styles from "../TaskTypePlate/TaskTypePlate.module.css";
 const RowModuleDnD = (
     {
         index_row,
@@ -32,11 +33,12 @@ const RowModuleDnD = (
     const dispatch = useDispatch()
 
     const ref = useRef(null)
-    const [{handlerId}, drop] = useDrop({
+    const [{handlerId, isOver}, drop] = useDrop({
         accept: "task_plate",
         collect(monitor ) {
             return {
                 handlerId: monitor.getHandlerId(),
+                isOver: monitor.isOver({shallow: true})
             }
         },
         hover(item, monitor) {
@@ -47,7 +49,7 @@ const RowModuleDnD = (
             const dragIndex = item.index_row
             // console.log(dragIndex)
             const hoverIndex = index_row
-            console.log(hoverIndex)
+
 
             if (dragIndex === hoverIndex) {
                 return
@@ -75,6 +77,7 @@ const RowModuleDnD = (
             dispatch(change_pos({dragIndex: dragIndex - 1, hoverIndex: hoverIndex - 1}))
 
             item.index_row = hoverIndex
+            console.log(hoverIndex)
         }
     })
 
@@ -84,59 +87,63 @@ const RowModuleDnD = (
             return {id, index_row} // Чёта поменял, там посмотрим
         },
         collect: (monitor) => ({
-            isDragging: monitor.isDragging()
+            isDragging: monitor.isDragging(),
+
+
         })
     }))
 
-    const opacity = isDragging ? 1 : 1
+    const opacity = isDragging ? 0.5 : 1
 
     drag(drop(ref))
 
     return (
-        <div ref={ref} style={{width_style, opacity}} data-handler-id={handlerId}>
-        {/*<div ref={isDraggable ? drag : null} style={width_style}>*/}
-            {/*<div draggable={true} style={width_style}>*/}
-            <div className="rowModuleWrapper">
-                <label className="rowLabelWrapper" onClick={() => {setOpen(!open)}}>
-                    {index_row}. {template_name} / {template_group} / {template_tasks_count}
-                </label>
+        <div style={{width_style, opacity}}
+             data-handler-id={handlerId}
+        >
+                <div className="rowModuleWrapper" ref={ref}>
+                    <label className="rowLabelWrapper" onClick={() => {setOpen(!open)}} ref={ref}>
+                        {index_row}. {template_name} / {template_group} / {template_tasks_count}
+                    </label>
 
-                <div className="rowButtonsWrapper">
-                    {copyHandler
-                        ?
-                        <CopyButton copyHandler={copyHandler} id={id}/>
-                        :
-                        <></>
-                    }
-                    {editHandler
-                        ?
-                        <EditButton editHandler={editHandler}/>
-                        :
-                        <></>
-                    }
-                    {deleteHandler
-                        ?
-                        <DeleteButton deleteHandler={deleteHandler} rowID={index_row - 1}/>
-                        :
-                        <></>
-                    }
-                </div>
-            </div>
-            <div id={index_row} className={`rowModalBlockWrapper${open ? '' : '_inactive'}`}>
-                {template_tasks
-                    ?
-                    // <div >
-                    <div className={`rowModalContentWrapper${open ? '' : '_inactive'}`}>
-                        {template_tasks.map((task, index )=>
-                            <label key={index}>
-                                {index + 1}. {task}
-                            </label>
-                        )}
+                    <div className="rowButtonsWrapper">
+                        {copyHandler
+                            ?
+                            <CopyButton copyHandler={copyHandler} id={id}/>
+                            :
+                            <></>
+                        }
+                        {editHandler
+                            ?
+                            <EditButton editHandler={editHandler}/>
+                            :
+                            <></>
+                        }
+                        {deleteHandler
+                            ?
+                            <DeleteButton deleteHandler={deleteHandler} rowID={index_row - 1}/>
+                            :
+                            <></>
+                        }
                     </div>
-                    :
-                    <></>
-                }
-            </div>
+                </div>
+
+
+            {/*<div id={index_row} className={`rowModalBlockWrapper${open ? '' : '_inactive'}`}>*/}
+            {/*    {template_tasks*/}
+            {/*        ?*/}
+            {/*        // <div >*/}
+            {/*        <div className={`rowModalContentWrapper${open ? '' : '_inactive'}`}>*/}
+            {/*            {template_tasks.map((task, index )=>*/}
+            {/*                <label key={index}>*/}
+            {/*                    {index + 1}. {task}*/}
+            {/*                </label>*/}
+            {/*            )}*/}
+            {/*        </div>*/}
+            {/*        :*/}
+            {/*        <></>*/}
+            {/*    }*/}
+            {/*</div>*/}
         </div>
 
     )

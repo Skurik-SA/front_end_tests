@@ -7,10 +7,11 @@ import DotedLoader from "../../Loaders/DotedLoader/DotedLoader";
 const ShowMeMyResults = (props) => {
 
     const {
-        onClose
+        onClose,
+        pt_data
     } = props
 
-    const pt_data = useSelector(state => state.PersonalTestsData.closed_personal_test_info)
+    // const pt_data = useSelector(state => state.PersonalTestsData.closed_personal_test_info)
 
     return (
         <div className={styles.modal_showMe_wrapper}>
@@ -33,8 +34,8 @@ const ShowMeMyResults = (props) => {
                             <div className={styles.modal_showMe_task_block}>
                                 <h4>{index + 1}. {task}</h4>
                                 <h5>Ваш ответ:
-                                    <label className={pt_data.is_correct_answers[index] ? styles.modal_showMe_correct_answer : styles.modal_showMe_incorrect_answer}>
-                                        {pt_data.student_answers[index]}
+                                    <label className={pt_data.is_correct_answers && pt_data.is_correct_answers[index] ? styles.modal_showMe_correct_answer : styles.modal_showMe_incorrect_answer}>
+                                        {pt_data.student_answers ? pt_data.student_answers[index] : <>Тест ещё не пройден</>}
                                     </label> / Правильный ответ:
                                     <label className={styles.modal_showMe_correct_answer}>
                                         {pt_data.answers[index]}

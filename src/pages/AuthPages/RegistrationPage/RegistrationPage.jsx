@@ -1,5 +1,4 @@
 import "../styles/AuthStyles.css"
-import "../styles/AuthButtonsStyles.css"
 
 import AuthApi from "../../../api/auth/AuthApi";
 
@@ -59,15 +58,9 @@ const RegistrationPage = () => {
             <div className="AuthMain">
                 <div className="AuthPageContent">
                     <div className="AuthPageContentBlock">
-                        <div className="partUp">
-                            <div className="auth_logo">
-                                Регистрация
-                            </div>
-                            <div>
-                                <button onClick={toLogin} className="switchPageAuthBtn">Войти</button>
-                            </div>
-                        </div>
-
+                        <h2 >
+                            Регистрация
+                        </h2>
                         <form className="form_style">
                             <div className="input_container">
                                 <UsernameIcon/>
@@ -96,13 +89,11 @@ const RegistrationPage = () => {
                                        onChange={e => setPassword2(e.target.value)}
                                 />
                             </div>
-                        </form>
-                        <div>
-                            <div>
-                                <button type="submit" className="submitButton" onClick={makeRegistration}>Зарегистрироваться</button>
+                            <button type="submit" className="submitButton" onClick={makeRegistration}>Зарегистрироваться</button>
+                            <div className="switchPageAuthBtnContainer">
+                                <button onClick={toLogin} className="switchPageAuthBtn">Уже есть аккаунт?</button>
                             </div>
-
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>

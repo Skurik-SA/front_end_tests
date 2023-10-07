@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 
 const NavigationButton = ({children, link_to}) => {
     return (
-        <div>
+        <div >
             <Link
                 to={link_to}
                 style={{ textDecoration: 'none', color: 'white'}}
