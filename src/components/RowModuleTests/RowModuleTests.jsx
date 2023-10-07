@@ -41,7 +41,9 @@ const RowModuleTests = (props) => {
                             "0 0 100px 0 rgba(0,0,0,0.75)", background: '#EAEEFF'
                     }}
             >
-                <ShowMeMyResults onClose={() => multiFunc()}/>
+                <ShowMeMyResults onClose={() => multiFunc()}
+                                 pt_data={useSelector(state => state.PersonalTestsData.closed_personal_test_info)}
+                />
             </Portal>
             <Portal open={isOpenTestPassConfirmation}
                     onClose={() => setIsOpenTestPassConfirmation(false)}

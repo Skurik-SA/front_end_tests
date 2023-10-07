@@ -5,6 +5,7 @@
     justify-content: center;
     align-items: center;
     flex-shrink: 0;
+    position:relative;
 
     color: #FFF;
     text-align: center;
@@ -16,18 +17,36 @@
 }
 
 .buttonNavigationLine:hover, .buttonNavigationLine.active {
-    color: #000;
-    cursor: pointer;
 
+    cursor: pointer;
     border-radius: 5px;
-    border-bottom: 2px solid #6F4BFF;
-    background: #D9D9D9;
     box-shadow: 0px 2px 7px 3px rgba(0, 0, 0, 0.25);
 }
 
 .buttonNavigationLine.active {
-    background: rgba(217, 217, 217, 0.9);
+    background: rgba(63, 63, 63, 0.9);
 }
+
+.buttonNavigationLine:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    background: #6F4BFF;
+    left: 0;
+    height: 0;
+    border-bottom: 1px solid #6F4BFF;
+
+    bottom: 0;
+    transition: all .1s;
+    opacity: 1;
+    will-change: height;
+
+}
+
+.buttonNavigationLine:hover:before {
+    height: 12%;
+}
+
 
 @media screen and (min-width: 0) {
     .buttonNavigationLine {
