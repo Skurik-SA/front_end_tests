@@ -9,6 +9,7 @@ import {
 import {useDispatch} from "react-redux";
 import {useDrag, useDrop} from "react-dnd";
 import update from 'immutability-helper';
+import styles from "../TaskTypePlate/TaskTypePlate.module.css";
 const RowModuleDnD = (
     {
         index_row,
@@ -30,6 +31,8 @@ const RowModuleDnD = (
 
     const [open, setOpen] = useState(false);
     const dispatch = useDispatch()
+
+    const [sss, setSSS] = useState()
 
     const ref = useRef(null)
     const [{handlerId}, drop] = useDrop({
@@ -85,18 +88,19 @@ const RowModuleDnD = (
         },
         collect: (monitor) => ({
             isDragging: monitor.isDragging()
+
         })
     }))
 
-    const opacity = isDragging ? 1 : 1
+    const opacity = isDragging ? 0 : 1
 
     drag(drop(ref))
 
     return (
-        <div ref={ref} style={{width_style, opacity}} data-handler-id={handlerId}>
-        {/*<div ref={isDraggable ? drag : null} style={width_style}>*/}
-            {/*<div draggable={true} style={width_style}>*/}
-            <div className="rowModuleWrapper">
+        <div style={{width_style, opacity}}
+             data-handler-id={handlerId}
+        >
+            <div className="rowModuleWrapper" ref={ref}>
                 <label className="rowLabelWrapper" onClick={() => {setOpen(!open)}}>
                     {index_row}. {template_name} / {template_group} / {template_tasks_count}
                 </label>
@@ -122,21 +126,21 @@ const RowModuleDnD = (
                     }
                 </div>
             </div>
-            <div id={index_row} className={`rowModalBlockWrapper${open ? '' : '_inactive'}`}>
-                {template_tasks
-                    ?
-                    // <div >
-                    <div className={`rowModalContentWrapper${open ? '' : '_inactive'}`}>
-                        {template_tasks.map((task, index )=>
-                            <label key={index}>
-                                {index + 1}. {task}
-                            </label>
-                        )}
-                    </div>
-                    :
-                    <></>
-                }
-            </div>
+            {/*<div id={index_row} className={`rowModalBlockWrapper${open ? '' : '_inactive'}`}>*/}
+            {/*    {template_tasks*/}
+            {/*        ?*/}
+            {/*        // <div >*/}
+            {/*        <div className={`rowModalContentWrapper${open ? '' : '_inactive'}`}>*/}
+            {/*            {template_tasks.map((task, index )=>*/}
+            {/*                <label key={index}>*/}
+            {/*                    {index + 1}. {task}*/}
+            {/*                </label>*/}
+            {/*            )}*/}
+            {/*        </div>*/}
+            {/*        :*/}
+            {/*        <></>*/}
+            {/*    }*/}
+            {/*</div>*/}
         </div>
 
     )

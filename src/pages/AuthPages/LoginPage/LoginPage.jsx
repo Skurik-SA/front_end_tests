@@ -1,5 +1,4 @@
 import "../styles/AuthStyles.css"
-import "../styles/AuthButtonsStyles.css"
 
 import AuthApi from "../../../api/auth/AuthApi";
 
@@ -45,15 +44,9 @@ const LoginPage = () => {
             <div className="AuthMain">
                 <div className="AuthPageContent">
                     <div className="AuthPageContentBlock">
-                        <div className="partUp">
-                            <div className="auth_logo">
-                                Авторизация
-                            </div>
-                            <div>
-                                <button type="button" onClick={toRegister} className="switchPageAuthBtn" style={{display: "none"}}>Зарегистрироваться</button>
-                            </div>
-                        </div>
-
+                        <h2>
+                            Авторизация
+                        </h2>
                         <form className="form_style">
                             <div className="input_container">
                                 <UsernameIcon/>
@@ -73,11 +66,18 @@ const LoginPage = () => {
                                        onChange={e => setPassword(e.target.value)}
                                 />
                             </div>
-                            <div className="btn_wrapper2">
-                                <button type="submit" className="submitButton" onClick={login}>Войти</button>
+                            <button type="submit" className="submitButton" onClick={login}>Войти</button>
+                            <div className="switchPageAuthBtnContainer">
+                                <button type="button" onClick={toRegister} className="switchPageAuthBtn" >Ещё не зарегистрированы?</button>
+                            </div>
+                            <div style={{display: 'none'}}>
+                                <button className="btn-12">
+                                    войти
+                                </button>
                             </div>
 
                         </form>
+
                     </div>
                 </div>
             </div>

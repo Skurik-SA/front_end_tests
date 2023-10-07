@@ -171,6 +171,8 @@ const CreateTemplate = () => {
         ))
     }, [])
 
+
+
     return (
         <>
             <WrapperPersonalCabinet>
@@ -219,7 +221,7 @@ const CreateTemplate = () => {
 
                         <DivideLineMono/>
 
-                        <div className={styles.CreateTemplateLeft_TaskArea} ref={drop}>
+                        <div className={styles.CreateTemplateLeft_TaskArea} ref={drop} draggable="false">
                             {template_tasks.map((task, index) =>
                                 <RowModuleDnD
                                     key={index}
@@ -263,7 +265,7 @@ const CreateTemplate = () => {
                                 <FilterInput placeholder={"Выберите сложность"} position={"mid"} options={Difficulties} callbackFunc={selectDifficulty}/>
                                 <FilterInput placeholder={"Выберите тематику"} position={"down"} options={Topics} callbackFunc={selectTopic}/>
                             </div>
-                            <div className={styles.CreateTemplateLeft_taskTypesWrapper}>
+                            <div id="it" className={styles.CreateTemplateLeft_taskTypesWrapper}>
                                 {filtered_types.map(task =>
                                     <TaskTypePlate
                                         key={task.task_id}

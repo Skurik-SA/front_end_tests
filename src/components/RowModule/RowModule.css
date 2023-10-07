@@ -20,7 +20,7 @@
 }
 
 .rowModuleWrapper:hover {
-    scale: 1.01;
+    background: #b3b6c2;
 }
 
 .rowLabelWrapper {

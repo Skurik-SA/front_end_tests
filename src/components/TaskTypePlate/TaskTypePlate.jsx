@@ -13,6 +13,28 @@ const TaskTypePlate = ({task_id, task_name, addTask}) => {
         })
     }))
 
+    // function dragOverHandler(e) {
+    //     e.preventDefault()
+    //     if (e.target.className == styles.TaskTypePlate_taskTypesPlate) {
+    //         e.target.style.boxShadow = '0 2px 3px gray'
+    //         // e.target.style.scale = '2'
+    //
+    //     }
+    // }
+    // function dragLeaveHandler(e) {
+    //     e.target.style.boxShadow = 'none'
+    //     // e.target.style.scale = '1'
+    //
+    // }
+    // function dragStartHandler(e) {
+    //
+    // }
+    // function dragEndHandler(e) {
+    //     e.target.style.boxShadow = 'none'
+    //     // e.target.style.scale = '1'
+    //
+    // }
+
     useEffect(() => {
         // dragPreview(getEmptyImage(), { captureDraggingState: true })
     }, [])
@@ -20,6 +42,13 @@ const TaskTypePlate = ({task_id, task_name, addTask}) => {
     return (
         <>
             <div
+                // onDragOver={(e) => dragOverHandler(e)}
+                // onDragLeave={(e) => dragLeaveHandler(e)}
+                // onDragStart={(e) => dragStartHandler(e)}
+                // onDragEnd={(e) => dragEndHandler(e)}
+                // onDrop={(e) => {
+                //     e.preventDefault()
+                // }}
                 ref={drag}
                 key={task_id}
                 id={task_id}
@@ -28,6 +57,7 @@ const TaskTypePlate = ({task_id, task_name, addTask}) => {
                     e.preventDefault()
                     addTask(e.target.attributes["id"].value)
                 }}
+                draggable={false}
             >
                 {task_name}
             </div>
