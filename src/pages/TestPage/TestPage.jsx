@@ -63,17 +63,6 @@ const TestPage = () => {
         if (localStorage.getItem('access_token') === null) {
             navigate('/login')
         }
-
-        else {
-            try {
-                verifyToken(localStorage.getItem('access_token')).then(data => {
-                    console.log(data)
-                })
-            }
-            catch (e) {
-                navigate('/login')
-            }
-        }
     }, [])
 
     useEffect(() => {

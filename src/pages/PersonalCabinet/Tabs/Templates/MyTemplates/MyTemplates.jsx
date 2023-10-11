@@ -18,6 +18,7 @@ import FiltersHeader from "../../../../../components/FiltersHeader/FiltersHeader
 import {LOAD_PERSONAL_CUSTOM_TEMPLATES} from "../../../../../redux/saga/tests/saga_LoadPersonalCustomTemplates";
 import {COPY_TEMPLATE} from "../../../../../redux/saga/tests/saga_CopyTemplate";
 import {DELETE_TEMPLATE} from "../../../../../redux/saga/tests/saga_DeleteTemplate";
+import DropDownMenu from "../../../../../components/DropDownMenu/DropDownMenu";
 
 const MyTemplates = () => {
 
@@ -143,6 +144,7 @@ const MyTemplates = () => {
                         {is_teacher
                             ?
                             <>
+
                                 <div className="myTemplatesWrapper_upperBlock">
                                     <Search
                                         style_params={{marginLeft: '16px', width: "30%"}}
@@ -206,7 +208,9 @@ const MyTemplates = () => {
                                         >
                                             {filter_group.value}
                                         </FilterInput>
-                                    </div>
+                                        </div>
+                                    <DropDownMenu/>
+
                                 </div>
                             </>
                         :

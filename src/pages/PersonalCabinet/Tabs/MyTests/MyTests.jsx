@@ -9,6 +9,8 @@ import {LOAD_PERSONAL_PAGE_DATA} from "../../../../redux/saga/tests/saga_LoadPer
 
 import RowModuleTests from "../../../../components/RowModuleTests/RowModuleTests";
 import DivideLineMono from "../../../../components/DivideLines/DivideLine_Mono/DivideLineMono";
+import {verifyToken} from "../../../../api/auth/VerifyToken";
+import {useNavigate} from "react-router-dom";
 
 
 const MyTests = () => {
@@ -46,7 +48,7 @@ const MyTests = () => {
                     </label>
                     <DivideLineMono/>
 
-                    <div className="TemplateRows">
+                    <div className={styles.my_tests_rows_wrapper}>
                         {personalTests && personalTests.length > 0
                             ?
                             <>

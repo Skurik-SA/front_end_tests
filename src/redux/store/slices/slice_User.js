@@ -21,7 +21,8 @@ const Slice_User = createSlice({
         input_phone_number: "",
         input_email: "",
         groups: [],
-        students_data: []
+        students_data: [],
+        is_auth: false,
     },
     reducers: {
         set_user_data(state, action) {

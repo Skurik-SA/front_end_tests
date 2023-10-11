@@ -1,13 +1,12 @@
 import {useEffect, useMemo, useState} from "react";
 import {createPortal} from "react-dom";
-import styles from "./Portal.module.css"
+import styles from "./PortalInside.module.css"
 
-// const modalRootElement = document.querySelector("#modal")
+// const modalRootElement = document.querySelector("#tooltip")
 
 // Necessary define useState hook inside component where you create modal window.
 // This state will respond for open and close modal window.
-const Portal = (props) => {
-    // const element = useMemo(() => document.createElement("div"), [])
+const PortalInside = (props) => {
     const [element] = useState(() => document.createElement("div"))
 
     const {
@@ -19,11 +18,9 @@ const Portal = (props) => {
     useEffect(() => {
 
         if (open) {
-            // modalRootElement.appendChild(element)
             document.body.appendChild(element)
 
             return () => {
-                // modalRootElement.removeChild(element)
                 document.body.removeChild(element)
             }
         }
@@ -32,8 +29,8 @@ const Portal = (props) => {
 
     if (open) {
         return createPortal(
-            <div className={styles.modal_background} onClick={onClose}>
-                <div className={styles.modal_card} style={style} onClick={(e) => e.stopPropagation()}>
+            <div className={styles.ss_background} onClick={onClose}>
+                <div className={styles.ss_card} style={style} onClick={(e) => e.stopPropagation()}>
                     {props.children}
                 </div>
             </div>,
@@ -44,4 +41,4 @@ const Portal = (props) => {
     return null;
 }
 
-export default Portal
+export default PortalInside

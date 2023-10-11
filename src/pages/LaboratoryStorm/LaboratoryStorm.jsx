@@ -1,9 +1,9 @@
-import "./GroupsPage.css"
+import "./LaboratoryStorm.css"
 import DotedLoader from "../../components/Loaders/DotedLoader/DotedLoader";
 import Portal from "../../components/Portal/Portal";
 import {useState} from "react";
 
-const GroupsPage = () => {
+const LaboratoryStorm = () => {
 
     const [isOpen, setIsOpen] = useState(false)
 
@@ -34,4 +34,4 @@ const GroupsPage = () => {
     )
 }
 
-export default GroupsPage;
+export default LaboratoryStorm;

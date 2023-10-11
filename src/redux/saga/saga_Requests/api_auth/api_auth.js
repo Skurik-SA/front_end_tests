@@ -37,3 +37,24 @@ export async function send_create_new_group(data) {
     return request.data
 
 }
+
+export async function verify_token(token) {
+    const request =  await axios.post(`${BASE_URL}/user/api/token/verify/`, {
+        token: token
+    }).then(resp => {
+        try {
+            if (resp?.status) {
+                return resp
+            }
+            if (resp?.response.status) {
+                return resp.response
+            }
+         }
+        catch (error) {
+            console.log(error)
+        }
+    })
+
+    console.log(request)
+    return request
+}

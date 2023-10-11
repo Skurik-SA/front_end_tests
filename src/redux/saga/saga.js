@@ -19,6 +19,7 @@ import {send_test_data_to_check_answers} from "./tests/saga_SendTestDataToCheckA
 import {get_closed_test_data} from "./tests/saga_GetClosedTestData";
 import {get_analytics_data} from "./analytics/saga_GetAnalyticsData";
 import {get_students_data} from "./tests/saga_GetStudentsData";
+import {tokenVerify} from "./auth/saga_TokenVerify";
 
 // export function* rootSaga() {
 //     yield all([countWatcher(), userWatcher()])
@@ -26,6 +27,7 @@ import {get_students_data} from "./tests/saga_GetStudentsData";
 export function* rootSaga() {
     console.log("Saga works!")
     const sagas = [
+        tokenVerify,
         loadData,
         load_test_page,
         load_custom_templates_data,

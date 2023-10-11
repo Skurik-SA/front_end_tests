@@ -12,47 +12,41 @@
 
 .NavbarBackground {
     /*background-color: #212121;*/
-    min-width: 100%;
-    min-height: 45px;
-    font-size: calc(10px + 2vmin);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    background: linear-gradient(80deg, #212121 30%, rgba(0, 0, 0, 0) 250%);
     color: white;
 
+}
+
+.NavbarContentLeft, .NavbarContentRight {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     align-items: center;
-    justify-content: space-between;
-    padding-left: 30px;
-    padding-right: 30px;
-    background: linear-gradient(80deg, #212121 30%, rgba(0, 0, 0, 0) 250%);
-}
-
-.NavbarContent {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.NavbarContentLeft {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-
+    padding-left: 20px;
+    gap: 20px;
 }
 
 .NavbarContentRight {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    padding-left: 0;
+    padding-right: 20px;
 }
 
 .NavbarTextStyle_1 {
-    font-family: 'Inter', serif;
+    font-family: Roboto, serif;
     font-style: normal;
     font-weight: 400;
     font-size: 18px;
     line-height: 0;
     /* or 0% */
-    margin-right: 20px;
     text-align: center;
 
     color: #FFFFFF;
@@ -60,7 +54,8 @@
 }
 
 .NavbarTextStyle_2 {
-    font-family: 'Inter', ui-serif;
+    font-family: Roboto, serif;
+
     font-style: normal;
     font-weight: 400;
     font-size: 14px;

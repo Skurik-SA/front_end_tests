@@ -1,0 +1,18 @@
+
+
+.ss_background {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background: rebeccapurple;
+
+}
+
+.ss_card {
+
+    position: relative;
+    background: white;
+    padding: 25px;
+    border-radius: 16px;
+}
