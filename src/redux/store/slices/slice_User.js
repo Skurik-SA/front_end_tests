@@ -25,6 +25,9 @@ const Slice_User = createSlice({
         is_auth: false,
     },
     reducers: {
+        set_is_auth(state, action) {
+            state.is_auth = action.payload
+        },
         set_user_data(state, action) {
                 state.user_data = action.payload
                 state.input_username = action.payload.username
@@ -75,6 +78,7 @@ const Slice_User = createSlice({
 export default Slice_User.reducer
 
 export const {
+    set_is_auth,
     set_user_data,
     set_user_groups,
     delete_user_data,

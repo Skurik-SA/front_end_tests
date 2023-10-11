@@ -100,8 +100,7 @@ const Journal = () => {
                                             {persona.user_tests.map(test =>
                                                 <div className={test.is_Closed ? styles.journal_mark_green : styles.journal_mark_red}
                                                      onClick={() => {
-                                                         setIsOpen(true)
-                                                         setSomeState({
+                                                         setSomeState(prev => prev = {
                                                              title: test.title,
                                                              tasks: test.tasks,
                                                              tasks_amount: test.tasks_amount,
@@ -110,6 +109,8 @@ const Journal = () => {
                                                              is_correct_answers: test.is_correct_answers,
                                                              mark: test.mark
                                                          })
+                                                         setIsOpen(true)
+
                                                      }}
                                                 >
                                                     {test.mark} / {test.tasks_amount}

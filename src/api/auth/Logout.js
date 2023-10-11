@@ -1,6 +1,6 @@
 import axios from "axios";
 import {useDispatch} from "react-redux";
-import {delete_user_data} from "../../redux/store/slices/slice_User";
+import {delete_user_data, set_is_auth} from "../../redux/store/slices/slice_User";
 import {BASE_URL} from "../../redux/saga/saga_Requests/api_base_constants";
 
 
@@ -20,6 +20,7 @@ export const Logout = () => {
                     );
                 localStorage.clear();
                 dispatch(delete_user_data())
+                dispatch(set_is_auth(false))
                 axios.defaults.headers.common['Authorization'] = null;
                 window.location.href = '/login'
             } catch (e) {

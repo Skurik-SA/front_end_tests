@@ -9,6 +9,7 @@ import {LOAD_USER_DATA} from "../../redux/saga/auth/saga_UserData";
 import NavigationButton from "./NavigationButton/NavigationButton";
 import {verifyToken} from "../../api/auth/VerifyToken";
 import {VERIFY_TOKEN} from "../../redux/saga/auth/saga_TokenVerify";
+import {set_is_auth} from "../../redux/store/slices/slice_User";
 
 const Navbar = () => {
 
@@ -30,22 +31,28 @@ const Navbar = () => {
         }
     }
 
-    const [isAuth, setIsAuth] = useState(false)
+    const isAuth = useSelector(state => state.UserData.is_auth)
+    // const [isAuth, setIsAuth] = useState(false)
+
+    useEffect(() => {
+        const resp = dispatch({type: VERIFY_TOKEN, token: localStorage.getItem('access_token')})
+    }, [])
 
     useEffect(() => {
         // const resp = verifyToken(localStorage.getItem('access_token'))
-        const resp = dispatch({type: VERIFY_TOKEN, token: localStorage.getItem('access_token')})
 
         if (localStorage.getItem('access_token') !== null) {
-            setIsAuth(true)
+            // setIsAuth(true)
+            dispatch(set_is_auth(true))
+
             dispatch({type: LOAD_USER_DATA})
         }
         else {
-            setIsAuth(false)
+            // setIsAuth(false)
+            dispatch(set_is_auth(false))
+
             navigate('/login')
         }
-
-
     }, [isAuth]);
 
 
@@ -77,7 +84,7 @@ const Navbar = () => {
                         </div>
                     </section>
                     <section className="NavbarContentRight">
-                        {userData
+                        {userData && isAuth
                             ?
                             <>
                                 <div className="NavbarTextStyle_1">
