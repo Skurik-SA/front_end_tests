@@ -26,6 +26,7 @@ const MyTemplates = () => {
     const dispatch = useDispatch()
     const templates = useSelector(state => state.CustomTemplatesData.custom_templates)
     const is_teacher = useSelector(state => state.UserData.user_data.is_teacher)
+    const is_auth = useSelector(state => state.UserData.is_auth)
 
     const options_order = [
         {
@@ -110,8 +111,11 @@ const MyTemplates = () => {
     }
 
     useEffect(() => {
-        if (!is_teacher) {
+        if (is_teacher === false) {
             navigate('/cabinet/personal_data')
+        }
+        if (is_auth === false) {
+            navigate('/login')
         }
 
         // Диспатч ниже загрузит абсолютно все шаблоны

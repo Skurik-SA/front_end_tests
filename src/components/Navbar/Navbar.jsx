@@ -36,6 +36,9 @@ const Navbar = () => {
 
     useEffect(() => {
         const resp = dispatch({type: VERIFY_TOKEN, token: localStorage.getItem('access_token')})
+        if (resp.status !== 200) {
+            dispatch(set_is_auth(false))
+        }
     }, [])
 
     useEffect(() => {
@@ -53,11 +56,11 @@ const Navbar = () => {
 
             navigate('/login')
         }
-    }, [isAuth]);
+    }, []);
 
 
     return (
-        <nav>
+        <nav >
             <div className="NavbarWrapper">
                 <div className="NavbarBackground">
                     <section className="NavbarContentLeft">
@@ -87,7 +90,7 @@ const Navbar = () => {
                         {userData && isAuth
                             ?
                             <>
-                                <div className="NavbarTextStyle_1">
+                                <div className="NavbarLink">
                                     {userData.is_teacher
                                         ? <span>
                                             Учитель: {userData.first_name

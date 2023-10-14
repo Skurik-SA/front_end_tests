@@ -28,6 +28,9 @@ const Slice_User = createSlice({
         set_is_auth(state, action) {
             state.is_auth = action.payload
         },
+        logout() {
+            localStorage.clear()
+        },
         set_user_data(state, action) {
                 state.user_data = action.payload
                 state.input_username = action.payload.username
@@ -89,4 +92,5 @@ export const {
     change_user_email,
     save_user_changes,
     set_students_data,
+    logout,
 } = Slice_User.actions

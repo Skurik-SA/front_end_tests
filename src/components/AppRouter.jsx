@@ -15,11 +15,25 @@ import CreateTemplate from "../pages/PersonalCabinet/Tabs/Templates/CreateTempla
 import EditTemplate from "../pages/PersonalCabinet/Tabs/Templates/EditTemplate/EditTemplate";
 import MyTests from "../pages/PersonalCabinet/Tabs/MyTests/MyTests";
 import LaboratoryStorm from "../pages/LaboratoryStorm/LaboratoryStorm";
+import {useDispatch} from "react-redux";
+import {useCallback} from "react";
+import {logout, set_is_auth} from "../redux/store/slices/slice_User";
+import AuthVerify from "../api/auth/AuthVerify";
 
 
 
 const AppRouter = () => {
+
+    const dispatch = useDispatch()
+
+
+    const logOut = useCallback(() => {
+        dispatch(set_is_auth(false));
+        dispatch(logout());
+    }, [dispatch]);
+
     return (
+        <>
             <Routes>
                 <Route path='/' element={<Layout/>}>
                     <Route index element={<LoginPage/>}></Route>
@@ -46,6 +60,8 @@ const AppRouter = () => {
                 </Route>
                 <Route path={'*'} element={<NotFoundPage/>}></Route>
             </Routes>
+            <AuthVerify logOut={logOut}/>
+        </>
     )
 }
 

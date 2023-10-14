@@ -27,6 +27,10 @@ const PersonalData = () => {
     const navigate = useNavigate()
 
     useEffect(() => {
+        if (userData.is_auth === false) {
+            navigate('/login')
+        }
+
         dispatch(set_navbar_link(
             [
                 {
@@ -41,10 +45,9 @@ const PersonalData = () => {
                 }
             ]
         ))
-
-        dispatch({type: VERIFY_TOKEN, token: localStorage.getItem('access_token')})
-
     }, [])
+
+
 
     return (
         <>
