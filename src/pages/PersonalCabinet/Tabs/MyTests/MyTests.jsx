@@ -17,6 +17,8 @@ const MyTests = () => {
     const dispatch = useDispatch()
     const isTeacher = useSelector(state => state.UserData.user_data.is_teacher)
     const personalTests = useSelector(state => state.PersonalTestsData.personal_tests)
+    const is_auth = useSelector(state => state.UserData.is_auth)
+    const navigate = useNavigate()
 
 
     useEffect(() => {
@@ -36,6 +38,7 @@ const MyTests = () => {
                 }
             ]
         ))
+
     }, [])
 
     return (

@@ -38,12 +38,13 @@ const AppRouter = () => {
                 <Route path='/' element={<Layout/>}>
                     <Route index element={<LoginPage/>}></Route>
                     <Route path='login' element={<LoginPage/>}/>
-                    <Route path='registration' element={<RegistrationPage/>}/>
+                    {/*<Route path='registration' element={<RegistrationPage/>}/>*/}
+                    <Route path='registration' element={<LoginPage/>}/>
 
                     <Route path='test' element={<TestPage/>}/>
                     <Route path='test/:task_id' element={<TestPage/>}/>
 
-                    <Route path='groups' element={<LaboratoryStorm/>}/>
+                    {/*<Route path='groups' element={<LaboratoryStorm/>}/>*/}
 
                     <Route path={'cabinet'}>
                         <Route path='my_templates' element={<MyTemplates/>}/>

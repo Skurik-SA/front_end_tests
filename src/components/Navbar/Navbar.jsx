@@ -10,6 +10,7 @@ import NavigationButton from "./NavigationButton/NavigationButton";
 import {verifyToken} from "../../api/auth/VerifyToken";
 import {VERIFY_TOKEN} from "../../redux/saga/auth/saga_TokenVerify";
 import {set_is_auth} from "../../redux/store/slices/slice_User";
+import {useLocalStorage} from "../hooks/useLocalStorage";
 
 const Navbar = () => {
 
@@ -32,7 +33,6 @@ const Navbar = () => {
     }
 
     const isAuth = useSelector(state => state.UserData.is_auth)
-    // const [isAuth, setIsAuth] = useState(false)
 
     useEffect(() => {
         const resp = dispatch({type: VERIFY_TOKEN, token: localStorage.getItem('access_token')})
@@ -42,16 +42,13 @@ const Navbar = () => {
     }, [])
 
     useEffect(() => {
-        // const resp = verifyToken(localStorage.getItem('access_token'))
 
         if (localStorage.getItem('access_token') !== null) {
-            // setIsAuth(true)
             dispatch(set_is_auth(true))
 
             dispatch({type: LOAD_USER_DATA})
         }
         else {
-            // setIsAuth(false)
             dispatch(set_is_auth(false))
 
             navigate('/login')
@@ -64,7 +61,8 @@ const Navbar = () => {
             <div className="NavbarWrapper">
                 <div className="NavbarBackground">
                     <section className="NavbarContentLeft">
-                        <div onClick={navPanelAction} style={{cursor: 'pointer'}}>
+                        <div style={{cursor: 'pointer'}}>
+                        {/*<div onClick={navPanelAction} style={{cursor: 'pointer'}}>*/}
                             {navPanelVisibility ?
                                 <MenuIconActive/>
                                 :
@@ -126,8 +124,8 @@ const Navbar = () => {
                 visible={navPanelVisibility}
                 setVisible={setNavPanelVisibility}
             >
-                {/*<div style={{display: 'none'}} className="NavPanelContent">*/}
-                <div className="NavPanelContent">
+                <div style={{display: 'none'}} className="NavPanelContent">
+                {/*<div className="NavPanelContent">*/}
                     <NavigationButton link_to={"/all_tests"}>Мои тесты</NavigationButton>
                     <NavigationButton link_to={"/groups"}>Группы</NavigationButton>
                     <NavigationButton link_to={"/general_tests"}>Общие тесты</NavigationButton>
