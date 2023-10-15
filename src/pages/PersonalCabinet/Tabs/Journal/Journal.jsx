@@ -9,12 +9,14 @@ import FilterInput from "../../../../components/FilterInput/FilterInput";
 import {GET_ANALYTICS_DATA} from "../../../../redux/saga/analytics/saga_GetAnalyticsData";
 import Portal from "../../../../components/Portal/Portal";
 import ShowMeMyResults from "../../../../components/ModalWindows/ShowMeMyResults/ShowMeMyResults";
+import DotedLoader from "../../../../components/Loaders/DotedLoader/DotedLoader";
 
 const Journal = () => {
 
     const dispatch = useDispatch()
 
     const journalData = useSelector(state => state.AnalyticsData.data)
+    const isJournalDataLoading = useSelector(state => state.AnalyticsData.is_loading)
     const user_groups = useSelector(state => state.UserData.groups).map(
         group => {
             return {
@@ -22,11 +24,8 @@ const Journal = () => {
             }
         })
 
-    const [selectedGroup, SetSelectedGroup] = useState(null)
 
     const selectGroup = (value) => {
-        SetSelectedGroup(value)
-        console.log(value.id)
         dispatch({type: GET_ANALYTICS_DATA,
             data: {
                 group_id: value.id
@@ -85,42 +84,50 @@ const Journal = () => {
                                              pt_data={someState}
                             />
                         </Portal>
-                        <div className={styles.journal_table}>
-                            <div className={styles.journal_columns}>
-                                <div className={styles.journal_names}>
-                                    {journalData.length > 0 && journalData.map((persona, index) =>
-                                        <div className={styles.journal_fio}>
-                                            {persona.user_data.last_name} {persona.user_data.first_name} {persona.user_data.sur_name}
-                                        </div>
-                                    )}
-                                </div>
-                                <div className={styles.journal_marks}>
-                                    {journalData.length > 0 && journalData.map((persona, index) =>
-                                        <div key={index} style={{display: 'flex', flexDirection: 'row'}}>
-                                            {persona.user_tests.map(test =>
-                                                <div className={test.is_Closed ? styles.journal_mark_green : styles.journal_mark_red}
-                                                     onClick={() => {
-                                                         setIsOpen(true)
-                                                         setSomeState({
-                                                             title: test.title,
-                                                             tasks: test.tasks,
-                                                             tasks_amount: test.tasks_amount,
-                                                             answers: test.answers,
-                                                             student_answers: test.student_answers,
-                                                             is_correct_answers: test.is_correct_answers,
-                                                             mark: test.mark
-                                                         })
-                                                     }}
-                                                >
-                                                    {test.mark} / {test.tasks_amount}
-                                                </div>
-                                            )}
-                                        </div>
-                                    )}
+                        {isJournalDataLoading
+                            ?
+                            <DotedLoader></DotedLoader>
+                            :
+                            <div className={styles.journal_table}>
+                                <div className={styles.journal_columns}>
+                                    <div className={styles.journal_names}>
+                                        {journalData.length > 0 && journalData.map((persona, index) =>
+                                            <div className={styles.journal_fio}>
+                                                {persona.user_data.last_name} {persona.user_data.first_name} {persona.user_data.sur_name}
+                                            </div>
+                                        )}
+                                    </div>
+
+                                    <div className={styles.journal_marks}>
+                                        {journalData.length > 0 && journalData.map((persona, index) =>
+                                            <div key={index} style={{display: 'flex', flexDirection: 'row'}}>
+                                                {persona.user_tests.map(test =>
+                                                    <div className={test.is_Closed ? styles.journal_mark_green : styles.journal_mark_red}
+                                                         onClick={() => {
+                                                             setSomeState(prev => prev = {
+                                                                 title: test.title,
+                                                                 tasks: test.tasks,
+                                                                 tasks_amount: test.tasks_amount,
+                                                                 answers: test.answers,
+                                                                 student_answers: test.student_answers,
+                                                                 is_correct_answers: test.is_correct_answers,
+                                                                 mark: test.mark
+                                                             })
+                                                             setIsOpen(true)
+
+                                                         }}
+                                                    >
+                                                        {test.mark} / {test.tasks_amount}
+                                                    </div>
+                                                )}
+                                            </div>
+                                        )}
+
+                                    </div>
 
                                 </div>
                             </div>
-                        </div>
+                        }
                     </div>
                 </MonoContent>
             </WrapperPersonalCabinet>

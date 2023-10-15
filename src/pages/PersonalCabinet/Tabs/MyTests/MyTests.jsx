@@ -9,12 +9,16 @@ import {LOAD_PERSONAL_PAGE_DATA} from "../../../../redux/saga/tests/saga_LoadPer
 
 import RowModuleTests from "../../../../components/RowModuleTests/RowModuleTests";
 import DivideLineMono from "../../../../components/DivideLines/DivideLine_Mono/DivideLineMono";
+import {verifyToken} from "../../../../api/auth/VerifyToken";
+import {useNavigate} from "react-router-dom";
 
 
 const MyTests = () => {
     const dispatch = useDispatch()
     const isTeacher = useSelector(state => state.UserData.user_data.is_teacher)
     const personalTests = useSelector(state => state.PersonalTestsData.personal_tests)
+    const is_auth = useSelector(state => state.UserData.is_auth)
+    const navigate = useNavigate()
 
 
     useEffect(() => {
@@ -34,6 +38,7 @@ const MyTests = () => {
                 }
             ]
         ))
+
     }, [])
 
     return (
@@ -46,7 +51,7 @@ const MyTests = () => {
                     </label>
                     <DivideLineMono/>
 
-                    <div className="TemplateRows">
+                    <div className={styles.my_tests_rows_wrapper}>
                         {personalTests && personalTests.length > 0
                             ?
                             <>

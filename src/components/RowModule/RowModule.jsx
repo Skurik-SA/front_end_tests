@@ -67,7 +67,7 @@ const RowModule = (
                             {template_name}
                         </label>
                         <label>
-                            |{template_group}
+                            {template_group}
                         </label>
                     </div>
                 </section>

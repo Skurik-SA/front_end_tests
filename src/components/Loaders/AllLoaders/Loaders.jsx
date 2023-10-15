@@ -1,5 +1,4 @@
 import "./Loader.css"
-import TestMenu from "../../Test_menu_icon/TestMenu";
 
 const Loaders = () => {
     return (

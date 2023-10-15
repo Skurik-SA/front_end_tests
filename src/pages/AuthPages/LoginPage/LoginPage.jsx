@@ -8,6 +8,7 @@ import {useFetching} from "../../../components/hooks/useFetching";
 import {Password1Icon, UsernameIcon} from "../../../components/Icons/Authorization";
 import {useDispatch} from "react-redux";
 import {LOAD_USER_DATA} from "../../../redux/saga/auth/saga_UserData";
+import {set_is_auth} from "../../../redux/store/slices/slice_User";
 
 const LoginPage = () => {
 
@@ -35,6 +36,7 @@ const LoginPage = () => {
     useEffect(() => {
         if (localStorage.getItem('access_token') !== null) {
             dispatch({type: LOAD_USER_DATA})
+            dispatch(set_is_auth(true))
             navigate("/cabinet/personal_data")
         }
     }, [isLoading]);

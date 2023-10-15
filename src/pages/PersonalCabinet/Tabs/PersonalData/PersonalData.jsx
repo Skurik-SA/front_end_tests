@@ -15,14 +15,22 @@ import {
     change_user_surname, save_user_changes
 } from "../../../../redux/store/slices/slice_User";
 import {UPDATE_USER_DATA} from "../../../../redux/saga/auth/saga_UpdateUserData";
+import {verifyToken} from "../../../../api/auth/VerifyToken";
+import {useNavigate} from "react-router-dom";
+import {VERIFY_TOKEN} from "../../../../redux/saga/auth/saga_TokenVerify";
 
 const PersonalData = () => {
 
     const dispatch = useDispatch()
     const isTeacher = useSelector(state => state.UserData.user_data.is_teacher)
     const userData = useSelector(state => state.UserData)
+    const navigate = useNavigate()
 
     useEffect(() => {
+        if (userData.is_auth === false) {
+            navigate('/login')
+        }
+
         dispatch(set_navbar_link(
             [
                 {
@@ -38,6 +46,8 @@ const PersonalData = () => {
             ]
         ))
     }, [])
+
+
 
     return (
         <>

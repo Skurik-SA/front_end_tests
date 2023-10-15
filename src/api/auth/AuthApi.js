@@ -1,5 +1,4 @@
 import axios from "axios";
-import "../../utils/constants"
 import jwtDecode from "jwt-decode";
 import {BASE_URL} from "../../redux/saga/saga_Requests/api_base_constants";
 
@@ -51,10 +50,12 @@ export default class AuthApi {
                     withCredentials: true}
             )
             localStorage.clear()
+
             localStorage.setItem('access_token', data.access)
             localStorage.setItem('refresh_token', data.refresh)
 
             const userID = jwtDecode(data.access)['user_id']
+            localStorage.setItem('user', data)
             localStorage.setItem('user_id', userID)
 
             axios.defaults.headers.common['Authorization'] = `Bearer ${data['access']}`

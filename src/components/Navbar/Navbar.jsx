@@ -7,6 +7,10 @@ import {MenuIconActive, MenuIconDefault} from "../Icons/MenuIcons";
 import {useDispatch, useSelector} from "react-redux";
 import {LOAD_USER_DATA} from "../../redux/saga/auth/saga_UserData";
 import NavigationButton from "./NavigationButton/NavigationButton";
+import {verifyToken} from "../../api/auth/VerifyToken";
+import {VERIFY_TOKEN} from "../../redux/saga/auth/saga_TokenVerify";
+import {set_is_auth} from "../../redux/store/slices/slice_User";
+import {useLocalStorage} from "../hooks/useLocalStorage";
 
 const Navbar = () => {
 
@@ -28,89 +32,92 @@ const Navbar = () => {
         }
     }
 
-    const [isAuth, setIsAuth] = useState(false)
+    const isAuth = useSelector(state => state.UserData.is_auth)
 
     useEffect(() => {
+        const resp = dispatch({type: VERIFY_TOKEN, token: localStorage.getItem('access_token')})
+        if (resp.status !== 200) {
+            dispatch(set_is_auth(false))
+        }
+    }, [])
+
+    useEffect(() => {
+
         if (localStorage.getItem('access_token') !== null) {
-            setIsAuth(true)
-            // getUsername()
+            dispatch(set_is_auth(true))
+
             dispatch({type: LOAD_USER_DATA})
         }
         else {
+            dispatch(set_is_auth(false))
+
             navigate('/login')
         }
-    }, [isAuth]);
+    }, []);
 
 
     return (
-        <>
+        <nav >
             <div className="NavbarWrapper">
-                <div className="NavbarContent">
-                    <div className="NavbarBackground">
-                        <div className="NavbarContentLeft">
-                            {/*<div className="mb-2 mt-1" onClick={navPanelAction}>*/}
-                            <div className="mb-2 mt-1">
-                                {navPanelVisibility ?
-                                    <MenuIconActive/>
-                                    :
-                                    <MenuIconDefault/>
-                                }
-                            </div>
-                            <div className="mt-1 px-3">
-                                {navbarLinks && navbarLinks.map((link, index) =>
-                                    <Fragment key={index}>
-                                        {link.active
-                                            ?
-                                                <span>
-                                                    <Link className="NavbarLink" to={link.link}>{link.link_name} > </Link>
-                                                </span>
-                                            :
-                                            <>
-                                                <span className="NavbarLink">
-                                                    {link.link_name}
-                                                </span>
-                                            </>
-                                        }
-
-                                    </Fragment>
-                                )}
-                            </div>
-                        </div>
-                        <div className="NavbarContentRight">
-                            {userData
-                                ?
-                                <>
-                                    <div className="NavbarTextStyle_1">
-                                        {userData.is_teacher
-                                            ? <span>
-                                                Учитель: {userData.first_name
-                                                            ?
-                                                            <>{userData.first_name}</>
-                                                            :
-                                                            <>{userData.username}</>
-                                                                 }
-                                            </span>
-                                            :
-                                            <span>
-                                                Ученик: {userData.first_name
-                                                            ?
-                                                            <>{userData.first_name}</>
-                                                            :
-                                                            <>{userData.username}</>
-                                                        }
-                                            </span>
-                                        }
-
-                                    </div>
-                                    <div className="NavbarTextStyle_2">
-                                        <Logout/>
-                                    </div>
-                                </>
+                <div className="NavbarBackground">
+                    <section className="NavbarContentLeft">
+                        <div style={{cursor: 'pointer'}}>
+                        {/*<div onClick={navPanelAction} style={{cursor: 'pointer'}}>*/}
+                            {navPanelVisibility ?
+                                <MenuIconActive/>
                                 :
-                                <></>
+                                <MenuIconDefault/>
                             }
                         </div>
-                    </div>
+                        <div>
+                            {navbarLinks && navbarLinks.map((link, index) =>
+                                <Fragment key={index}>
+                                    {link.active
+                                        ?
+                                            <Link className="NavbarLink" to={link.link}> {link.link_name} > </Link>
+                                        :
+                                            <span className="NavbarLink">
+                                                {link.link_name}
+                                            </span>
+                                    }
+                                </Fragment>
+                            )}
+                        </div>
+                    </section>
+                    <section className="NavbarContentRight">
+                        {userData && isAuth
+                            ?
+                            <>
+                                <div className="NavbarLink">
+                                    {userData.is_teacher
+                                        ? <span>
+                                            Учитель: {userData.first_name
+                                                        ?
+                                                        <>{userData.first_name}</>
+                                                        :
+                                                        <>{userData.username}</>
+                                                             }
+                                        </span>
+                                        :
+                                        <span>
+                                            Ученик: {userData.first_name
+                                                        ?
+                                                        <>{userData.first_name}</>
+                                                        :
+                                                        <>{userData.username}</>
+                                                    }
+                                        </span>
+                                    }
+
+                                </div>
+                                <div className="NavbarTextStyle_2">
+                                    <Logout/>
+                                </div>
+                            </>
+                            :
+                            <></>
+                        }
+                    </section>
                 </div>
             </div>
             <NavigationPanel
@@ -143,7 +150,7 @@ const Navbar = () => {
                     </div>
                 </div>
             </NavigationPanel>
-        </>
+        </nav>
     )
 }
 

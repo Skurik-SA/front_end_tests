@@ -18,6 +18,7 @@ import FiltersHeader from "../../../../../components/FiltersHeader/FiltersHeader
 import {LOAD_PERSONAL_CUSTOM_TEMPLATES} from "../../../../../redux/saga/tests/saga_LoadPersonalCustomTemplates";
 import {COPY_TEMPLATE} from "../../../../../redux/saga/tests/saga_CopyTemplate";
 import {DELETE_TEMPLATE} from "../../../../../redux/saga/tests/saga_DeleteTemplate";
+import DropDownMenu from "../../../../../components/DropDownMenu/DropDownMenu";
 
 const MyTemplates = () => {
 
@@ -25,6 +26,7 @@ const MyTemplates = () => {
     const dispatch = useDispatch()
     const templates = useSelector(state => state.CustomTemplatesData.custom_templates)
     const is_teacher = useSelector(state => state.UserData.user_data.is_teacher)
+    const is_auth = useSelector(state => state.UserData.is_auth)
 
     const options_order = [
         {
@@ -109,8 +111,11 @@ const MyTemplates = () => {
     }
 
     useEffect(() => {
-        if (!is_teacher) {
+        if (is_teacher === false) {
             navigate('/cabinet/personal_data')
+        }
+        if (is_auth === false) {
+            navigate('/login')
         }
 
         // Диспатч ниже загрузит абсолютно все шаблоны
@@ -143,6 +148,7 @@ const MyTemplates = () => {
                         {is_teacher
                             ?
                             <>
+
                                 <div className="myTemplatesWrapper_upperBlock">
                                     <Search
                                         style_params={{marginLeft: '16px', width: "30%"}}
@@ -206,7 +212,9 @@ const MyTemplates = () => {
                                         >
                                             {filter_group.value}
                                         </FilterInput>
-                                    </div>
+                                        </div>
+                                    <DropDownMenu/>
+
                                 </div>
                             </>
                         :
