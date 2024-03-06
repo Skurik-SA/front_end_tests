@@ -6,7 +6,6 @@
     flex-direction: row;
     justify-content: space-between;
 
-    margin-top: 16px;
 
     overflow: hidden;
 
@@ -21,7 +20,7 @@
 
 @media screen and (min-width: 1200px) {
     .DuoContent_Wrapper {
-        margin-top: 16px;
+        margin-top: 8px;
 
     }
 }

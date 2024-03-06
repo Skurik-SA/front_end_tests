@@ -61,8 +61,8 @@ const Navbar = () => {
             <div className="NavbarWrapper">
                 <div className="NavbarBackground">
                     <section className="NavbarContentLeft">
-                        <div style={{cursor: 'pointer'}}>
-                        {/*<div onClick={navPanelAction} style={{cursor: 'pointer'}}>*/}
+                        {/*<div style={{cursor: 'pointer'}}>*/}
+                        <div onClick={navPanelAction} style={{cursor: 'pointer'}}>
                             {navPanelVisibility ?
                                 <MenuIconActive/>
                                 :
@@ -124,8 +124,8 @@ const Navbar = () => {
                 visible={navPanelVisibility}
                 setVisible={setNavPanelVisibility}
             >
-                <div style={{display: 'none'}} className="NavPanelContent">
-                {/*<div className="NavPanelContent">*/}
+                {/*<div style={{display: 'none'}} className="NavPanelContent">*/}
+                <div className="NavPanelContent">
                     <NavigationButton link_to={"/all_tests"}>Мои тесты</NavigationButton>
                     <NavigationButton link_to={"/groups"}>Группы</NavigationButton>
                     <NavigationButton link_to={"/general_tests"}>Общие тесты</NavigationButton>

@@ -2,16 +2,15 @@
     width: 100%;
     min-height: 100vh;
 
-    margin: 14px;
     padding: 14px;
 
     display: flex;
     flex-direction: column;
 
-    border-radius: 11px;
-    background: #CBCBCB;
+    border-radius: 4px;
     box-shadow: 0px 4px 11px 14px rgba(0, 0, 0, 0.25);
-
+    /*box-shadow: 0px 4px 11px 14px linear-gradient(80deg, #212121 30%, rgba(0, 0, 0, 0.25) 250%);*/
+    background: rgba(52, 52, 52, 0.25);
     overflow: hidden;
 }
 
@@ -24,7 +23,6 @@
 
 @media screen and (min-width: 1200px) {
     .wrapperPersonalCabinet {
-        margin: 14px;
-        padding: 14px;
+        padding: 4px;
     }
 }

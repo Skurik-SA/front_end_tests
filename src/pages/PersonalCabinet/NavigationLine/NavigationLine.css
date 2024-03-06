@@ -1,8 +1,9 @@
 .wrapperNavigationLine {
     width: 100%;
 
-    padding-top: 14px;
-    padding-bottom: 14px;
+    /*padding-top: 14px;*/
+    /*padding-bottom: 14px;*/
+    padding-top: 10px;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -11,21 +12,23 @@
     gap: 2px;
     background: #2F2F2F;
     /*background: #9b2727;*/
+    border: 1px solid rgba(255, 255, 255, 0.25);
 
-    border-radius: 8px 8px 0px 0px;
+    border-radius: 5px 5px 0px 0px;
     overflow: hidden;
 }
 
 @media screen and (min-width: 0) {
     .wrapperNavigationLine {
         display: flex;
+        padding-top: 2px;
     }
 }
 
 @media screen and (min-width: 600px) {
     .wrapperNavigationLine {
         display: flex;
-
+        padding-top: 10px;
     }
 }
 
